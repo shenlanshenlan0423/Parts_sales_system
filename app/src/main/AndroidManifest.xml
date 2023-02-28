@@ -20,16 +20,16 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".public_MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar">
         </activity>
 
         <activity
-            android:name=".PatrolManagementActivity"
+            android:name=".private_UseManagementActivity"
             android:exported="false"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_activity_UseManagement"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar">
         </activity>
     </application>

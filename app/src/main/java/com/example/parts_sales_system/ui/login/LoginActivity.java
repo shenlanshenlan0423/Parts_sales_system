@@ -23,7 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.parts_sales_system.MainActivity;
+import com.example.parts_sales_system.public_MainActivity;
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.ui.login.LoginViewModel;
 import com.example.parts_sales_system.ui.login.LoginViewModelFactory;
@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
-                intent[0] = new Intent(LoginActivity.this, MainActivity.class);
+                intent[0] = new Intent(LoginActivity.this, public_MainActivity.class);
                 startActivity(intent[0]);
             }
         });

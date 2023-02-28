@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.parts_sales_system.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class public_MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         @Override
         public void onClick(View view) {
-            intent = new Intent(MainActivity.this,PatrolManagementActivity.class);
+            intent = new Intent(public_MainActivity.this,private_UseManagementActivity.class);
             startActivity(intent);
         }
     }

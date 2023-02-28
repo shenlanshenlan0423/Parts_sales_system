@@ -15,14 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class PatrolManagementActivity extends AppCompatActivity {
+public class private_UseManagementActivity extends AppCompatActivity {
 
     private ActivityScrollingBinding binding;
     // 巡检管理按钮
     private Button PatrolManagementButton;
-
+    private TextView record_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class PatrolManagementActivity extends AppCompatActivity {
 
         // 巡检管理
         PatrolManagementButton = findViewById(R.id.PatrolManagementButton);
-
+        record_list = findViewById(R.id.record_list);
         FloatingActionButton fab = binding.fab;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,14 +75,14 @@ public class PatrolManagementActivity extends AppCompatActivity {
     private class PatrolManagement implements View.OnClickListener{
         @Override
         public void onClick(View view) {
-            PopupMenu popupMenu = new PopupMenu(PatrolManagementActivity.this,PatrolManagementButton);
+            PopupMenu popupMenu = new PopupMenu(private_UseManagementActivity.this,PatrolManagementButton);
             popupMenu.getMenuInflater().inflate(R.menu.popmenu_patrolmanagement,popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     switch (menuItem.getItemId()){
                         case R.id.item1:
-                            Toast.makeText(PatrolManagementActivity.this, "这是点击此功能的反馈", Toast.LENGTH_SHORT).show();
+                            record_list.setText("这是返回的记录列表");
                             break;
                         case R.id.item2:
                             break;
