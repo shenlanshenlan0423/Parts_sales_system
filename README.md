@@ -24,8 +24,7 @@
   - activity_scrolling.xml：二级功能上浮界面
   - app_bar_main.xml：一级功能上浮界面
   - content_main.xml：用户主界面下层界面
-  - content_scrolling：使用方私有功能-使用管理下层界面
-  - nav_header_main.xml：用户主界面侧滑窗口中的个人信息界面
+  - content_scrolling：使用方私有功能-使用管理下层界面  - nav_header_main.xml：用户主界面侧滑窗口中的个人信息界面
 - menu：菜单文件
   - activity_main_drawer.xml：用户主界面侧滑窗口界面菜单
   - main.xml：用户主界面右上角弹出菜单
@@ -35,3 +34,19 @@
   - dimens.xml：组件间距相关
   - strings.xml：字符相关
   - themes：主题设置相关
+
+### data.api_connection文件夹解释：
+  -ad_alData类中实现ad_alDate方法，参数为(String dbname,String params)，dbname为数据库名字，params应为字符串类型的json格式数据。
+  -delData类中实现delDate方法，参数同ad_alData。
+  -getData类中实现getDate方法，参数同上。
+  -使用方法：在想要操作数据库的地方写入以下代码：
+  new Thread(new Runnable(){
+  @Override
+  public void run() {
+  try {
+  ad_alData.ad_alDate("UseDept","{searchname:\"hmy\"}");
+  } catch (Exception e) {
+  e.printStackTrace();
+  }
+  }
+  }).start();
