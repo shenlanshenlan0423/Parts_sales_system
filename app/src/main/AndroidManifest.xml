@@ -32,6 +32,13 @@
             android:label="@string/title_activity_UseManagement"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".public_FinancialManagementActivity"
+            android:exported="false"
+            android:label="@string/title_activity_FinancialManagement"
+            android:theme="@style/Theme.Parts_sales_system.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

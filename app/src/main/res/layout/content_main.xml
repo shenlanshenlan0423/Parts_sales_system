@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
+    <!--layout_behavior：从toolbar下面开始布局-->
 
     <fragment
         android:id="@+id/nav_host_fragment_content_main"
@@ -19,110 +20,186 @@
         app:navGraph="@navigation/mobile_navigation" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin">
+                <ImageView
+                    android:layout_width="@dimen/head_image_size"
+                    android:layout_height="@dimen/head_image_size"
+                    android:src="@drawable/headpicture"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="公共功能"/>
+                    android:text="15188889999"
+                    android:textSize="30dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公共功能"/>
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_horizontal">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <Button
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="基础配置"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/First_function_image_size"
+                            android:layout_height="@dimen/First_function_image_size"
+                            android:src="@drawable/basicconfigurationbutton"
+                            android:layout_gravity="center_horizontal"/>
+                        <Button
+                            android:id="@+id/BasicConfigurationButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/Main_button_margin"
+                            android:text="基础配置"
+                            android:textSize="@dimen/First_function_text_size"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/First_function_image_size"
+                            android:layout_height="@dimen/First_function_image_size"
+                            android:src="@drawable/publicusemanagementbutton"
+                            android:layout_gravity="center_horizontal"/>
+                        <Button
+                            android:id="@+id/PublicUseManagementButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/Main_button_margin"
+                            android:text="使用管理"
+                            android:textSize="@dimen/First_function_text_size"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="财务管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/First_function_image_size"
+                            android:layout_height="@dimen/First_function_image_size"
+                            android:src="@drawable/financialmanagementbutton"
+                            android:layout_gravity="center_horizontal"/>
+                        <Button
+                            android:id="@+id/FinancialManagementButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/Main_button_margin"
+                            android:text="财务管理"
+                            android:textSize="@dimen/First_function_text_size"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="统计分析"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/First_function_image_size"
+                            android:layout_height="@dimen/First_function_image_size"
+                            android:src="@drawable/publicstatisticalanalysisbutton"
+                            android:layout_gravity="center_horizontal"/>
+                        <Button
+                            android:id="@+id/PublicStatisticalAnalysisButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/Main_button_margin"
+                            android:text="统计分析"
+                            android:textSize="@dimen/First_function_text_size"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="私有功能"/>
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="私有功能"/>
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_horizontal">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/UseManagementButton"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/First_function_image_size"
+                            android:layout_height="@dimen/First_function_image_size"
+                            android:src="@drawable/privateusemanagementbutton"
+                            android:layout_gravity="center_horizontal"/>
+                        <Button
+                            android:id="@+id/PrivateUseManagementButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="使用管理"
+                            android:layout_margin="@dimen/Main_button_margin"
+                            android:textSize="@dimen/First_function_text_size"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/First_function_image_size"
+                            android:layout_height="@dimen/First_function_image_size"
+                            android:src="@drawable/inventorymanagementbutton"
+                            android:layout_gravity="center_horizontal"/>
+                        <Button
+                            android:id="@+id/InventoryManagementButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="库存管理"
+                            android:layout_margin="@dimen/Main_button_margin"
+                            android:textSize="@dimen/First_function_text_size"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/First_function_image_size"
+                            android:layout_height="@dimen/First_function_image_size"
+                            android:src="@drawable/privatestatisticalanalysisbutton"
+                            android:layout_gravity="center_horizontal"/>
+                        <Button
+                            android:id="@+id/PrivateStatisticalAnalysisButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="统计分析"
+                            android:layout_margin="@dimen/Main_button_margin"
+                            android:textSize="@dimen/First_function_text_size"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
 

@@ -2,8 +2,8 @@ package com.example.parts_sales_system;
 
 import android.os.Bundle;
 
+import com.example.parts_sales_system.databinding.ActivityPrivateUseManagementBinding;
 import com.example.parts_sales_system.databinding.ActivityScrollingBinding;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -14,39 +14,75 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class private_UseManagementActivity extends AppCompatActivity {
 
-    private ActivityScrollingBinding binding;
+    private ActivityPrivateUseManagementBinding binding;
     // 巡检管理按钮
     private Button PatrolManagementButton;
-    private TextView record_list;
+    private EditText CreateByEditText, CreateDateTimeEditText, UpdateByEditText, UpdateDateTimeEditText;
+
+    //与数据库里巡检记录列表的字段相对应
+//            CreateDateTime,
+//            UpdateBy,
+//            UpdateDateTime,
+//            PatrolRecordEncodingID,
+//            BuildRecordEncodingID,
+//            PatrolRecordDate,
+//            PatrolRecordContent,
+//            PatrolRecorder,
+//            PatrolRecordPhoto1,
+//            PatrolRecordPhoto2,
+//            PatrolRecordPhoto3,
+//            PatrolRecordPhoto4,
+//            PatrolRecordPhoto5;
+    JSONObject jsonObject;
+//    JSONObject jCreateBy,
+//            jCreateDateTime,
+//            jUpdateBy,
+//            jUpdateDateTime,
+//            jPatrolRecordEncodingID,
+//            jBuildRecordEncodingID,
+//            jPatrolRecordDate,
+//            jPatrolRecordContent,
+//            jPatrolRecorder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityScrollingBinding.inflate(getLayoutInflater());
+        binding = ActivityPrivateUseManagementBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        toolBarLayout.setTitle(getTitle());
+        // Title 使用管理四个大字
+//        Toolbar toolbar = binding.toolbar;
+//        setSupportActionBar(toolbar);
+//        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
+//        toolBarLayout.setTitle(getTitle());
 
         // 巡检管理
-        PatrolManagementButton = findViewById(R.id.PatrolManagementButton);
-        record_list = findViewById(R.id.record_list);
-        FloatingActionButton fab = binding.fab;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        PatrolManagementButton = binding.PatrolManagementButton;
+        CreateByEditText = binding.CreateBy;
+        CreateDateTimeEditText = binding.CreateDateTime;
+        UpdateByEditText = binding.UpdateBy;
+        UpdateDateTimeEditText = binding.UpdateDateTime;
+//        CreateDateTime,
+//        UpdateBy,
+//        UpdateDateTime,
+//        FloatingActionButton fab = binding.fab;
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+        // 巡检管理事件响应
         PatrolManagementButton.setOnClickListener(new PatrolManagement());
     }
 
@@ -81,14 +117,8 @@ public class private_UseManagementActivity extends AppCompatActivity {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     switch (menuItem.getItemId()){
-                        case R.id.item1:
-                            record_list.setText("这是返回的记录列表");
-                            break;
-                        case R.id.item2:
-                            break;
-                        case R.id.item3:
-                            break;
-                        case R.id.item4:
+                        case R.id.PatrolRecordList:
+                            setArrayData();
                             break;
                         default:
                             break;
@@ -97,6 +127,46 @@ public class private_UseManagementActivity extends AppCompatActivity {
                 }
             });
             popupMenu.show();
+        }
+    }
+
+//    void setJsonData (){
+//        try {
+//            jCreateBy = new JSONObject();
+//            jCreateBy.put("CreateBy","hhw");
+//            String CreateByString = jCreateBy.getString("CreateBy");
+//            CreateBy.setText(CreateByString);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    void setArrayData(){
+        try {
+            JSONArray jdata = new JSONArray();
+            jsonObject = new JSONObject();
+            jsonObject.put("CreateBy","hhw").put("CreateDateTime","0302")
+                    .put("UpdateBy","wwh").put("UpdateDateTime","0303");
+            jdata.put(jsonObject);
+            String CreateByString, CreateDateTimeString, UpdateByString, UpdateDateTimeString;
+
+            //寻访json中包含的所有键值对
+            int jdata_length = jdata.length();
+            for (int i=0; i< jdata_length; i++){
+                JSONObject SubjsonObject = jdata.getJSONObject(i);
+                CreateByString = SubjsonObject.getString("CreateBy");
+                CreateDateTimeString = SubjsonObject.getString("CreateDateTime");
+                UpdateByString = SubjsonObject.getString("UpdateBy");
+                UpdateDateTimeString = SubjsonObject.getString("UpdateDateTime");
+
+                // 赋值语句
+                CreateByEditText.setText(CreateByString);
+                CreateDateTimeEditText.setText(CreateDateTimeString);
+                UpdateByEditText.setText(UpdateByString);
+                UpdateDateTimeEditText.setText(UpdateDateTimeString);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

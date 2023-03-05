@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 
-import com.example.parts_sales_system.data.api_connection.ad_alData;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -27,24 +26,12 @@ public class public_MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //测试代码
-//        new Thread(new Runnable(){
-//            @Override
-//            public void run() {
-//                try {
-//                    ad_alData.ad_alDate("UseDept","{searchname:\"hmy\"}");
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //使用管理的跳转按钮
-        Button UseManagementButton;
-        Button InventoryManagementButton;
-        Button FinancialManagementButton;
-        Button AccAnalyzeButton;
+
+        //公共功能和私有功能的按钮声明
+        Button  BasicConfigurationButton, FinancialManagementButton, UseManagementButton;
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
@@ -66,17 +53,10 @@ public class public_MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        UseManagementButton = findViewById(R.id.UseManagementButton);
+        UseManagementButton = findViewById(R.id.PrivateUseManagementButton);
         UseManagementButton.setOnClickListener(new UseManagement());
-
-        InventoryManagementButton=findViewById(R.id.InventoryManagementButton);
-        InventoryManagementButton.setOnClickListener(new InventoryManagement());
-
-        FinancialManagementButton=findViewById(R.id.FinancialManagementButton);
+        FinancialManagementButton = findViewById(R.id.FinancialManagementButton);
         FinancialManagementButton.setOnClickListener(new FinancialManagement());
-
-        AccAnalyzeButton=findViewById(R.id.AccAnalyzeButton);
-        AccAnalyzeButton.setOnClickListener(new AccAnalyze());
     }
 
     @Override
@@ -92,35 +72,17 @@ public class public_MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+    //财务管理的跳转方法
+    private class FinancialManagement implements View.OnClickListener{
+        Intent intent;
+        @Override
+        public void onClick(View view) {
+            intent = new Intent(public_MainActivity.this, public_FinancialManagementActivity.class);
+            startActivity(intent);
+        }
+    }
     //使用管理的跳转方法
     private class UseManagement implements View.OnClickListener{
-        Intent intent;
-        @Override
-        public void onClick(View view) {
-            intent = new Intent(public_MainActivity.this,private_UseManagementActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    private class AccAnalyze implements View.OnClickListener{
-        Intent intent;
-        @Override
-        public void onClick(View view) {
-            intent = new Intent(public_MainActivity.this,private_UseManagementActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    private class InventoryManagement implements View.OnClickListener{
-        Intent intent;
-        @Override
-        public void onClick(View view) {
-            intent = new Intent(public_MainActivity.this,private_UseManagementActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    private class FinancialManagement implements View.OnClickListener{
         Intent intent;
         @Override
         public void onClick(View view) {
