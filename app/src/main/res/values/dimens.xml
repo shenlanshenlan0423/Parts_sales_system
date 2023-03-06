@@ -3,6 +3,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="item_title_margin">2dp</dimen>
     <dimen name="item_margin">5dp</dimen>
+    <dimen name="item_top_margin">10dp</dimen>
     <dimen name="text_margin">4dp</dimen>
     <dimen name="Main_button_margin">2dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
@@ -15,5 +16,5 @@
     <dimen name="First_function_image_size">44dp</dimen>
     <dimen name="Secondary_function_text_size">20dp</dimen>
     <dimen name="item_title_text_size">12dp</dimen>
-    <dimen name="item_text_size">18dp</dimen>
+    <dimen name="item_text_size">12dp</dimen>
 </resources>

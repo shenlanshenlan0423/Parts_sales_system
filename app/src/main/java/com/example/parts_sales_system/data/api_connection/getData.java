@@ -1,15 +1,17 @@
 package com.example.parts_sales_system.data.api_connection;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class getData {
-    public static void getData(String dbname,String params) throws IOException {
+    public static JSONArray getData(String dbname, String params) throws IOException {
         //根据地址创建URL对象(网络访问
         //发布文章的url)
         URL url = new URL("https://www.safety123.cn/api/"+dbname+"/postdata");
@@ -46,9 +48,23 @@ public class getData {
             strBuffer.append(line);
         }
         String result = strBuffer.toString();//接收从服务器返回的数据
-        System.out.println("收到的信息:"+result);
+
+        //将取回的String转换成可用的json
+        JSONArray jdata = new JSONArray();
+        try {
+            JSONObject jsonObject = new JSONObject(result);//String转JSONObject
+            String stringd = jsonObject.getString("d");//JSONObject中取出key为"d"的value
+            JSONObject jsonObjectd = new JSONObject(stringd);//String转JSONObject
+            jdata = jsonObjectd.getJSONArray("data");//JSONObject中取出key为"data"的value（取出后为JSONArray）
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //关闭InputStream、关闭http连接
         is.close();
         conn.disconnect();
+
+        return jdata;//返回取出的数据
     }
+
 }
