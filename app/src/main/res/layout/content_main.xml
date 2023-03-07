@@ -93,24 +93,30 @@
                         android:text="使用管理"
                         android:textSize="15sp"
                         android:textColor="@color/white"/>
+
                     <Button
+                        android:id="@+id/InventoryManagementButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
+                        android:text="库存管理"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
                     <Button
+                        android:id="@+id/FinancialManagementButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
+                        android:text="财务管理"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
                     <Button
+                        android:id="@+id/AccAnalyzeButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用管理"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"/>
+                        android:text="统计分析"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
