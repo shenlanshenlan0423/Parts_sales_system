@@ -106,6 +106,9 @@
     <string name="PreviousPage">上一页</string>
     <string name="NextPage">下一页</string>
     <string name="LastPage">尾页</string>
+    <string name="modify_info">修改</string>
+    <string name="del_info">删除</string>
+    <string name="close_item">关闭</string>
     <!--密封件订货付款列表-->
     <string name="OrderPaymentCodeID">订货付款编码ID：</string>
     <string name="OrderCodeID">订货单编码ID：</string>

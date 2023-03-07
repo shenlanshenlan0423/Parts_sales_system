@@ -1,8 +1,8 @@
 ## 零部件销售管理系统（Parts sales system）
-**信息管理与信息系统19**
-**1908020202何宏伟 1908000422汤燕茹 1908000417黄明宇 1809020116苏煜昕**
-**指导老师：陈晨**
-**2023/02~2023/03**
+**信息管理与信息系统19**<br>
+**1908020202何宏伟 1908000422汤燕茹 1908000417黄明宇 1809020116苏煜昕**<br>
+**指导老师：陈晨**<br>
+**2023/02~2023/03**<br>
 
 <font color=red>文件解释并不完全完整，各位成员在开发时请勿随意删除已有文件，并尽量按照正规的开发标准进行开发</font>
 
@@ -31,6 +31,7 @@
   - fragment_home.xml：点击home后的主界面显示
   - fragment_slideshow.xml：点击slideshow后的主界面显示
   - item_add_float_button.xml：二级功能页面悬浮的数据新增按钮（add方法尚未绑定）
+  - item_detail.xml：用户点击item，弹出item详细信息窗口，可进行修改、删除操作
   - nav_header_main.xml：用户主界面侧滑窗口中的个人信息块
 
 - menu：菜单文件
@@ -44,11 +45,12 @@
   - themes：主题设置相关
 
 ### data.api_connection文件夹解释：
-  - addData.java类中实现addData方法，参数为(String dbname,String params)，dbname为表名，params应为字符串类型的json格式数据。
-  - delData.java类中实现delData方法，参数同addData。
-  - getData.java类中实现getData方法，参数同addData。
+  - addData.java：实现addData方法，参数为(String dbname,String params)，dbname为表名，params为字符串类型的json格式数据。
+  - delData.java：实现delData方法，参数同addData。
+  - getData.java：实现getData方法，参数同addData。
+  - modifyData.java：实现modifyData方法，参数同上，但不需要输出。
   - 使用方法：在想要操作数据库的地方写入以下代码：
-  new Thread(new Runnable(){
+```  new Thread(new Runnable(){
   @Override
   public void run() {
   try {

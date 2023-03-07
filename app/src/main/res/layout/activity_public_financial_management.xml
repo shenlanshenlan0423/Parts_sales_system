@@ -59,6 +59,7 @@
                 android:orientation="vertical">
                 <!--第1个item-->
                 <TableLayout
+                    android:id="@+id/item1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -144,6 +145,7 @@
                 </TableLayout>
                 <!--第2个item-->
                 <TableLayout
+                    android:id="@+id/item2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -229,6 +231,7 @@
                 </TableLayout>
                 <!--第3个item-->
                 <TableLayout
+                    android:id="@+id/item3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -314,6 +317,7 @@
                 </TableLayout>
                 <!--第4个item-->
                 <TableLayout
+                    android:id="@+id/item4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -399,6 +403,7 @@
                 </TableLayout>
                 <!--第5个item-->
                 <TableLayout
+                    android:id="@+id/item5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
