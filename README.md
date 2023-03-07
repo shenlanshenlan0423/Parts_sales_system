@@ -13,18 +13,26 @@
 
 
 ### java文件夹解释：
-- MainActivity.java：用户登陆后的主界面
-- private_UseManagementActivity.java：使用方的私有功能-使用管理界面
+- public_MainActivity.java：用户登陆后的主界面
+- private_UseManagementActivity.java：**使用方的私有功能**-使用管理界面
 - data&ui_login：Android studio自带的登录注册模板，**@汤燕茹**参考、修改并编写相关方法
+- public_FinancialManagementActivity.java：**公共功能**-财务管理界面
   
 ### res文件夹解释：
 - drawable：图片资源
 - layout：布局文件
   - activity_main.xml：用户主界面侧滑窗口界面
-  - activity_scrolling.xml：二级功能上浮界面
-  - app_bar_main.xml：一级功能上浮界面
-  - content_main.xml：用户主界面下层界面
-  - content_scrolling：使用方私有功能-使用管理下层界面  - nav_header_main.xml：用户主界面侧滑窗口中的个人信息界面
+  - activity_private_use_management.xml：**使用方私有功能**-使用管理底层界面 
+  - activity_public_financial_management.xml：**公共功能**-财务管理底层界面 
+  - activity_scrolling.xml：二级功能上层界面
+  - app_bar_main.xml：用户主界面上层界面
+  - content_main.xml：用户主界面底层界面
+  - fragment_gallery.xml：点击gallery后的主界面显示
+  - fragment_home.xml：点击home后的主界面显示
+  - fragment_slideshow.xml：点击slideshow后的主界面显示
+  - item_add_float_button.xml：二级功能页面悬浮的数据新增按钮（add方法尚未绑定）
+  - nav_header_main.xml：用户主界面侧滑窗口中的个人信息块
+
 - menu：菜单文件
   - activity_main_drawer.xml：用户主界面侧滑窗口界面菜单
   - main.xml：用户主界面右上角弹出菜单
@@ -36,15 +44,15 @@
   - themes：主题设置相关
 
 ### data.api_connection文件夹解释：
-  -ad_alData类中实现ad_alDate方法，参数为(String dbname,String params)，dbname为数据库名字，params应为字符串类型的json格式数据。
-  -delData类中实现delDate方法，参数同ad_alData。
-  -getData类中实现getDate方法，参数同上。
-  -使用方法：在想要操作数据库的地方写入以下代码：
+  - addData.java类中实现addData方法，参数为(String dbname,String params)，dbname为表名，params应为字符串类型的json格式数据。
+  - delData.java类中实现delData方法，参数同addData。
+  - getData.java类中实现getData方法，参数同addData。
+  - 使用方法：在想要操作数据库的地方写入以下代码：
   new Thread(new Runnable(){
   @Override
   public void run() {
   try {
-  ad_alData.ad_alDate("UseDept","{searchname:\"hmy\"}");
+  addData.addData("UseDept","{'UseDeptName':'test'}");
   } catch (Exception e) {
   e.printStackTrace();
   }

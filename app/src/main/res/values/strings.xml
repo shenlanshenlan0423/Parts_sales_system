@@ -97,7 +97,27 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
+    <!--公共-->
+    <string name="CreateBy">创建者：</string>
+    <string name="CreateDateTime">创建时间：</string>
+    <string name="UpdateBy">更新者：</string>
+    <string name="UpdateDateTime">更新时间：</string>
+    <string name="FirstPage">首页</string>
+    <string name="PreviousPage">上一页</string>
+    <string name="NextPage">下一页</string>
+    <string name="LastPage">尾页</string>
+    <!--密封件订货付款列表-->
+    <string name="OrderPaymentCodeID">订货付款编码ID：</string>
+    <string name="OrderCodeID">订货单编码ID：</string>
+    <string name="UserCodeID">用户编码ID：</string>
+    <string name="OrderPaymentDateTime">订货付款日期：</string>
+    <string name="OrderPaymentAmount">订货付款金额：</string>
+    <string name="OrderPaymentRemark">订货付款备注：</string>
+    <string name="OrderPaymentOrder">订货付款次序：</string>
+
+
     <string name="title_activity_UseManagement">使用管理</string>
+    <string name="title_activity_FinancialManagement">财务管理</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -112,4 +132,6 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="PatrolManagement">巡检管理</string>
+    <string name="PaymentManagement">付款管理</string>
+    <string name="OrderPaymentList">订货付款列表</string>
 </resources>
