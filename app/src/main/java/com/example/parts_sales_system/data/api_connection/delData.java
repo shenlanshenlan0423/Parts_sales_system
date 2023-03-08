@@ -36,14 +36,7 @@ public class delData {
         //获取响应的输入流对象
         InputStreamReader is = new InputStreamReader(conn.getInputStream());
         BufferedReader bufferedReader = new BufferedReader(is);
-        StringBuffer strBuffer = new StringBuffer();
-        String line = null;
-        //读取服务器返回信息
-        while ((line = bufferedReader.readLine()) != null) {
-            strBuffer.append(line);
-        }
-        String result = strBuffer.toString();//接收从服务器返回的数据
-        System.out.println("收到的信息:"+result);
+
         //关闭InputStream、关闭http连接
         is.close();
         conn.disconnect();

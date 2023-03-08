@@ -6,6 +6,8 @@
 
 <font color=red>文件解释并不完全完整，各位成员在开发时请勿随意删除已有文件，并尽量按照正规的开发标准进行开发</font>
 
+### 小组提示：
+- 公共功能-财务管理-付款管理中的增删改查、翻页功能已经实现，方法供各位参考，**请抓紧进度**
 ### 开发习惯建议：
 - 新增页面要在AndroidManifest.xml中声明，并在README.md中写明
 - 新增功能若为公共功能，则以public_开头，若为私有功能，则以private_开头
@@ -30,8 +32,9 @@
   - fragment_gallery.xml：点击gallery后的主界面显示
   - fragment_home.xml：点击home后的主界面显示
   - fragment_slideshow.xml：点击slideshow后的主界面显示
-  - item_add_float_button.xml：二级功能页面悬浮的数据新增按钮（add方法尚未绑定）
-  - item_detail.xml：用户点击item，弹出item详细信息窗口，可进行修改、删除操作
+  - item_add_float_button.xml：二级功能页面悬浮的item新增按钮（此布局文件尚未与public_FinancialManagementActivity绑定）
+  - orderpaymentlist_item_add.xml：用户点击新增按钮，实现**订货付款列表**的item新增操作
+  - orderpaymentlist_item_detail.xml：用户点击item，弹出**订货付款列表**item的详细信息窗口，可进行修改、删除操作
   - nav_header_main.xml：用户主界面侧滑窗口中的个人信息块
 
 - menu：菜单文件
@@ -53,10 +56,10 @@
 ```  new Thread(new Runnable(){
   @Override
   public void run() {
-  try {
-  addData.addData("UseDept","{'UseDeptName':'test'}");
-  } catch (Exception e) {
-  e.printStackTrace();
-  }
+    try {
+      addData.addData("UseDept","{'UseDeptName':'test'}");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
   }).start();

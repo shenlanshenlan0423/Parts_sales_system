@@ -3,9 +3,7 @@ package com.example.parts_sales_system;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,37 +12,36 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.parts_sales_system.data.api_connection.addData;
+import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.data.api_connection.modifyData;
+import com.example.parts_sales_system.databinding.ActivityMainBinding;
 import com.example.parts_sales_system.databinding.ActivityPublicFinancialManagementBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
 public class public_FinancialManagementActivity extends AppCompatActivity {
     private ActivityPublicFinancialManagementBinding binding;
-    private TextView
+    private TextView Pages,
             CreateDateTime1, UpdateDateTime1, OrderPaymentCodeID1, OrderCodeID1, UserCodeID1,
             CreateDateTime2, UpdateDateTime2, OrderPaymentCodeID2, OrderCodeID2, UserCodeID2,
             CreateDateTime3, UpdateDateTime3, OrderPaymentCodeID3, OrderCodeID3, UserCodeID3,
             CreateDateTime4, UpdateDateTime4, OrderPaymentCodeID4, OrderCodeID4, UserCodeID4,
             CreateDateTime5, UpdateDateTime5, OrderPaymentCodeID5, OrderCodeID5, UserCodeID5;
     private Button PaymentManagementButton, OrderPaymentListButton, FirstPage, PreviousPage, NextPage, LastPage;
+    private FloatingActionButton itemaddButton;
     private TableLayout item1, item2, item3, item4, item5;
     JSONArray jsonArray;
+    int TotalPage=1, currentPage=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Toast.makeText(this, "请选择二级功能！", Toast.LENGTH_SHORT).show();
         binding = ActivityPublicFinancialManagementBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
 
         CreateDateTime1 = binding.CreateDateTime1;
         UpdateDateTime1 = binding.UpdateDateTime1;
@@ -81,9 +78,10 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
         UserCodeID5 = binding.UserCodeID5;
         item5 = binding.item5;
 
-
+        Pages = binding.Pages;
         OrderPaymentListButton = binding.OrderPaymentListButton;
         PaymentManagementButton = binding.PaymentManagementButton;
+        itemaddButton = binding.itemAddFloatButton;
         //翻页按钮
         FirstPage = binding.FirstPage;
         PreviousPage = binding.PreviousPage;
@@ -100,7 +98,8 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
         OrderPaymentListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setArrayData(jsonArray);
+                setArrayData(jsonArray,currentPage);
+                setPages();
             }
         });
         //点击item弹出详细信息菜单
@@ -114,36 +113,106 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
         FirstPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(public_FinancialManagementActivity.this, "已经是首页了~", Toast.LENGTH_SHORT).show();
+                if (currentPage==1){
+                    Toast.makeText(public_FinancialManagementActivity.this, "已经是首页了~", Toast.LENGTH_SHORT).show();
+                }else{
+                    currentPage = 1;
+                    setArrayData(jsonArray,currentPage);
+                    setPages();
+                }
             }
         });
         PreviousPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(public_FinancialManagementActivity.this, "已经是首页了~", Toast.LENGTH_SHORT).show();
+                if (currentPage>1){
+                    currentPage-=1;
+                    setArrayData(jsonArray,currentPage);
+                    setPages();
+                }else{
+                    Toast.makeText(public_FinancialManagementActivity.this, "已经是首页了~", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         NextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(public_FinancialManagementActivity.this, "已经是尾页了~", Toast.LENGTH_SHORT).show();
+                if (currentPage<TotalPage){
+                    currentPage+=1;
+                    setArrayData(jsonArray,currentPage);
+                    setPages();
+                }else{
+                    Toast.makeText(public_FinancialManagementActivity.this, "已经是尾页了~", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         LastPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(public_FinancialManagementActivity.this, "已经是尾页了~", Toast.LENGTH_SHORT).show();
+                if (currentPage==TotalPage){
+                    Toast.makeText(public_FinancialManagementActivity.this, "已经是尾页了~", Toast.LENGTH_SHORT).show();
+                }else{
+                    currentPage = TotalPage;
+                    setArrayData(jsonArray,currentPage);
+                    setPages();
+                }
             }
         });
         //悬浮按钮，用于用户新增item，待完善
-//        binding.itemAddFloatButton.fab_add_item.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                addData.addData("UseDept","{'UseDeptName':'test'}");
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        itemaddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final TextView OrderCodeID, UserCodeID;
+                final EditText OrderPaymentDateTime, OrderPaymentAmount, OrderPaymentRemark, OrderPaymentOrder;
+                final Button confirm_button, cancel_button;
+                AlertDialog.Builder builder = new AlertDialog.Builder(public_FinancialManagementActivity.this);
+                final AlertDialog dialog = builder.create();
+                dialog.setIcon(R.mipmap.ic_launcher);
+                dialog.setTitle("新增项目");
+                View dialogView = View.inflate(public_FinancialManagementActivity.this, R.layout.orderpaymentlist_item_add, null);
+                dialog.setView(dialogView);
+                OrderCodeID = dialogView.findViewById(R.id.OrderCodeID);
+                UserCodeID = dialogView.findViewById(R.id.UserCodeID);
+                OrderPaymentDateTime = dialogView.findViewById(R.id.OrderPaymentDateTime);
+                OrderPaymentAmount = dialogView.findViewById(R.id.OrderPaymentAmount);
+                OrderPaymentRemark = dialogView.findViewById(R.id.OrderPaymentRemark);
+                OrderPaymentOrder = dialogView.findViewById(R.id.OrderPaymentOrder);
+                confirm_button = dialogView.findViewById(R.id.confirm_button);
+                cancel_button = dialogView.findViewById(R.id.cancel_button);
+                OrderCodeID.setText("2023030609293529357");
+                UserCodeID.setText("1");
+                //确认按钮响应
+                confirm_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //将无法修改和可修改的字段赋值到JSONObject中
+                        JSONObject jsonObject = new JSONObject();
+                        //前两个外键MFJOrderID、UserID先固定，后面再和当前登录的用户、选中的密封件编号绑定
+                        try {
+                            jsonObject.put("ID","").put("MFJOrderID",OrderCodeID.getText().toString()).put("UserID",UserCodeID.getText().toString())
+                                    .put("MFJDingKuanDate",OrderPaymentDateTime.getText().toString())
+                                    .put("MFJDingKuanNum",OrderPaymentAmount.getText().toString()).put("MFJDingKuanDes",OrderPaymentRemark.getText().toString())
+                                    .put("MFJDingKuanOrder",OrderPaymentOrder.getText().toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //jsonObject转String
+                        String jsonObjectstring = String.valueOf(jsonObject);
+                        //调用新增方法
+                        addJsonArrayData(jsonObjectstring);
+                        dialog.dismiss();
+                    }
+                });
+                //取消按钮响应
+                cancel_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
     }
     //获取表中的最新数据
     void getJsonArrayData(){
@@ -153,6 +222,19 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                 try {
                     JSONArray jdata = getData.getData("MFJDingKuan","");//此处不需要按条件查询，返回全表信息即可
                     jsonArray = jdata;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    //向表中新增item
+    void addJsonArrayData(String jsonObjectstring){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    addData.addData("MFJDingKuan",jsonObjectstring);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -173,20 +255,37 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
             }
         }).start();
     }
+    //删除表中的数据
+    void delJsonObjectData(String jsonObjectstring){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    delData.delData("MFJDingKuan", jsonObjectstring);//按ID查询并删除
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
     //向界面view中写入五条数据
-    void setArrayData(JSONArray jdata){
+    void setArrayData(JSONArray jdata,int curPage){
         try {
-            String CreateDateTimeString, UpdateDateTimeString, OrderPaymentCodeIDString, OrderCodeIDString, UserCodeIDString;
             //寻访json中包含的所有键值对
             int jdata_length = jdata.length();
-            for (int i=0; i<jdata_length; i++){
+            if (jdata_length % 5 == 0){
+                TotalPage = jdata_length / 5;
+            }else{
+                TotalPage = jdata_length / 5 + 1;
+            }
+            for (int i=(curPage-1)*5; i<curPage*5&i<jdata_length; i++){
+                String CreateDateTimeString, UpdateDateTimeString, OrderPaymentCodeIDString, OrderCodeIDString, UserCodeIDString;
                 JSONObject SubjsonObject = jdata.getJSONObject(i);
                 CreateDateTimeString = SubjsonObject.getString("createDateTime");
                 UpdateDateTimeString = SubjsonObject.getString("updateDateTime");
                 OrderPaymentCodeIDString = SubjsonObject.getString("ID");
                 OrderCodeIDString = SubjsonObject.getString("MFJOrderID");
                 UserCodeIDString = SubjsonObject.getString("UserID");
-                // 如果i=5，又会再次进行赋值，再调试调试
                 if (i % 5 == 0){
                     // 赋值语句
                     CreateDateTime1.setText(CreateDateTimeString);
@@ -194,24 +293,74 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                     OrderPaymentCodeID1.setText(OrderPaymentCodeIDString);
                     OrderCodeID1.setText(OrderCodeIDString);
                     UserCodeID1.setText(UserCodeIDString);
+                    CreateDateTime2.setText("");
+                    UpdateDateTime2.setText("");
+                    OrderPaymentCodeID2.setText("");
+                    OrderCodeID2.setText("");
+                    UserCodeID2.setText("");
+                    CreateDateTime3.setText("");
+                    UpdateDateTime3.setText("");
+                    OrderPaymentCodeID3.setText("");
+                    OrderCodeID3.setText("");
+                    UserCodeID3.setText("");
+                    CreateDateTime4.setText("");
+                    UpdateDateTime4.setText("");
+                    OrderPaymentCodeID4.setText("");
+                    OrderCodeID4.setText("");
+                    UserCodeID4.setText("");
+                    CreateDateTime5.setText("");
+                    UpdateDateTime5.setText("");
+                    OrderPaymentCodeID5.setText("");
+                    OrderCodeID5.setText("");
+                    UserCodeID5.setText("");
                 }else if(i % 5 == 1){
                     CreateDateTime2.setText(CreateDateTimeString);
                     UpdateDateTime2.setText(UpdateDateTimeString);
                     OrderPaymentCodeID2.setText(OrderPaymentCodeIDString);
                     OrderCodeID2.setText(OrderCodeIDString);
                     UserCodeID2.setText(UserCodeIDString);
+                    CreateDateTime3.setText("");
+                    UpdateDateTime3.setText("");
+                    OrderPaymentCodeID3.setText("");
+                    OrderCodeID3.setText("");
+                    UserCodeID3.setText("");
+                    CreateDateTime4.setText("");
+                    UpdateDateTime4.setText("");
+                    OrderPaymentCodeID4.setText("");
+                    OrderCodeID4.setText("");
+                    UserCodeID4.setText("");
+                    CreateDateTime5.setText("");
+                    UpdateDateTime5.setText("");
+                    OrderPaymentCodeID5.setText("");
+                    OrderCodeID5.setText("");
+                    UserCodeID5.setText("");
                 }else if(i % 5 == 2){
                     CreateDateTime3.setText(CreateDateTimeString);
                     UpdateDateTime3.setText(UpdateDateTimeString);
                     OrderPaymentCodeID3.setText(OrderPaymentCodeIDString);
                     OrderCodeID3.setText(OrderCodeIDString);
                     UserCodeID3.setText(UserCodeIDString);
+                    CreateDateTime4.setText("");
+                    UpdateDateTime4.setText("");
+                    OrderPaymentCodeID4.setText("");
+                    OrderCodeID4.setText("");
+                    UserCodeID4.setText("");
+                    CreateDateTime5.setText("");
+                    UpdateDateTime5.setText("");
+                    OrderPaymentCodeID5.setText("");
+                    OrderCodeID5.setText("");
+                    UserCodeID5.setText("");
                 }else if(i % 5 == 3){
                     CreateDateTime4.setText(CreateDateTimeString);
                     UpdateDateTime4.setText(UpdateDateTimeString);
                     OrderPaymentCodeID4.setText(OrderPaymentCodeIDString);
                     OrderCodeID4.setText(OrderCodeIDString);
                     UserCodeID4.setText(UserCodeIDString);
+                    CreateDateTime5.setText("");
+                    UpdateDateTime5.setText("");
+                    OrderPaymentCodeID5.setText("");
+                    OrderCodeID5.setText("");
+                    UserCodeID5.setText("");
                 }else if(i % 5 == 4){
                     CreateDateTime5.setText(CreateDateTimeString);
                     UpdateDateTime5.setText(UpdateDateTimeString);
@@ -219,11 +368,14 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                     OrderCodeID5.setText(OrderCodeIDString);
                     UserCodeID5.setText(UserCodeIDString);
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    //设置页面显示
+    void setPages(){
+        Pages.setText(currentPage+" / "+TotalPage);
     }
     //单击item事件响应
     class itemClick implements View.OnClickListener {
@@ -235,7 +387,7 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
             final AlertDialog dialog = builder.create();
             dialog.setIcon(R.mipmap.ic_launcher);
             dialog.setTitle("详细信息");
-            View dialogView = View.inflate(public_FinancialManagementActivity.this, R.layout.item_detail, null);
+            View dialogView = View.inflate(public_FinancialManagementActivity.this, R.layout.orderpaymentlist_item_detail, null);
             dialog.setView(dialogView);
             CreateBy = dialogView.findViewById(R.id.CreateBy);
             CreateDateTime = dialogView.findViewById(R.id.CreateDateTime);
@@ -252,7 +404,7 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
             final Button modify_info = dialogView.findViewById(R.id.modify_info);
             final Button del_info = dialogView.findViewById(R.id.del_info);
             final Button close_item = dialogView.findViewById(R.id.close_item);
-            //修改方法实现
+            //修改item
             modify_info.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -261,46 +413,27 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-//                    switch (view.getId()){
-//                        case R.id.item1:
-//                            try {
-//                                modifyArrayData(jsonArray, 0);//currentPage*5-5,
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        case R.id.item2:
-//                            try {
-//                                modifyArrayData(jsonArray,1);//currentPage*5-4,
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        case R.id.item3:
-//                            try {
-//                                modifyArrayData(jsonArray,2);//currentPage*5-3,
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        case R.id.item4:
-//                            try {
-//                                modifyArrayData(jsonArray,3);//currentPage*5-2,
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        case R.id.item5:
-//                            try {
-//                                modifyArrayData(jsonArray,4);//currentPage*5-1,
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                    }
                     dialog.dismiss();
+                    //这里还有一点问题，0308hhw，状态：未解决
                     getJsonArrayData();
                     //按理说modify之后再get，就已经将jsonArray赋值为表中的最新数据了，但是为啥没变？
-                    System.out.println(jsonArray);
-                    setArrayData(jsonArray);
+//                    System.out.println(jsonArray);
+                    setArrayData(jsonArray,currentPage);
                 }
             });
-            //关闭item详细界面
+            //删除item
+            del_info.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        deleteArrayData();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    dialog.dismiss();
+                }
+            });
+            //关闭item
             close_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -310,17 +443,23 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
             // 这里的i后面要替换
             switch (view.getId()){
                 case R.id.item1:
+                    System.out.println(R.id.item1);
                     //再点开的时候这里却已经更新了
-                    System.out.println(jsonArray);
-                    setData(jsonArray,0);//currentPage*5-5,
+//                    System.out.println(jsonArray);
+                    setData(jsonArray,currentPage*5-5);
+                    break;
                 case R.id.item2:
-                    setData(jsonArray,1);//currentPage*5-4,
+                    setData(jsonArray,currentPage*5-4);
+                    break;
                 case R.id.item3:
-                    setData(jsonArray,2);//currentPage*5-3,
+                    setData(jsonArray,currentPage*5-3);
+                    break;
                 case R.id.item4:
-                    setData(jsonArray,3);//currentPage*5-2,
+                    setData(jsonArray,currentPage*5-2);
+                    break;
                 case R.id.item5:
-                    setData(jsonArray,4);//currentPage*5-1,
+                    setData(jsonArray,currentPage*5-1);
+                    break;
             }
             dialog.show();
 
@@ -380,6 +519,20 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                 //调用修改方法
                 setJsonObjectData(jsonObjectstring);
             } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //用户删除数据的方法
+        void deleteArrayData() throws JSONException{
+            try {
+                //将ID的信息封装到Json对象中
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("ID",OrderPaymentCodeID.getText().toString());
+                //jsonObject转String
+                String jsonObjectstring = String.valueOf(jsonObject);
+                //调用删除方法
+                delJsonObjectData(jsonObjectstring);
+            }catch (Exception e) {
                 e.printStackTrace();
             }
         }
