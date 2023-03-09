@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());//实例化布局文件
         setContentView(binding.getRoot());
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
+        final Button toregisterButton = binding.register;
         final ProgressBar loadingProgressBar = binding.loading;
         final Intent[] intent = new Intent[1];
 
@@ -55,6 +56,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(@Nullable LoginFormState loginFormState) {
                 if (loginFormState == null) {
                     return;
+
+
+
                 }
                 loginButton.setEnabled(loginFormState.isDataValid());
                 if (loginFormState.getUsernameError() != null) {
@@ -124,6 +128,14 @@ public class LoginActivity extends AppCompatActivity {
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
                 intent[0] = new Intent(LoginActivity.this, public_MainActivity.class);
+                startActivity(intent[0]);
+            }
+        });
+        toregisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadingProgressBar.setVisibility(View.VISIBLE);
+                intent[0] = new Intent(LoginActivity.this, Register.class);
                 startActivity(intent[0]);
             }
         });
