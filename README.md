@@ -18,6 +18,7 @@
 - public_MainActivity.java：用户登陆后的主界面
 - private_UseManagementActivity.java：**使用方的私有功能**-使用管理界面
 - data&ui_login：Android studio自带的登录注册模板，**@汤燕茹**参考、修改并编写相关方法
+- public_BasicSetting.java:**公共功能**-基础配置界面
 - public_FinancialManagementActivity.java：**公共功能**-财务管理界面
   
 ### res文件夹解释：

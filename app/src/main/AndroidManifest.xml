@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.parts_sales_system">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,37 +15,35 @@
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.login.Register"
-            android:label="@string/title_activity_register">
-        </activity>
-
+            android:label="@string/title_activity_register"></activity>
         <activity
             android:name=".public_MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Parts_sales_system.NoActionBar">
-        </activity>
-
+            android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
+        <activity
+            android:name=".public_BasicSetting"
+            android:exported="false"
+            android:label="@string/title_activity_BasicSetting"
+            android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
         <activity
             android:name=".private_UseManagementActivity"
             android:exported="false"
             android:label="@string/title_activity_UseManagement"
-            android:theme="@style/Theme.Parts_sales_system.NoActionBar">
-        </activity>
-
+            android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
         <activity
             android:name=".public_FinancialManagementActivity"
             android:exported="false"
             android:label="@string/title_activity_FinancialManagement"
-            android:theme="@style/Theme.Parts_sales_system.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
     </application>
 
 </manifest>

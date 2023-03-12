@@ -53,10 +53,13 @@ public class public_MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        BasicConfigurationButton = findViewById(R.id.BasicConfigurationButton);
+        BasicConfigurationButton.setOnClickListener(new BasicSetting());
         UseManagementButton = findViewById(R.id.PrivateUseManagementButton);
         UseManagementButton.setOnClickListener(new UseManagement());
         FinancialManagementButton = findViewById(R.id.FinancialManagementButton);
         FinancialManagementButton.setOnClickListener(new FinancialManagement());
+
     }
 
     @Override
@@ -71,6 +74,15 @@ public class public_MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    //基础配置跳转方法
+    private class BasicSetting implements View.OnClickListener{
+        Intent intent;
+        @Override
+        public void onClick(View view) {
+            intent = new Intent(public_MainActivity.this, public_BasicSetting.class);
+            startActivity(intent);
+        }
     }
     //财务管理的跳转方法
     private class FinancialManagement implements View.OnClickListener{

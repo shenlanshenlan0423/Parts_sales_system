@@ -23,13 +23,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.parts_sales_system.data.Result;
+import com.example.parts_sales_system.data.api_connection.getData;
+import com.example.parts_sales_system.data.model.LoggedInUser;
 import com.example.parts_sales_system.public_MainActivity;
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.ui.login.LoginViewModel;
 import com.example.parts_sales_system.ui.login.LoginViewModelFactory;
 import com.example.parts_sales_system.databinding.ActivityLoginBinding;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
+    private JSONArray jsonArray;
+    String[] usernames,userpwds=new String[20];
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
@@ -51,13 +63,14 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressBar loadingProgressBar = binding.loading;
         final Intent[] intent = new Intent[1];
 
+        getJsonArrayData();
+        setArrayData(jsonArray);
+
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
                 if (loginFormState == null) {
                     return;
-
-
 
                 }
                 loginButton.setEnabled(loginFormState.isDataValid());
@@ -127,8 +140,21 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
-                intent[0] = new Intent(LoginActivity.this, public_MainActivity.class);
-                startActivity(intent[0]);
+
+                //Toast.makeText(getApplicationContext(), userpwds[1], Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), usernameEditText.getText().toString(), Toast.LENGTH_LONG).show();
+                List<String> list = Arrays.asList(usernames);
+
+                Toast.makeText(getApplicationContext(), list.indexOf(usernameEditText.getText().toString()), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), userpwds[list.indexOf(usernameEditText.getText().toString())], Toast.LENGTH_LONG).show();
+                if (list.contains(usernameEditText.getText().toString())) {
+                    if (passwordEditText.getText().toString().equals(userpwds[list.indexOf(usernameEditText.getText().toString())])) {
+                        intent[0] = new Intent(LoginActivity.this, public_MainActivity.class);
+                        startActivity(intent[0]);
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "账号或密码错误", Toast.LENGTH_LONG).show();
+                }
             }
         });
         toregisterButton.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +166,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    void getJsonArrayData(){
+        //new Thread(new Runnable(){
+        //@Override
+        //public void run() {
+        try {
+            JSONArray jdata = getData.getData("User","");//此处不需要按条件查询，返回全表信息即可
+            jsonArray = jdata;
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "UserLoginPwd", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+        //}
+        //}).start();
+    };
+    void setArrayData(JSONArray jdata){
+        try{
+            for (int i=0;i<jdata.length();i++) {
+                JSONObject jobject = jdata.getJSONObject(i);
+                Toast.makeText(getApplicationContext(), jobject.getString("UserLoginPwd"), Toast.LENGTH_LONG).show();
+                usernames[i]=jobject.getString("UserName");
+                userpwds[i]=jobject.getString("UserLoginPwd");
+            }
+        }catch (Exception e) {
 
+            e.printStackTrace();
+        }
+    }
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
