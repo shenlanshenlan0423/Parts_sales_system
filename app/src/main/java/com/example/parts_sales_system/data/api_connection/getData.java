@@ -24,6 +24,7 @@ public class getData {
         //设置请求的头
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Charset", "utf-8");
+        conn.setRequestProperty("Connection","close");//防止连接不能成功关闭影响下一次连接
 //        String data = "参数1=" + URLEncoder.encode("参数1值", "UTF-8")+
 //                "&参数2=" + URLEncoder.encode("参数2值", "UTF-8")
 //                ;//传递的数据

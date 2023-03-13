@@ -106,6 +106,8 @@
     <string name="PreviousPage">上一页</string>
     <string name="NextPage">下一页</string>
     <string name="LastPage">尾页</string>
+    <!--库存管理-->
+    <string name="submit">提交</string>
     <!--密封件订货付款列表-->
     <string name="OrderPaymentCodeID">订货付款编码ID：</string>
     <string name="OrderCodeID">订货单编码ID：</string>
@@ -134,4 +136,8 @@
     <string name="PatrolManagement">巡检管理</string>
     <string name="PaymentManagement">付款管理</string>
     <string name="OrderPaymentList">订货付款列表</string>
+    <string name="InManagement">入库管理</string>
+    <string name="Add">添加</string>
+    <string name="Del">删除</string>
+    <string name="Set">修改</string>
 </resources>

@@ -31,7 +31,7 @@ public class public_MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //公共功能和私有功能的按钮声明
-        Button  BasicConfigurationButton, FinancialManagementButton, UseManagementButton;
+        Button  BasicConfigurationButton, FinancialManagementButton, UseManagementButton,InventManagementButton;
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +57,8 @@ public class public_MainActivity extends AppCompatActivity {
         UseManagementButton.setOnClickListener(new UseManagement());
         FinancialManagementButton = findViewById(R.id.FinancialManagementButton);
         FinancialManagementButton.setOnClickListener(new FinancialManagement());
+        InventManagementButton=findViewById(R.id.InventoryManagementButton);
+        InventManagementButton.setOnClickListener(new InventoryManagement());
     }
 
     @Override
@@ -87,6 +89,15 @@ public class public_MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             intent = new Intent(public_MainActivity.this,private_UseManagementActivity.class);
+            startActivity(intent);
+        }
+    }
+    //库存管理的跳转方法
+    private class InventoryManagement implements View.OnClickListener{
+        Intent intent;
+        @Override
+        public void onClick(View view) {
+            intent = new Intent(public_MainActivity.this,private_InventManageActivity.class);
             startActivity(intent);
         }
     }
