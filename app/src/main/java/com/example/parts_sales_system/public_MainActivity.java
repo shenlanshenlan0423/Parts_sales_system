@@ -29,10 +29,9 @@ public class public_MainActivity extends AppCompatActivity {
         //使用binding就不用findViewByID了
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        Button InventManagementButton;
         //公共功能和私有功能的按钮声明
         Button  BasicConfigurationButton, FinancialManagementButton, UseManagementButton;
-
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override

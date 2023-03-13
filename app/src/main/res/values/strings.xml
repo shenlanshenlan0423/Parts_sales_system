@@ -146,9 +146,6 @@
     <string name="OrderPaymentRemark">订货付款备注：</string>
     <string name="OrderPaymentOrder">订货付款次序：</string>
 
-
-    <string name="title_activity_UseManagement">使用管理</string>
-    <string name="title_activity_FinancialManagement">财务管理</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -167,8 +164,6 @@
 
     <string name="title_activity_UseManagement">使用管理</string>
     <string name="PatrolManagement">巡检管理</string>
-    <string name="PaymentManagement">付款管理</string>
-    <string name="OrderPaymentList">订货付款列表</string>
     <string name="InManagement">入库管理</string>
     <string name="Add">添加</string>
     <string name="Del">删除</string>
