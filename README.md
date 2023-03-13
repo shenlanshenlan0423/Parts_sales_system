@@ -17,9 +17,10 @@
 ### java文件夹解释：
 - public_MainActivity.java：用户登陆后的主界面
 - private_UseManagementActivity.java：**使用方的私有功能**-使用管理界面
-- data&ui_login：Android studio自带的登录注册模板，**@汤燕茹**参考、修改并编写相关方法
+- data&ui_login：Android studio自带的登录注册模板:修改中，未完成，报错正常
 - public_BasicSetting.java:**公共功能**-基础配置界面
 - public_FinancialManagementActivity.java：**公共功能**-财务管理界面
+- ui_login_Register.java:**公共功能**-注册界面
   
 ### res文件夹解释：
 - drawable：图片资源
@@ -37,6 +38,8 @@
   - orderpaymentlist_item_add.xml：用户点击新增按钮，实现**订货付款列表**的item新增操作
   - orderpaymentlist_item_detail.xml：用户点击item，弹出**订货付款列表**item的详细信息窗口，可进行修改、删除操作
   - nav_header_main.xml：用户主界面侧滑窗口中的个人信息块
+  - activity_register.xml:用户注册界面
+  - activity_public_basic_setting.xml：**公共功能**-基础配置界面
 
 - menu：菜单文件
   - activity_main_drawer.xml：用户主界面侧滑窗口界面菜单

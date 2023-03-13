@@ -142,20 +142,20 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
 
                 //Toast.makeText(getApplicationContext(), userpwds[1], Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), usernameEditText.getText().toString(), Toast.LENGTH_LONG).show();
-                List<String> list = Arrays.asList(usernames);
+                //Toast.makeText(getApplicationContext(), usernameEditText.getText().toString(), Toast.LENGTH_LONG).show();
+                //List<String> list = Arrays.asList(usernames);
 
-                Toast.makeText(getApplicationContext(), list.indexOf(usernameEditText.getText().toString()), Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), userpwds[list.indexOf(usernameEditText.getText().toString())], Toast.LENGTH_LONG).show();
-                if (list.contains(usernameEditText.getText().toString())) {
-                    if (passwordEditText.getText().toString().equals(userpwds[list.indexOf(usernameEditText.getText().toString())])) {
+                //Toast.makeText(getApplicationContext(), list.indexOf(usernameEditText.getText().toString()), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), userpwds[list.indexOf(usernameEditText.getText().toString())], Toast.LENGTH_LONG).show();
+                //if (list.contains(usernameEditText.getText().toString())) {
+                    //if (passwordEditText.getText().toString().equals(userpwds[list.indexOf(usernameEditText.getText().toString())])) {
                         intent[0] = new Intent(LoginActivity.this, public_MainActivity.class);
                         startActivity(intent[0]);
-                    }
-                }else{
-                    Toast.makeText(getApplicationContext(), "账号或密码错误", Toast.LENGTH_LONG).show();
+                    //}
+                //}else{
+                    //Toast.makeText(getApplicationContext(), "账号或密码错误", Toast.LENGTH_LONG).show();
                 }
-            }
+            //}
         });
         toregisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
