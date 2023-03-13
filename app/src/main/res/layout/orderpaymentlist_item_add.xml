@@ -26,13 +26,14 @@
                     android:text="@string/OrderCodeID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
-                <TextView
+                <Spinner
                     android:id="@+id/OrderCodeID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:spinnerMode="dropdown"/>
             </TableRow>
             <TableRow
                 android:layout_margin="@dimen/Main_button_margin">

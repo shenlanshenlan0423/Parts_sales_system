@@ -3,10 +3,13 @@ package com.example.parts_sales_system;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,13 +18,14 @@ import com.example.parts_sales_system.data.api_connection.addData;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.data.api_connection.modifyData;
-import com.example.parts_sales_system.databinding.ActivityMainBinding;
 import com.example.parts_sales_system.databinding.ActivityPublicFinancialManagementBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 public class public_FinancialManagementActivity extends AppCompatActivity {
     private ActivityPublicFinancialManagementBinding binding;
@@ -34,12 +38,12 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
     private Button PaymentManagementButton, OrderPaymentListButton, FirstPage, PreviousPage, NextPage, LastPage;
     private FloatingActionButton itemaddButton;
     private TableLayout item1, item2, item3, item4, item5;
-    JSONArray jsonArray;
+    private JSONArray jsonArray;
+    private String[] OrderIDStringArray;
     int TotalPage=1, currentPage=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "请选择二级功能！", Toast.LENGTH_SHORT).show();
         binding = ActivityPublicFinancialManagementBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -82,6 +86,8 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
         OrderPaymentListButton = binding.OrderPaymentListButton;
         PaymentManagementButton = binding.PaymentManagementButton;
         itemaddButton = binding.itemAddFloatButton;
+        //点击三级列表后才可以点击新增按钮
+        itemaddButton.setEnabled(false);
         //翻页按钮
         FirstPage = binding.FirstPage;
         PreviousPage = binding.PreviousPage;
@@ -91,6 +97,7 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
         PaymentManagementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                PaymentManagementButton.setBackgroundColor(Color.parseColor("#0033FF"));
                 getJsonArrayData();
             }
         });
@@ -98,8 +105,10 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
         OrderPaymentListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                OrderPaymentListButton.setBackgroundColor(Color.parseColor("#0033FF"));
                 setArrayData(jsonArray,currentPage);
                 setPages();
+                itemaddButton.setEnabled(true);
             }
         });
         //点击item弹出详细信息菜单
@@ -158,11 +167,13 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                 }
             }
         });
-        //悬浮按钮，用于用户新增item，待完善
+
+        //悬浮按钮，用于用户新增item
         itemaddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final TextView OrderCodeID, UserCodeID;
+                final Spinner OrderCodeID;
+                final TextView UserCodeID;
                 final EditText OrderPaymentDateTime, OrderPaymentAmount, OrderPaymentRemark, OrderPaymentOrder;
                 final Button confirm_button, cancel_button;
                 AlertDialog.Builder builder = new AlertDialog.Builder(public_FinancialManagementActivity.this);
@@ -171,7 +182,7 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                 dialog.setTitle("新增项目");
                 View dialogView = View.inflate(public_FinancialManagementActivity.this, R.layout.orderpaymentlist_item_add, null);
                 dialog.setView(dialogView);
-                OrderCodeID = dialogView.findViewById(R.id.OrderCodeID);
+                OrderCodeID = (Spinner)dialogView.findViewById(R.id.OrderCodeID);
                 UserCodeID = dialogView.findViewById(R.id.UserCodeID);
                 OrderPaymentDateTime = dialogView.findViewById(R.id.OrderPaymentDateTime);
                 OrderPaymentAmount = dialogView.findViewById(R.id.OrderPaymentAmount);
@@ -179,8 +190,15 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                 OrderPaymentOrder = dialogView.findViewById(R.id.OrderPaymentOrder);
                 confirm_button = dialogView.findViewById(R.id.confirm_button);
                 cancel_button = dialogView.findViewById(R.id.cancel_button);
-                OrderCodeID.setText("2023030609293529357");
+
+                //下拉列表的数组适配器
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_FinancialManagementActivity.this, R.layout.order_id_list, OrderIDStringArray);
+                OrderCodeID.setAdapter(adapter); // 设置下拉框的数组适配器
+                OrderCodeID.setSelection(OrderIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
+
+                //用户ID后面用Intent传值获取
                 UserCodeID.setText("1");
+
                 //确认按钮响应
                 confirm_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -189,7 +207,7 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject();
                         //前两个外键MFJOrderID、UserID先固定，后面再和当前登录的用户、选中的密封件编号绑定
                         try {
-                            jsonObject.put("ID","").put("MFJOrderID",OrderCodeID.getText().toString()).put("UserID",UserCodeID.getText().toString())
+                            jsonObject.put("ID","").put("MFJOrderID",OrderCodeID.getSelectedItem().toString()).put("UserID",UserCodeID.getText().toString())
                                     .put("MFJDingKuanDate",OrderPaymentDateTime.getText().toString())
                                     .put("MFJDingKuanNum",OrderPaymentAmount.getText().toString()).put("MFJDingKuanDes",OrderPaymentRemark.getText().toString())
                                     .put("MFJDingKuanOrder",OrderPaymentOrder.getText().toString());
@@ -201,6 +219,8 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                         //调用新增方法
                         addJsonArrayData(jsonObjectstring);
                         dialog.dismiss();
+                        PaymentManagementButton.setBackgroundColor(Color.parseColor("#0099FF"));
+                        OrderPaymentListButton.setBackgroundColor(Color.parseColor("#0099FF"));
                     }
                 });
                 //取消按钮响应
@@ -220,8 +240,19 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    JSONArray jdata = getData.getData("MFJDingKuan","");//此处不需要按条件查询，返回全表信息即可
-                    jsonArray = jdata;
+                    jsonArray = getData.getData("MFJDingKuan","");
+                    JSONArray jdataOrderID = getData.getData("MFJOrder","");
+                    int jsonArrayOrderIDlength = jdataOrderID.length();
+                    //字符串数组,用于存储目标字段的全部可取值
+                    //先加1是为了写进固定的测试例子
+                    String[] OrderIDString = new String[jsonArrayOrderIDlength+1];
+                    for (int i=0;i<jsonArrayOrderIDlength;i++){
+                        JSONObject SubjsonObject = jdataOrderID.getJSONObject(i);
+                        OrderIDString[i] = SubjsonObject.getString("ID");
+                    }
+                    //固定的测试例子
+                    OrderIDString[jsonArrayOrderIDlength] = "2023030609293529357";
+                    OrderIDStringArray = OrderIDString;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -419,6 +450,8 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                     //按理说modify之后再get，就已经将jsonArray赋值为表中的最新数据了，但是为啥没变？
 //                    System.out.println(jsonArray);
                     setArrayData(jsonArray,currentPage);
+                    PaymentManagementButton.setBackgroundColor(Color.parseColor("#0099FF"));
+                    OrderPaymentListButton.setBackgroundColor(Color.parseColor("#0099FF"));
                 }
             });
             //删除item
@@ -431,6 +464,8 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     dialog.dismiss();
+                    PaymentManagementButton.setBackgroundColor(Color.parseColor("#0099FF"));
+                    OrderPaymentListButton.setBackgroundColor(Color.parseColor("#0099FF"));
                 }
             });
             //关闭item
@@ -462,7 +497,6 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                     break;
             }
             dialog.show();
-
         }
         //显示详细数据的方法
         void setData(JSONArray jdata, int i){
