@@ -3,51 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:showIn="@layout/item_add_float_button">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <!--二级功能行-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/PaymentManagementButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:text="@string/PaymentManagement"/>
-        </LinearLayout>
-        <!--三级功能行-->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/rectangle_border_design">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/orderpaymentlistbutton" />
                 <Button
-                    android:id="@+id/OrderPaymentListButton"
+                    android:id="@+id/PaymentManagementButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/OrderPaymentList"/>
+                    android:layout_margin="@dimen/text_margin"
+                    android:text="@string/PaymentManagement"/>
+<!--                    android:background="@drawable/rectangle_border_design"-->
+
             </LinearLayout>
         </HorizontalScrollView>
+        <!--三级功能行-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/item_margin">
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/orderpaymentlistbutton" />
+                    <Button
+                        android:id="@+id/OrderPaymentListButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/OrderPaymentList"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginRight="@dimen/fab_margin">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/itemAddFloatButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/itemadd"/>
+            </LinearLayout>
+        </LinearLayout>
         <!--item展示框-->
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="590dp"
-            android:background="@color/purple_200"
+            android:layout_height="570dp"
+            android:background="@color/blue_300"
             android:layout_marginLeft="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin">
 
@@ -59,6 +84,7 @@
                 android:orientation="vertical">
                 <!--第1个item-->
                 <TableLayout
+                    android:id="@+id/item1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -144,6 +170,7 @@
                 </TableLayout>
                 <!--第2个item-->
                 <TableLayout
+                    android:id="@+id/item2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -229,6 +256,7 @@
                 </TableLayout>
                 <!--第3个item-->
                 <TableLayout
+                    android:id="@+id/item3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -314,6 +342,7 @@
                 </TableLayout>
                 <!--第4个item-->
                 <TableLayout
+                    android:id="@+id/item4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -399,6 +428,7 @@
                 </TableLayout>
                 <!--第5个item-->
                 <TableLayout
+                    android:id="@+id/item5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/item_top_margin"
@@ -484,6 +514,18 @@
                 </TableLayout>
             </LinearLayout>
         </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/Pages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 / 0"
+                android:textSize="@dimen/item_detail_text_size"
+                android:textColor="@color/black"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

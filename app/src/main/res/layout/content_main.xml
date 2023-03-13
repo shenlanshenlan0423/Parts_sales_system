@@ -203,8 +203,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
-
         </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

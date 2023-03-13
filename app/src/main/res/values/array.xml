@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="stars">
+        <item></item>
+        <item>油田一</item>
+        <item>油田二</item>
+        <item>生产厂商一</item>
+        <item>生产厂商二</item>
+        <item>生产厂商三</item>
+        <item>中科院</item>
+    </string-array>
+
+</resources>

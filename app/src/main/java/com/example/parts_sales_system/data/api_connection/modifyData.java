@@ -7,11 +7,11 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class delData {
-    public static void delData(String dbname,String params) throws IOException {
+public class modifyData {
+    public static void modifyData(String dbname, String params) throws IOException {
         //根据地址创建URL对象(网络访问
         //发布文章的url)
-        URL url = new URL("https://www.safety123.cn/api/"+dbname+"/deldata");
+        URL url = new URL("https://www.safety123.cn/api/"+dbname+"/setdata");
         HttpURLConnection conn = (HttpURLConnection)
                 //设置请求的方式
                 url.openConnection();
@@ -21,14 +21,15 @@ public class delData {
         //设置请求的头
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Charset", "utf-8");
-        conn.setRequestProperty("Connection","close");
 //        String data = "参数1=" + URLEncoder.encode("参数1值", "UTF-8")+
 //                "&参数2=" + URLEncoder.encode("参数2值", "UTF-8")
 //                ;//传递的数据
         String data="";
-        data=params;
-        conn.setRequestProperty("Content-Length",
-                String.valueOf(data.getBytes().length));
+        if (params!="null"){
+            data=params;
+            conn.setRequestProperty("Content-Length",
+                    String.valueOf(data.getBytes().length));
+        }
         //获取输出流
         OutputStream os = conn.getOutputStream();
         os.write(data.getBytes());
@@ -42,4 +43,5 @@ public class delData {
         is.close();
         conn.disconnect();
     }
+
 }
