@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_invent;
+package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -33,6 +33,7 @@ import com.example.parts_sales_system.data.api_connection.addData;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.private_InventManageActivity;
+import com.example.parts_sales_system.public_BasicSetting;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,7 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 
 //入库管理界面
-public class InManagement extends Fragment {
+public class AuthorityManagement extends Fragment {
     public TextView add;
     public TextView del;
     public TextView set;
@@ -56,13 +57,13 @@ public class InManagement extends Fragment {
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
-    public InManagement(){}
+    public AuthorityManagement(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.in_management,container,false);
+        View view=inflater.inflate(R.layout.activity_public_basic_setting_authority_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
@@ -72,7 +73,7 @@ public class InManagement extends Fragment {
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
+                Intent intent=new Intent(getActivity(), public_BasicSetting.class);
                 intent.putExtra("flag",mflag);
                 startActivity(intent);
             }
@@ -109,7 +110,7 @@ public class InManagement extends Fragment {
                     }
                 }).start();
             }
-            Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
+            Intent intent=new Intent(getActivity(),public_BasicSetting.class);
         }
     }
 
@@ -246,7 +247,7 @@ public class InManagement extends Fragment {
         System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
+        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new ProductData.AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理

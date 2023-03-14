@@ -21,11 +21,15 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_invent_manage.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_use_management.xml" value="0.36614583333333334" />
-        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting.xml" value="0.176" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_authority_management.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_product_data.xml" value="0.176" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_user_management.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_financia_management.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_financial_management.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_scrolling.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_set_in_data_alertdialog.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/confirm_delete.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/content_main.xml" value="0.25" />
@@ -33,7 +37,7 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/fragment_gallery.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
-        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/homefragment.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/homefragment.xml" value="0.2" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/in_management.xml" value="0.176" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/item.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/item_add_float_button.xml" value="0.25" />
@@ -46,6 +50,7 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/out_management.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_UseManagement.xml" value="0.2767210144927536" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/user_management.xml" value="0.176" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/activity_main_drawer.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/catagory.xml" value="0.33" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/main.xml" value="0.36614583333333334" />
