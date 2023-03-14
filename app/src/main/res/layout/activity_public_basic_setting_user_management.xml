@@ -35,7 +35,7 @@
                 android:clickable="true"
                 android:drawableTop="@android:drawable/ic_menu_add"
                 android:gravity="center_horizontal"
-                android:text="@string/Add" />
+                android:text="@string/add_info" />
 
             <TextView
                 android:id="@+id/del"
@@ -44,7 +44,7 @@
                 android:layout_marginTop="20dp"
                 android:clickable="true"
                 android:gravity="center_horizontal"
-                android:text="@string/Del"
+                android:text="@string/del_info"
                 app:drawableTopCompat="@android:drawable/ic_menu_delete" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_marginTop="20dp"
                 android:clickable="true"
                 android:gravity="center_horizontal"
-                android:text="@string/Set"
+                android:text="@string/modify_info"
                 app:drawableTopCompat="@android:drawable/ic_menu_edit" />
         </LinearLayout>
 

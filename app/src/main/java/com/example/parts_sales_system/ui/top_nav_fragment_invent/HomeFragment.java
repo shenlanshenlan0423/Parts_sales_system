@@ -50,6 +50,6 @@ public class HomeFragment extends Fragment {
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);
         pager.setAdapter(fragmentAdapter);
         tabLayout.setupWithViewPager(pager);//与ViewPage建立关系
-        System.out.println(flag_in);
+//        System.out.println(flag_in);
     }
 }

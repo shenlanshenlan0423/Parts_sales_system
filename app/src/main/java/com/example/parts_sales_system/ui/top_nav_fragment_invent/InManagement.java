@@ -1,10 +1,6 @@
 package com.example.parts_sales_system.ui.top_nav_fragment_invent;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,12 +12,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -29,7 +22,6 @@ import androidx.fragment.app.Fragment;
 import com.example.parts_sales_system.AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.SetInData_Alertdialog;
-import com.example.parts_sales_system.data.api_connection.addData;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.private_InventManageActivity;
@@ -62,7 +54,7 @@ public class InManagement extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.in_management,container,false);
+        View view=inflater.inflate(R.layout.activity_private_invent_manage_in_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);

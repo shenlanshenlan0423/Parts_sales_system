@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.example.parts_sales_system.ui.top_nav_fragment_basic_setting.HomeFragment;
 import com.example.parts_sales_system.ui.top_nav_fragment_basic_setting.ProductData;
 
-public class public_BasicSetting extends AppCompatActivity {
+public class public_BasicSettingActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     Boolean flag;
     @Override

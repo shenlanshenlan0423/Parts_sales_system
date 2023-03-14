@@ -15,7 +15,7 @@ public class OutManagement extends Fragment {
     public OutManagement(){}
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.out_management,container,false);
+        View view=inflater.inflate(R.layout.activity_private_invent_manage_out_management,container,false);
         return view;
     }
 

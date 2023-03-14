@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parts_sales_system">
         <activity
+            android:name=".public_BasicSetting_ProductData_MFJList_SetData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Dialog"/>
+        <activity
             android:name=".SetInData_Alertdialog"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Dialog"/>
@@ -38,7 +42,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
         <activity
-            android:name=".public_BasicSetting"
+            android:name=".public_BasicSettingActivity"
             android:exported="false"
             android:label="@string/title_activity_BasicSetting"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>

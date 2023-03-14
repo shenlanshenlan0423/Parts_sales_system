@@ -1,10 +1,6 @@
 package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,12 +12,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -29,11 +22,10 @@ import androidx.fragment.app.Fragment;
 import com.example.parts_sales_system.AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.SetInData_Alertdialog;
-import com.example.parts_sales_system.data.api_connection.addData;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
-import com.example.parts_sales_system.private_InventManageActivity;
-import com.example.parts_sales_system.public_BasicSetting;
+import com.example.parts_sales_system.public_BasicSettingActivity;
+import com.example.parts_sales_system.public_BasicSetting_ProductData_MFJList_SetData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -45,9 +37,7 @@ import java.util.List;
 
 //入库管理界面
 public class ProductData extends Fragment {
-    public TextView add;
-    public TextView del;
-    public TextView set;
+    public TextView add, del, set, itemnumber;
     Button manage;
     Boolean mflag;
     public boolean mIsFromItem = false;
@@ -73,7 +63,7 @@ public class ProductData extends Fragment {
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), public_BasicSetting.class);
+                Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
                 intent.putExtra("flag",mflag);
                 startActivity(intent);
             }
@@ -102,7 +92,6 @@ public class ProductData extends Fragment {
                     @Override
                     public void run() {
                         try {
-//                            System.out.println("{\"ID\":\"" + id + "\"}");
                             delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -110,13 +99,13 @@ public class ProductData extends Fragment {
                     }
                 }).start();
             }
-            Intent intent=new Intent(getActivity(),public_BasicSetting.class);
+            Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
         }
     }
 
     public void initList(boolean flag,View view){
         if (!flag){//管理按钮没有按下的初始化列表
-            listView=view.findViewById(R.id.listView);
+            listView=view.findViewById(R.id.MFJList);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -126,8 +115,8 @@ public class ProductData extends Fragment {
                             data=(List<HashMap<String, Object>>)msg.obj;
                         }
                     }
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"creator","createTime","updater","updatetime","ID"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.mfjlist_item,
+                            new String[]{"CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","MFJID"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJID});
                     //实现列表的显示
                     listView.setAdapter(adapter);
                     //条目点击事件
@@ -138,8 +127,8 @@ public class ProductData extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-                        System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
+//                        System.out.println(data);//点击跳出弹窗，显示数据
+                        Intent intent=new Intent(getActivity(), public_BasicSetting_ProductData_MFJList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -152,23 +141,35 @@ public class ProductData extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJYan","null");
-//                    System.out.println(jsonArray);
+                        JSONArray jsonArray= getData.getData("MFJ","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                            item.put("creator",jsonObject.getString("createBy"));
-                            item.put("createTime",jsonObject.getString("createDateTime"));
-                            item.put("updater",jsonObject.getString("updateBy"));
-                            item.put("updatetime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
-                            item.put("orderid",jsonObject.getString("MFJOrderID"));
-                            item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
-                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
-                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
-                            item.put("Username",jsonObject.getString("UserName"));
+                            item.put("CreateBy",jsonObject.getString("createBy"));
+                            item.put("CreateDateTime",jsonObject.getString("createDateTime"));
+                            item.put("UpdateBy",jsonObject.getString("updateBy"));
+                            item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
+                            item.put("MFJID",jsonObject.getString("ID"));
+                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("MFJName",jsonObject.getString("MFJName"));
+                            item.put("MFJXing",jsonObject.getString("MFJXing"));
+                            item.put("MFJWaiJing",jsonObject.getString("MFJWaiJing"));
+                            item.put("MFJGuang",jsonObject.getString("MFJGuang"));
+                            item.put("MFJYuJiGeng",jsonObject.getString("MFJYuJiGeng"));
+                            item.put("MFJDes",jsonObject.getString("MFJDes"));
+                            item.put("MFJZaiTu","");
+                            item.put("MFJTuiHuo",jsonObject.getString("MFJTuiHuo"));
+                            item.put("MFJZaiKu",jsonObject.getString("MFJZaiKu"));
+                            item.put("MFJChuKu",jsonObject.getString("MFJChuKu"));
+                            item.put("MFJZaiYong",jsonObject.getString("MFJZaiYong"));
+                            item.put("MFJModelNo",jsonObject.getString("MFJModelNo"));
+                            item.put("MFJModelName",jsonObject.getString("MFJModelName"));
+                            item.put("MFJModelDes",jsonObject.getString("MFJModelDes"));
+                            item.put("MFJModelIfYou",jsonObject.getString("MFJModelIfYou"));
+                            item.put("MFJModelDate",jsonObject.getString("MFJModelDate"));
+                            item.put("MFJModelDan",jsonObject.getString("MFJModelDan"));
+                            item.put("MFJModelIfShou",jsonObject.getString("MFJModelIfShou"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -182,7 +183,7 @@ public class ProductData extends Fragment {
             }).start();
         }
         else{//管理按钮按下的初始化列表
-            listView=view.findViewById(R.id.listView);
+            listView=view.findViewById(R.id.MFJList);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
             Handler mHandler = new Handler(){
                 @Override
@@ -202,23 +203,34 @@ public class ProductData extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJYan","null");
-//                    System.out.println(jsonArray);
+                        JSONArray jsonArray= getData.getData("MFJYan","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                            item.put("creator",jsonObject.getString("createBy"));
-                            item.put("createTime",jsonObject.getString("createDateTime"));
-                            item.put("updater",jsonObject.getString("updateBy"));
-                            item.put("updatetime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
-                            item.put("orderid",jsonObject.getString("MFJOrderID"));
-                            item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
-                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
-                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
-                            item.put("Username",jsonObject.getString("UserName"));
+                            item.put("CreateBy",jsonObject.getString("createBy"));
+                            item.put("CreateDateTime",jsonObject.getString("createDateTime"));
+                            item.put("UpdateBy",jsonObject.getString("updateBy"));
+                            item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
+                            item.put("MFJID",jsonObject.getString("ID"));
+                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("MFJName",jsonObject.getString("MFJName"));
+                            item.put("MFJXing",jsonObject.getString("MFJXing"));
+                            item.put("MFJWaiJing",jsonObject.getString("MFJWaiJing"));
+                            item.put("MFJGuang",jsonObject.getString("MFJGuang"));
+                            item.put("MFJYuJiGeng",jsonObject.getString("MFJYuJiGeng"));
+                            item.put("MFJDes",jsonObject.getString("MFJDes"));
+                            item.put("MFJTuiHuo",jsonObject.getString("MFJTuiHuo"));
+                            item.put("MFJZaiKu",jsonObject.getString("MFJZaiKu"));
+                            item.put("MFJChuKu",jsonObject.getString("MFJChuKu"));
+                            item.put("MFJZaiYong",jsonObject.getString("MFJZaiYong"));
+                            item.put("MFJModelNo",jsonObject.getString("MFJModelNo"));
+                            item.put("MFJModelName",jsonObject.getString("MFJModelName"));
+                            item.put("MFJModelDes",jsonObject.getString("MFJModelDes"));
+                            item.put("MFJModelIfYou",jsonObject.getString("MFJModelIfYou"));
+                            item.put("MFJModelDate",jsonObject.getString("MFJModelDate"));
+                            item.put("MFJModelDan",jsonObject.getString("MFJModelDan"));
+                            item.put("MFJModelIfShou",jsonObject.getString("MFJModelIfShou"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -287,7 +299,6 @@ public class ProductData extends Fragment {
                         continue;
                     }
                 }
-//                System.out.println(cbx_Adapter.index);
                 //刷新listview
                 cbxAdapter.notifyDataSetChanged();
             }

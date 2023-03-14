@@ -23,7 +23,6 @@ public class HomeFragment extends Fragment {
     private ProductData ProductData=new ProductData();
     private AuthorityManagement AuthorityManagement=new AuthorityManagement();
     private UserManagement UserManagement=new UserManagement();
-
     private List<String> mTitles;
     private String [] title={"权限管理","用户管理","产品数据"};
     Boolean flag_in;
@@ -56,6 +55,5 @@ public class HomeFragment extends Fragment {
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);
         pager.setAdapter(fragmentAdapter);
         tabLayout.setupWithViewPager(pager);//与ViewPage建立关系
-//        System.out.println(flag_in);
     }
 }

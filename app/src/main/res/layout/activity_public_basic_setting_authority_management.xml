@@ -17,9 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="21dp"
-        app:fab_addButtonColorNormal="#9C27B0"
+        app:fab_addButtonColorNormal="@color/blue_500"
         fab:fab_expandDirection="up">
 
         <LinearLayout
@@ -35,7 +35,7 @@
                 android:clickable="true"
                 android:drawableTop="@android:drawable/ic_menu_add"
                 android:gravity="center_horizontal"
-                android:text="@string/Add" />
+                android:text="@string/add_info" />
 
             <TextView
                 android:id="@+id/del"
@@ -44,7 +44,7 @@
                 android:layout_marginTop="20dp"
                 android:clickable="true"
                 android:gravity="center_horizontal"
-                android:text="@string/Del"
+                android:text="@string/del_info"
                 app:drawableTopCompat="@android:drawable/ic_menu_delete" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_marginTop="20dp"
                 android:clickable="true"
                 android:gravity="center_horizontal"
-                android:text="@string/Set"
+                android:text="@string/modify_info"
                 app:drawableTopCompat="@android:drawable/ic_menu_edit" />
         </LinearLayout>
 
