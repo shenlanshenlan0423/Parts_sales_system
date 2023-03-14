@@ -167,18 +167,18 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     void getJsonArrayData(){
-        //new Thread(new Runnable(){
-        //@Override
-        //public void run() {
-        try {
-            JSONArray jdata = getData.getData("User","");//此处不需要按条件查询，返回全表信息即可
-            jsonArray = jdata;
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "UserLoginPwd", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
+        new Thread(new Runnable(){
+        @Override
+        public void run() {
+            try {
+                jsonArray = getData.getData("User","");//此处不需要按条件查询，返回全表信息即可
+//                System.out.println(jsonArray);
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "UserLoginPwd", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         }
-        //}
-        //}).start();
+        }).start();
     };
     void setArrayData(JSONArray jdata){
         try{
