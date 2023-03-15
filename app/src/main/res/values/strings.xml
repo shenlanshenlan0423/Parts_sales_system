@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">主界面</string>
     <string name="title_activity_register">注册界面</string>
-
+    <string name="title_activity_invent">库存管理</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
