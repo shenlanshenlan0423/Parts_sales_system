@@ -25,8 +25,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
-
 public class public_FinancialManagementActivity extends AppCompatActivity {
     private ActivityPublicFinancialManagementBinding binding;
     private TextView Pages,
@@ -192,7 +190,8 @@ public class public_FinancialManagementActivity extends AppCompatActivity {
                 cancel_button = dialogView.findViewById(R.id.cancel_button);
 
                 //下拉列表的数组适配器
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_FinancialManagementActivity.this, R.layout.order_id_list, OrderIDStringArray);
+//                System.out.println("这是订单ID数组："+Arrays.toString(OrderIDStringArray));
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_FinancialManagementActivity.this, R.layout.common_spinner_list, OrderIDStringArray);
                 OrderCodeID.setAdapter(adapter); // 设置下拉框的数组适配器
                 OrderCodeID.setSelection(OrderIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
 

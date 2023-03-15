@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class private_inventmanage_AddInData_Alertdialog extends Activity {

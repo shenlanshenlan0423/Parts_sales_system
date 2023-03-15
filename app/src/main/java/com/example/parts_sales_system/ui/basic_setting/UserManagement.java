@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
+package com.example.parts_sales_system.ui.basic_setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,9 +19,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
+import com.example.parts_sales_system.AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
+import com.example.parts_sales_system.SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_BasicSettingActivity;
@@ -69,7 +69,7 @@ public class UserManagement extends Fragment {
                 startActivity(intent);
             }
         });
-        System.out.println(mflag);
+//        System.out.println(mflag);
         if (mflag==null){mflag=false;}
         initList(mflag,view);
         return view;
@@ -78,7 +78,7 @@ public class UserManagement extends Fragment {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(getActivity(), private_inventmanage_AddInData_Alertdialog.class);
+            intent=new Intent(getActivity(), AddInData_Alertdialog.class);
             startActivity(intent);
         }
     }
@@ -88,7 +88,7 @@ public class UserManagement extends Fragment {
         public void onClick(View view){
             for (int i=0;i<cbx_Adapter.index.size();i++){
                 String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
-                System.out.println(id);
+//                System.out.println(id);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -129,8 +129,8 @@ public class UserManagement extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-                        System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
+//                        System.out.println(data);//点击跳出弹窗，显示数据
+                        Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -235,7 +235,7 @@ public class UserManagement extends Fragment {
             models.add(model);
             ID.add((String) data.get(i).get("ID"));
         }
-        System.out.println(ID);
+//        System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
         cbxAdapter = new cbx_Adapter(data,models, getActivity(), new ProductData.AllCheckListener() {

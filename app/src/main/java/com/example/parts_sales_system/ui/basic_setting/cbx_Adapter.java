@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
+package com.example.parts_sales_system.ui.basic_setting;
 
 import android.content.Context;
 import android.util.Log;

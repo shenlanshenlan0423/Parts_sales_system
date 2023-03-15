@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
+package com.example.parts_sales_system.ui.basic_setting;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,21 +19,23 @@ public class HomeFragment extends Fragment {
     private ViewPager pager;
     private FragmentAdapter fragmentAdapter;
     private ArrayList fragmentList;
-    private TabLayout tabLayout;
+    private TabLayout tabLayout1,tabLayout2;
     private ProductData ProductData=new ProductData();
     private AuthorityManagement AuthorityManagement=new AuthorityManagement();
     private UserManagement UserManagement=new UserManagement();
     private List<String> mTitles;
     private String [] title={"权限管理","用户管理","产品数据"};
+//    private String [] title2={"使用单位列表","系统用户列表","系统用户日志"};
     Boolean flag_in;
     public void setFlagin(Boolean flag){
         this.flag_in=flag;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.homefragment,container,false);
-        pager=view.findViewById(R.id.page);
-        tabLayout=view.findViewById(R.id.tab_layout);
+        View view=inflater.inflate(R.layout.common_fragment,container,false);
+        pager=view.findViewById(R.id.common_page);
+        tabLayout1=view.findViewById(R.id.tab_layout1);
+        tabLayout2=view.findViewById(R.id.tab_layout2);
         return view;
     }
 
@@ -54,6 +56,7 @@ public class HomeFragment extends Fragment {
 
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);
         pager.setAdapter(fragmentAdapter);
-        tabLayout.setupWithViewPager(pager);//与ViewPage建立关系
+        tabLayout1.setupWithViewPager(pager);//与ViewPage建立关系
+        tabLayout2.setupWithViewPager(pager);
     }
 }

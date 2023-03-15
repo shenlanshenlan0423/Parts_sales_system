@@ -14,6 +14,10 @@
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Dialog"/>
         <activity
+            android:name=".public_BasicSetting_ProductData_MFJList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Dialog"/>
+        <activity
             android:name=".private_inventmanage_SetOutData_AlertDialog"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>

@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
+package com.example.parts_sales_system.ui.basic_setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,12 +19,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_BasicSettingActivity;
+import com.example.parts_sales_system.public_BasicSetting_ProductData_MFJList_AddData;
+import com.example.parts_sales_system.public_BasicSetting_ProductData_MFJList_SetData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,11 +35,10 @@ import java.util.HashMap;
 import java.util.List;
 
 //入库管理界面
-public class AuthorityManagement extends Fragment {
-    public TextView add;
-    public TextView del;
-    public TextView set;
+public class ProductData extends Fragment {
+    public TextView add, del, set;
     Button manage;
+    private String[] UseDeptIDStringArray;
     Boolean mflag;
     public boolean mIsFromItem = false;
     ListView listView;
@@ -48,13 +47,14 @@ public class AuthorityManagement extends Fragment {
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
-    public AuthorityManagement(){}
+    public ProductData(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.activity_public_basic_setting_authority_management,container,false);
+        getFKData();
+        View view=inflater.inflate(R.layout.activity_public_basic_setting_product_data,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
@@ -69,7 +69,6 @@ public class AuthorityManagement extends Fragment {
                 startActivity(intent);
             }
         });
-        System.out.println(mflag);
         if (mflag==null){mflag=false;}
         initList(mflag,view);
         return view;
@@ -78,7 +77,7 @@ public class AuthorityManagement extends Fragment {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(getActivity(), private_inventmanage_AddInData_Alertdialog.class);
+            intent=new Intent(getActivity(), public_BasicSetting_ProductData_MFJList_AddData.class);
             startActivity(intent);
         }
     }
@@ -88,12 +87,10 @@ public class AuthorityManagement extends Fragment {
         public void onClick(View view){
             for (int i=0;i<cbx_Adapter.index.size();i++){
                 String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
-                System.out.println(id);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-//                            System.out.println("{\"ID\":\"" + id + "\"}");
                             delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -107,7 +104,7 @@ public class AuthorityManagement extends Fragment {
 
     public void initList(boolean flag,View view){
         if (!flag){//管理按钮没有按下的初始化列表
-            listView=view.findViewById(R.id.listView);
+            listView=view.findViewById(R.id.MFJList);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -117,8 +114,8 @@ public class AuthorityManagement extends Fragment {
                             data=(List<HashMap<String, Object>>)msg.obj;
                         }
                     }
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"creator","createTime","updater","updatetime","ID"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.mfjlist_item,
+                            new String[]{"itemnumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","MFJID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJID});
                     //实现列表的显示
                     listView.setAdapter(adapter);
                     //条目点击事件
@@ -129,10 +126,10 @@ public class AuthorityManagement extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-                        System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
+                        Intent intent=new Intent(getActivity(), public_BasicSetting_ProductData_MFJList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
+                        bundle.putSerializable("array",UseDeptIDStringArray);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
@@ -143,23 +140,38 @@ public class AuthorityManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJYan","null");
-//                    System.out.println(jsonArray);
+                        JSONArray jsonArray= getData.getData("MFJ","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                            item.put("creator",jsonObject.getString("createBy"));
-                            item.put("createTime",jsonObject.getString("createDateTime"));
-                            item.put("updater",jsonObject.getString("updateBy"));
-                            item.put("updatetime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
-                            item.put("orderid",jsonObject.getString("MFJOrderID"));
-                            item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
-                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
-                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
-                            item.put("Username",jsonObject.getString("UserName"));
+                            //当前item的序号
+                            item.put("itemnumber",(i + 1));
+                            //以下为对应表的字段信息
+                            item.put("CreateBy",jsonObject.getString("createBy"));
+                            item.put("CreateDateTime",jsonObject.getString("createDateTime"));
+                            item.put("UpdateBy",jsonObject.getString("updateBy"));
+                            item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
+                            item.put("MFJID",jsonObject.getString("ID"));
+                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("MFJName",jsonObject.getString("MFJName"));
+                            item.put("MFJXing",jsonObject.getString("MFJXing"));
+                            item.put("MFJWaiJing",jsonObject.getString("MFJWaiJing"));
+                            item.put("MFJGuang",jsonObject.getString("MFJGuang"));
+                            item.put("MFJYuJiGeng",jsonObject.getString("MFJYuJiGeng"));
+                            item.put("MFJDes",jsonObject.getString("MFJDes"));
+                            item.put("MFJZaiTu","");
+                            item.put("MFJTuiHuo",jsonObject.getString("MFJTuiHuo"));
+                            item.put("MFJZaiKu",jsonObject.getString("MFJZaiKu"));
+                            item.put("MFJChuKu",jsonObject.getString("MFJChuKu"));
+                            item.put("MFJZaiYong",jsonObject.getString("MFJZaiYong"));
+                            item.put("MFJModelNo",jsonObject.getString("MFJModelNo"));
+                            item.put("MFJModelName",jsonObject.getString("MFJModelName"));
+                            item.put("MFJModelDes",jsonObject.getString("MFJModelDes"));
+                            item.put("MFJModelIfYou",jsonObject.getString("MFJModelIfYou"));
+                            item.put("MFJModelDate",jsonObject.getString("MFJModelDate"));
+                            item.put("MFJModelDan",jsonObject.getString("MFJModelDan"));
+                            item.put("MFJModelIfShou",jsonObject.getString("MFJModelIfShou"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -173,7 +185,7 @@ public class AuthorityManagement extends Fragment {
             }).start();
         }
         else{//管理按钮按下的初始化列表
-            listView=view.findViewById(R.id.listView);
+            listView=view.findViewById(R.id.MFJList);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
             Handler mHandler = new Handler(){
                 @Override
@@ -193,23 +205,34 @@ public class AuthorityManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJYan","null");
-//                    System.out.println(jsonArray);
+                        JSONArray jsonArray= getData.getData("MFJYan","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                            item.put("creator",jsonObject.getString("createBy"));
-                            item.put("createTime",jsonObject.getString("createDateTime"));
-                            item.put("updater",jsonObject.getString("updateBy"));
-                            item.put("updatetime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
-                            item.put("orderid",jsonObject.getString("MFJOrderID"));
-                            item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
-                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
-                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
-                            item.put("Username",jsonObject.getString("UserName"));
+                            item.put("CreateBy",jsonObject.getString("createBy"));
+                            item.put("CreateDateTime",jsonObject.getString("createDateTime"));
+                            item.put("UpdateBy",jsonObject.getString("updateBy"));
+                            item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
+                            item.put("MFJID",jsonObject.getString("ID"));
+                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("MFJName",jsonObject.getString("MFJName"));
+                            item.put("MFJXing",jsonObject.getString("MFJXing"));
+                            item.put("MFJWaiJing",jsonObject.getString("MFJWaiJing"));
+                            item.put("MFJGuang",jsonObject.getString("MFJGuang"));
+                            item.put("MFJYuJiGeng",jsonObject.getString("MFJYuJiGeng"));
+                            item.put("MFJDes",jsonObject.getString("MFJDes"));
+                            item.put("MFJTuiHuo",jsonObject.getString("MFJTuiHuo"));
+                            item.put("MFJZaiKu",jsonObject.getString("MFJZaiKu"));
+                            item.put("MFJChuKu",jsonObject.getString("MFJChuKu"));
+                            item.put("MFJZaiYong",jsonObject.getString("MFJZaiYong"));
+                            item.put("MFJModelNo",jsonObject.getString("MFJModelNo"));
+                            item.put("MFJModelName",jsonObject.getString("MFJModelName"));
+                            item.put("MFJModelDes",jsonObject.getString("MFJModelDes"));
+                            item.put("MFJModelIfYou",jsonObject.getString("MFJModelIfYou"));
+                            item.put("MFJModelDate",jsonObject.getString("MFJModelDate"));
+                            item.put("MFJModelDan",jsonObject.getString("MFJModelDan"));
+                            item.put("MFJModelIfShou",jsonObject.getString("MFJModelIfShou"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -235,14 +258,14 @@ public class AuthorityManagement extends Fragment {
             models.add(model);
             ID.add((String) data.get(i).get("ID"));
         }
-        System.out.println(ID);
+//        System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new ProductData.AllCheckListener() {
+        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理
-                System.out.println(cbx_Adapter.index);
+//                System.out.println(cbx_Adapter.index);
                 if (!b && !mMainCkb.isChecked()) {
                     return;
                 } else if (!b && mMainCkb.isChecked()) {
@@ -278,7 +301,6 @@ public class AuthorityManagement extends Fragment {
                         continue;
                     }
                 }
-                System.out.println(cbx_Adapter.index);
                 //刷新listview
                 cbxAdapter.notifyDataSetChanged();
             }
@@ -286,5 +308,29 @@ public class AuthorityManagement extends Fragment {
     }
     interface AllCheckListener {
         void onCheckedChanged(boolean b);
+    }
+    //从外键所在表中获取外键可取值的最新数据
+    void getFKData(){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    JSONArray jdataUseDeptID = getData.getData("UseDept","");
+                    int jsonArrayOrderIDlength = jdataUseDeptID.length();
+                    //字符串数组,用于存储目标字段的全部可取值
+                    //先加1是为了写进固定的测试例子
+                    String[] UseDeptIDString = new String[jsonArrayOrderIDlength+1];
+                    for (int i=0;i<jsonArrayOrderIDlength;i++){
+                        JSONObject SubjsonObject = jdataUseDeptID.getJSONObject(i);
+                        UseDeptIDString[i] = SubjsonObject.getString("ID");
+                    }
+                    //固定的测试例子
+                    UseDeptIDString[jsonArrayOrderIDlength] = "20230227110803832";
+                    UseDeptIDStringArray = UseDeptIDString;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
