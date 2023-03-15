@@ -65,6 +65,9 @@ public class InManagement extends Fragment {
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
+        if (mflag){
+            del.setEnabled(true);
+        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +78,7 @@ public class InManagement extends Fragment {
                 startActivity(intent);
             }
         });
-        System.out.println(mflag);
+//        System.out.println(mflag);
         if (mflag==null){mflag=false;}
         initList(mflag,view);
         return view;
@@ -95,12 +98,12 @@ public class InManagement extends Fragment {
         public void onClick(View view){
             for (int i=0;i<cbx_Adapter.index.size();i++){
                 String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
-                System.out.println(id);
+//                System.out.println(id);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            System.out.println("{\"ID\":\"" + id + "\"}");
+//                            System.out.println("{\"ID\":\"" + id + "\"}");
                             delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -109,6 +112,8 @@ public class InManagement extends Fragment {
                 }).start();
             }
             Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
+            intent.putExtra("page",0);
+            startActivity(intent);
         }
     }
 
@@ -117,6 +122,7 @@ public class InManagement extends Fragment {
             listView=view.findViewById(R.id.listView);
             CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
             checkAllBox.setVisibility(View.INVISIBLE);
+            del.setEnabled(false);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -138,7 +144,7 @@ public class InManagement extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-                        System.out.println(data);//点击跳出弹窗，显示数据
+//                        System.out.println(data);//点击跳出弹窗，显示数据
                         Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
@@ -169,7 +175,7 @@ public class InManagement extends Fragment {
                             item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
                             item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
                             item.put("Username",jsonObject.getString("UserName"));
-                            item.put("itemNumber"," "+String.valueOf(i+1)+" ");
+                            item.put("itemNumber"," "+(i+1)+" ");
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -247,14 +253,14 @@ public class InManagement extends Fragment {
             models.add(model);
             ID.add((String) data.get(i).get("ID"));
         }
-        System.out.println(ID);
+//        System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
         cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理
-                System.out.println(cbx_Adapter.index);
+//                System.out.println(cbx_Adapter.index);
                 if (!b && !mMainCkb.isChecked()) {
                     return;
                 } else if (!b && mMainCkb.isChecked()) {
@@ -290,7 +296,7 @@ public class InManagement extends Fragment {
                         continue;
                     }
                 }
-                System.out.println(cbx_Adapter.index);
+//                System.out.println(cbx_Adapter.index);
                 //刷新listview
                 cbxAdapter.notifyDataSetChanged();
             }

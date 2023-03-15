@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_invent;
+package com.example.parts_sales_system.ui.use_management;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,24 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.parts_sales_system.private_UseManagementActivity;
 import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.private_inventmanage_AddOutData_AlertDialog;
 import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
-import com.example.parts_sales_system.private_InventManageActivity;
-import com.example.parts_sales_system.private_inventmanage_SetOutData_AlertDialog;
+import com.example.parts_sales_system.ui.basic_setting.ProductData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,8 +33,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//出库管理界面
-public class OutManagement extends Fragment {
+//入库管理界面
+public class PatrolManagement extends Fragment {
     public com.getbase.floatingactionbutton.FloatingActionButton add;
     public com.getbase.floatingactionbutton.FloatingActionButton del;
     com.getbase.floatingactionbutton.FloatingActionButton manage;
@@ -49,13 +46,13 @@ public class OutManagement extends Fragment {
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
+    public PatrolManagement(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
-    public OutManagement(){}
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.activity_private_invent_manage_out_management,container,false);
+        View view=inflater.inflate(R.layout.activity_private_use_management_patrol_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
@@ -67,13 +64,12 @@ public class OutManagement extends Fragment {
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), private_InventManageActivity.class);
-                intent.putExtra("flag_out",mflag);
-                intent.putExtra("page",1);
+                Intent intent=new Intent(getActivity(), private_UseManagementActivity.class);
+                intent.putExtra("flag",mflag);
+                intent.putExtra("page",0);
                 startActivity(intent);
             }
         });
-        System.out.println(mflag);
         if (mflag==null){mflag=false;}
         initList(mflag,view);
         return view;
@@ -82,8 +78,8 @@ public class OutManagement extends Fragment {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(getActivity(), private_inventmanage_AddOutData_AlertDialog.class);
-            intent.putExtra("page",1);
+            intent=new Intent(getActivity(), private_inventmanage_AddInData_Alertdialog.class);
+            intent.putExtra("page",0);
             startActivity(intent);
         }
     }
@@ -93,21 +89,19 @@ public class OutManagement extends Fragment {
         public void onClick(View view){
             for (int i=0;i<cbx_Adapter.index.size();i++){
                 String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
-                System.out.println(id);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            System.out.println("{\"ID\":\"" + id + "\"}");
-                            delData.delData("MFJChu", "{\"ID\":\"" + id + "\"}");
+                            delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     }
                 }).start();
             }
-            Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
-            intent.putExtra("page",1);
+            Intent intent=new Intent(getActivity(),private_UseManagementActivity.class);
+            intent.putExtra("page",0);
             startActivity(intent);
         }
     }
@@ -139,8 +133,7 @@ public class OutManagement extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-                        System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), private_inventmanage_SetOutData_AlertDialog.class);
+                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -153,8 +146,7 @@ public class OutManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJChu","null");
-//                    System.out.println(jsonArray);
+                        JSONArray jsonArray= getData.getData("MFJYan","null");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
@@ -164,13 +156,13 @@ public class OutManagement extends Fragment {
                             item.put("updater",jsonObject.getString("updateBy"));
                             item.put("updatetime",jsonObject.getString("updateDateTime"));
                             item.put("ID",jsonObject.getString("ID"));
-                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("orderid",jsonObject.getString("MFJOrderID"));
                             item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("UseDeptName",jsonObject.getString("UseDeptName"));
-                            item.put("MFJChuDate",jsonObject.getString("MFJChuDate"));
-                            item.put("MFJChuDes",jsonObject.getString("MFJChuDes"));
+                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
+                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
+                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
                             item.put("Username",jsonObject.getString("UserName"));
-                            item.put("itemNumber"," "+String.valueOf(i+1)+" ");
+                            item.put("itemNumber"," "+(i+1)+" ");
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -205,8 +197,7 @@ public class OutManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJChu","null");
-//                    System.out.println(jsonArray);
+                        JSONArray jsonArray= getData.getData("MFJYan","null");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
@@ -216,11 +207,11 @@ public class OutManagement extends Fragment {
                             item.put("updater",jsonObject.getString("updateBy"));
                             item.put("updatetime",jsonObject.getString("updateDateTime"));
                             item.put("ID",jsonObject.getString("ID"));
-                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("orderid",jsonObject.getString("MFJOrderID"));
                             item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("UseDeptName",jsonObject.getString("UseDeptName"));
-                            item.put("MFJChuDate",jsonObject.getString("MFJChuDate"));
-                            item.put("MFJChuDes",jsonObject.getString("MFJChuDes"));
+                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
+                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
+                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
                             item.put("Username",jsonObject.getString("UserName"));
                             item.put("itemNumber"," "+String.valueOf(i+1)+" ");
                             data.add(item);
@@ -248,14 +239,12 @@ public class OutManagement extends Fragment {
             models.add(model);
             ID.add((String) data.get(i).get("ID"));
         }
-        System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new InManagement.AllCheckListener() {
+        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理
-                System.out.println(cbx_Adapter.index);
                 if (!b && !mMainCkb.isChecked()) {
                     return;
                 } else if (!b && mMainCkb.isChecked()) {
@@ -291,7 +280,6 @@ public class OutManagement extends Fragment {
                         continue;
                     }
                 }
-                System.out.println(cbx_Adapter.index);
                 //刷新listview
                 cbxAdapter.notifyDataSetChanged();
             }

@@ -109,7 +109,7 @@ public class private_inventmanage_AddInData_Alertdialog extends Activity {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
                         data1.add(jsonObject.getString("ID"));
                     }
-                    System.out.println(data1);
+//                    System.out.println(data1);
                     Message msg=new Message();
                     msg.obj=data1;
                     msg.what=1;
@@ -164,9 +164,10 @@ public class private_inventmanage_AddInData_Alertdialog extends Activity {
                     data2 = new ArrayList();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                        data2.add(jsonObject.getString("DeptID"));
+                        data2.add(jsonObject.getString("ID"));
                     }
-                    System.out.println(data2);
+                    data2.add(1);
+//                    System.out.println(data2);
                     Message msg=new Message();
                     msg.obj=data2;
                     msg.what=1;

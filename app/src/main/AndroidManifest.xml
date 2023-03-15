@@ -18,25 +18,32 @@
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
-            android:name=".SetInData_Alertdialog"
+            android:name=".private_inventmanage_SetOutData_AlertDialog"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
-            android:name=".AddInData_Alertdialog"
+            android:name=".private_inventmanage_AddOutData_AlertDialog"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".private_inventmanage_SetInData_Alertdialog"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
+        <activity
+            android:name=".private_inventmanage_AddInData_Alertdialog"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".private_InventManageActivity"
-            android:exported="false"
-            android:label="@string/title_activity_invent" />
+            android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.Register"
