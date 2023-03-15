@@ -61,7 +61,6 @@ public class cbx_Adapter extends BaseAdapter {
             hd.updater=(TextView)view.findViewById(R.id.updater);
             hd.updateTime=(TextView)view.findViewById(R.id.updateTime);
             hd.mfjyanid=(TextView)view.findViewById(R.id.receipts_Id);
-            hd.itemnumber=(TextView)view.findViewById(R.id.itemNumber);
             hd.checkBox = (CheckBox) view.findViewById(R.id.cbx);
             view.setTag(hd);
         }
@@ -78,8 +77,6 @@ public class cbx_Adapter extends BaseAdapter {
         hd.updateTime.setText(updatetime);
         mfjyanid=String.valueOf(data_data.get(i).get("ID"));
         hd.mfjyanid.setText(mfjyanid);
-        itemnumber=String.valueOf(data_data.get(i).get("itemNumber"));
-        hd.itemnumber.setText(itemnumber);
         Log.e("myadapter", mModel.getSt()+ "------" + mModel.ischeck());
         final ViewHoder hdFinal = hd;
         hd.checkBox.setChecked(mModel.ischeck());
@@ -126,7 +123,6 @@ public class cbx_Adapter extends BaseAdapter {
         TextView updater;
         TextView updateTime;
         TextView mfjyanid;
-        TextView itemnumber;
     }
 
 }
