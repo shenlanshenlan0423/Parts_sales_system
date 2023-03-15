@@ -18,12 +18,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.parts_sales_system.private_UseManagementActivity;
-import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
+import com.example.parts_sales_system.private_UseManagement_PatrolManagement_PatrolList_AddData;
+import com.example.parts_sales_system.private_UseManagement_PatrolManagement_PatrolList_SetData;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
-import com.example.parts_sales_system.ui.basic_setting.ProductData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,10 +34,9 @@ import java.util.List;
 
 //入库管理界面
 public class PatrolManagement extends Fragment {
-    public com.getbase.floatingactionbutton.FloatingActionButton add;
-    public com.getbase.floatingactionbutton.FloatingActionButton del;
-    com.getbase.floatingactionbutton.FloatingActionButton manage;
-    Boolean mflag;
+    public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
+    Boolean mflag=false;
+    private String[] BuildRecordCodeIDStringArray;
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
@@ -52,6 +50,7 @@ public class PatrolManagement extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+        getFKData();
         View view=inflater.inflate(R.layout.activity_private_use_management_patrol_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
@@ -77,9 +76,11 @@ public class PatrolManagement extends Fragment {
     private class Add implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            Intent intent;
-            intent=new Intent(getActivity(), private_inventmanage_AddInData_Alertdialog.class);
+            Intent intent=new Intent(getActivity(), private_UseManagement_PatrolManagement_PatrolList_AddData.class);
+            Bundle bundle=new Bundle();
+            bundle.putSerializable("array",BuildRecordCodeIDStringArray);
             intent.putExtra("page",0);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
@@ -121,8 +122,8 @@ public class PatrolManagement extends Fragment {
                             data=(List<HashMap<String, Object>>)msg.obj;
                         }
                     }
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"creator","createTime","updater","updatetime","ID","itemNumber"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id,R.id.itemNumber});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.private_use_management_patrol_record_list_item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","PatrolRecordCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.PatrolRecordCodeID});
                     //实现列表的显示
                     listView.setAdapter(adapter);
                     //条目点击事件
@@ -133,9 +134,10 @@ public class PatrolManagement extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
+                        Intent intent=new Intent(getActivity(), private_UseManagement_PatrolManagement_PatrolList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
+                        bundle.putSerializable("array",BuildRecordCodeIDStringArray);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
@@ -146,23 +148,21 @@ public class PatrolManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJYan","null");
+                        JSONArray jsonArray= getData.getData("MFJXunJian","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                            item.put("creator",jsonObject.getString("createBy"));
-                            item.put("createTime",jsonObject.getString("createDateTime"));
-                            item.put("updater",jsonObject.getString("updateBy"));
-                            item.put("updatetime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
-                            item.put("orderid",jsonObject.getString("MFJOrderID"));
-                            item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
-                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
-                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
-                            item.put("Username",jsonObject.getString("UserName"));
-                            item.put("itemNumber"," "+(i+1)+" ");
+                            item.put("itemNumber",(i+1));
+                            item.put("CreateBy",jsonObject.getString("createBy"));
+                            item.put("CreateDateTime",jsonObject.getString("createDateTime"));
+                            item.put("UpdateBy",jsonObject.getString("updateBy"));
+                            item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
+                            item.put("PatrolRecordCodeID",jsonObject.getString("ID"));
+                            item.put("MFJUseID",jsonObject.getString("MFJUseID"));
+                            item.put("MFJXunJianDate",jsonObject.getString("MFJXunJianDate"));
+                            item.put("MFJXunJianCont",jsonObject.getString("MFJXunJianCont"));
+                            item.put("MFJXunJianUser",jsonObject.getString("MFJXunJianUser"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -197,23 +197,21 @@ public class PatrolManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJYan","null");
+                        JSONArray jsonArray= getData.getData("MFJXunJian","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                            item.put("creator",jsonObject.getString("createBy"));
-                            item.put("createTime",jsonObject.getString("createDateTime"));
-                            item.put("updater",jsonObject.getString("updateBy"));
-                            item.put("updatetime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
-                            item.put("orderid",jsonObject.getString("MFJOrderID"));
-                            item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
-                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
-                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
-                            item.put("Username",jsonObject.getString("UserName"));
-                            item.put("itemNumber"," "+String.valueOf(i+1)+" ");
+                            item.put("itemNumber",(i+1));
+                            item.put("CreateBy",jsonObject.getString("createBy"));
+                            item.put("CreateDateTime",jsonObject.getString("createDateTime"));
+                            item.put("UpdateBy",jsonObject.getString("updateBy"));
+                            item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
+                            item.put("PatrolRecordCodeID",jsonObject.getString("ID"));
+                            item.put("MFJUseID",jsonObject.getString("MFJUseID"));
+                            item.put("MFJXunJianDate",jsonObject.getString("MFJXunJianDate"));
+                            item.put("MFJXunJianCont",jsonObject.getString("MFJXunJianCont"));
+                            item.put("MFJXunJianUser",jsonObject.getString("MFJXunJianUser"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -287,5 +285,28 @@ public class PatrolManagement extends Fragment {
     }
     interface AllCheckListener {
         void onCheckedChanged(boolean b);
+    }    //从外键所在表中获取外键可取值的最新数据
+    void getFKData(){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    JSONArray jdataUseDeptID = getData.getData("MFJUse","");
+                    int jsonArrayOrderIDlength = jdataUseDeptID.length();
+                    //字符串数组,用于存储目标字段的全部可取值
+                    //先加1是为了写进固定的测试例子
+                    String[] BuildRecordCodeIDString = new String[jsonArrayOrderIDlength+1];
+                    for (int i=0;i<jsonArrayOrderIDlength;i++){
+                        JSONObject SubjsonObject = jdataUseDeptID.getJSONObject(i);
+                        BuildRecordCodeIDString[i] = SubjsonObject.getString("ID");
+                    }
+                    //固定的测试例子
+                    BuildRecordCodeIDString[jsonArrayOrderIDlength] = "20230306110908984";
+                    BuildRecordCodeIDStringArray = BuildRecordCodeIDString;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

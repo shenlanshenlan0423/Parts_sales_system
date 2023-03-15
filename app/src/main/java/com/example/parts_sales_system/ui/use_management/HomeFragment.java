@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.ui.top_nav_fragment_invent.InManagement;
-import com.example.parts_sales_system.ui.top_nav_fragment_invent.OutManagement;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -22,10 +20,9 @@ public class HomeFragment extends Fragment {
     private FragmentAdapter fragmentAdapter;
     private ArrayList fragmentList;
     private TabLayout tabLayout;
-    private InManagement inManagement=new InManagement();
-    private OutManagement outManagement=new OutManagement();
+    private PatrolManagement PatrolManagement=new PatrolManagement();
     private List<String> mTitles;
-    private String [] title={"入库管理","出库管理"};
+    private String [] title={"巡检管理"};
     Boolean flag_in;
     Boolean flag_out;
     int page;
@@ -47,12 +44,9 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         fragmentList=new ArrayList<>();
         mTitles=new ArrayList<>();
-        inManagement.setFlag(flag_in);
-        outManagement.setFlag(flag_out);
-        fragmentList.add(inManagement);
-        fragmentList.add(outManagement);
+        PatrolManagement.setFlag(flag_in);
+        fragmentList.add(PatrolManagement);
         mTitles.add(title[0]);
-        mTitles.add(title[1]);
 
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);
         pager.setAdapter(fragmentAdapter);

@@ -10,6 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parts_sales_system">
         <activity
+            android:name=".private_UseManagementActivity"
+            android:exported="false"
+            android:label="@string/title_activity_UseManagement">
+        </activity>
+        <activity
+            android:name=".private_UseManagement_PatrolManagement_PatrolList_SetData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
+        <activity
+            android:name=".private_UseManagement_PatrolManagement_PatrolList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
+        <activity
+            android:name=".public_BasicSettingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_BasicSetting"></activity>
+        <activity
             android:name=".public_BasicSetting_ProductData_MFJList_SetData"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
@@ -17,6 +36,10 @@
             android:name=".public_BasicSetting_ProductData_MFJList_AddData"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".private_InventManageActivity"
+            android:exported="false"
+            android:label="@string/title_activity_invent"/>
         <activity
             android:name=".private_inventmanage_SetOutData_AlertDialog"
             android:exported="false"
@@ -34,9 +57,6 @@
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
-            android:name=".private_InventManageActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
@@ -47,21 +67,14 @@
         </activity>
         <activity
             android:name=".ui.login.Register"
+            android:exported="false"
             android:label="@string/title_activity_register"></activity>
         <activity
             android:name=".public_MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
-        <activity
-            android:name=".public_BasicSettingActivity"
-            android:exported="false"
-            android:label="@string/title_activity_BasicSetting"></activity>
-        <activity
-            android:name=".private_UseManagementActivity"
-            android:exported="false"
-            android:label="@string/title_activity_UseManagement">
-        </activity>
+
 
         <activity
             android:name=".public_FinancialManagementActivity"

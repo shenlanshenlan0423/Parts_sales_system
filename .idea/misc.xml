@@ -21,11 +21,13 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_invent_manage.xml" value="0.22" />
-        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_invent_manage_in_management.xml" value="0.136" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_invent_manage_in_management.xml" value="0.2" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_invent_manage_out_management.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_inventmanage_set_out_data_alert_dialog.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_use_management.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_use_management_patrol_management.xml" value="0.152" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_use_management_patrolrecordlist_detailed.xml" value="0.5" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_private_use_management_patrolrecordlist_detailed_add.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting.xml" value="0.176" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_authority_management.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_product_data.xml" value="0.22" />
@@ -57,6 +59,7 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/orderpaymentlist_item_add.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/orderpaymentlist_item_detail.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/out_management.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/patrol_record_list_item.xml" value="0.5" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_UseManagement.xml" value="0.2767210144927536" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/user_management.xml" value="0.176" />

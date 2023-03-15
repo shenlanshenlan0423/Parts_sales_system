@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.parts_sales_system.ui.top_nav_fragment_invent.HomeFragment;
+import com.example.parts_sales_system.ui.use_management.HomeFragment;
 
 public class private_UseManagementActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
