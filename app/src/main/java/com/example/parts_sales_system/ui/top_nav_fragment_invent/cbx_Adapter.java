@@ -25,6 +25,7 @@ public class cbx_Adapter extends BaseAdapter {
     private String updater;
     private String updatetime;
     private String mfjyanid;
+    private String itemnumber;
     public static List index;
     public cbx_Adapter(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, InManagement.AllCheckListener allCheckListener) {
         this.data_data=data_data;

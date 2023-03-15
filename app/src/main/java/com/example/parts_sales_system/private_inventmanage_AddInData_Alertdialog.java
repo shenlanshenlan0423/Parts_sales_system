@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class AddInData_Alertdialog extends Activity {
+public class private_inventmanage_AddInData_Alertdialog extends Activity {
     Button in_submit;
     Button cancel;
     PopupMenu pm1;
@@ -66,7 +66,7 @@ public class AddInData_Alertdialog extends Activity {
     }
     private void initMenu1(){
         // 这里的catagory是下拉菜单控件
-        pm1=new PopupMenu(AddInData_Alertdialog.this,in_detail_id);
+        pm1=new PopupMenu(private_inventmanage_AddInData_Alertdialog.this,in_detail_id);
         Menu menu=pm1.getMenu();
         // 这里的R.menu.catagory是第一步定义的menu下的文件名catagory.xml
         pm1.getMenuInflater().inflate(R.menu.catagory,menu);
@@ -109,7 +109,7 @@ public class AddInData_Alertdialog extends Activity {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
                         data1.add(jsonObject.getString("ID"));
                     }
-//                    System.out.println(data1);
+                    System.out.println(data1);
                     Message msg=new Message();
                     msg.obj=data1;
                     msg.what=1;
@@ -124,7 +124,7 @@ public class AddInData_Alertdialog extends Activity {
     }
     private void initMenu2(){
         // 这里的catagory是下拉菜单控件
-        pm2=new PopupMenu(AddInData_Alertdialog.this,prod_id);
+        pm2=new PopupMenu(private_inventmanage_AddInData_Alertdialog.this,prod_id);
         Menu menu=pm2.getMenu();
         // 这里的R.menu.catagory是第一步定义的menu下的文件名catagory.xml
         pm2.getMenuInflater().inflate(R.menu.catagory,menu);
@@ -140,7 +140,7 @@ public class AddInData_Alertdialog extends Activity {
                 for(int i=0;i<data2.size();i++){
                     // 1-组别、2-数据项id、3-数据项顺序、4-数据项内容
                     menu.add(0,i,i,String.valueOf(data2.get(i)));
-//                    System.out.println(data2.get(i));
+                    System.out.println(data2.get(i));
                 }
                 // 添加单击数据项事件
                 pm2.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -166,7 +166,7 @@ public class AddInData_Alertdialog extends Activity {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
                         data2.add(jsonObject.getString("DeptID"));
                     }
-//                    System.out.println(data2);
+                    System.out.println(data2);
                     Message msg=new Message();
                     msg.obj=data2;
                     msg.what=1;
@@ -193,23 +193,24 @@ public class AddInData_Alertdialog extends Activity {
                 @Override
                 public void run() {
                     try {
-                        addData.addData("MFJYan","\"{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
+                        addData.addData("MFJYan","{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
                                 "\",\"MFJYanDate\":\""+date+
                                 "\",\"MFJYanOrder\":\""+order+
                                 "\",\"MFJYanDes\":\""+des+
                                 "\",\"UserID\":\""+userid+"\"}");
-//                        System.out.println("\"{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
-//                                "\",\"MFJYanDate\":\""+date+
-//                                "\",\"MFJYanOrder\":\""+order+
-//                                "\",\"MFJYanDes\":\""+des+
-//                                "\",\"UserID\":\""+userid+"\"}");
+                        System.out.println("{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
+                                "\",\"MFJYanDate\":\""+date+
+                                "\",\"MFJYanOrder\":\""+order+
+                                "\",\"MFJYanDes\":\""+des+
+                                "\",\"UserID\":\""+userid+"\"}");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }
             }).start();
             Intent intent;
-            intent=new Intent(AddInData_Alertdialog.this,private_InventManageActivity.class);
+            intent=new Intent(private_inventmanage_AddInData_Alertdialog.this,private_InventManageActivity.class);
+            intent.putExtra("page",0);
             startActivity(intent);
         }
     }
@@ -218,7 +219,8 @@ public class AddInData_Alertdialog extends Activity {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(AddInData_Alertdialog.this,private_InventManageActivity.class);
+            intent=new Intent(private_inventmanage_AddInData_Alertdialog.this,private_InventManageActivity.class);
+            intent.putExtra("page",0);
             startActivity(intent);
         }
     }

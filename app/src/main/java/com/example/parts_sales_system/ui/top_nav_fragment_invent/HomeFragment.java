@@ -25,9 +25,13 @@ public class HomeFragment extends Fragment {
     private List<String> mTitles;
     private String [] title={"入库管理","出库管理"};
     Boolean flag_in;
+    Boolean flag_out;
+    int page;
     public void setFlagin(Boolean flag){
         this.flag_in=flag;
     }
+    public void setFlagout(Boolean flag){this.flag_out=flag;}
+    public void setpage(int page){this.page=page;}
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view=inflater.inflate(R.layout.homefragment,container,false);
@@ -42,6 +46,7 @@ public class HomeFragment extends Fragment {
         fragmentList=new ArrayList<>();
         mTitles=new ArrayList<>();
         inManagement.setFlag(flag_in);
+        outManagement.setFlag(flag_out);
         fragmentList.add(inManagement);
         fragmentList.add(outManagement);
         mTitles.add(title[0]);
@@ -50,6 +55,6 @@ public class HomeFragment extends Fragment {
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);
         pager.setAdapter(fragmentAdapter);
         tabLayout.setupWithViewPager(pager);//与ViewPage建立关系
-//        System.out.println(flag_in);
+        pager.setCurrentItem(page);
     }
 }

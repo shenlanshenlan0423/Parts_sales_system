@@ -4,28 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".private_inventmanage_SetInData_Alertdialog">
+    tools:context=".private_inventmanage_SetOutData_AlertDialog">
 
     <TableLayout
-        android:id="@+id/tableLayout2"
+        android:id="@+id/tableLayout4"
         android:layout_width="391dp"
-        android:layout_height="346dp">
+        android:layout_height="416dp">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="createBy" />
 
             <TextView
-                android:id="@+id/mfjyan_creator"
+                android:id="@+id/creator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </TableRow>
 
         <TableRow
@@ -33,16 +33,16 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/TextView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="createDateTime" />
 
             <TextView
-                android:id="@+id/mfjyan_cdt"
+                android:id="@+id/createtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </TableRow>
 
         <TableRow
@@ -50,16 +50,16 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="updateBy" />
 
             <TextView
-                android:id="@+id/mfjyan_udb"
+                android:id="@+id/updater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </TableRow>
 
         <TableRow
@@ -67,13 +67,30 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="updateDateTime" />
 
             <TextView
-                android:id="@+id/mfjyan_udt"
+                android:id="@+id/updatetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID" />
+
+            <TextView
+                android:id="@+id/id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
@@ -84,13 +101,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件入库验收单编码ID" />
+                android:text="UseDeptID" />
 
             <TextView
-                android:id="@+id/mfjyan_receiptid"
+                android:id="@+id/usedeptid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
@@ -101,13 +118,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件订货单编码ID" />
+                android:text="UserID" />
 
             <TextView
-                android:id="@+id/mfjyan_orderid"
+                android:id="@+id/userid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
@@ -118,33 +135,16 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="用户编码ID" />
-
-            <TextView
-                android:id="@+id/mfjyan_userid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="密封件入库验收序列数" />
+                android:text="MFJChuDate" />
 
             <EditText
-                android:id="@+id/mfjyan_order"
+                android:id="@+id/mfjchudate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:ems="10" />
         </TableRow>
 
         <TableRow
@@ -152,33 +152,16 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/textView36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件入库验收单日期" />
+                android:text="MFJChuDes" />
 
             <EditText
-                android:id="@+id/mfjyan_date"
+                android:id="@+id/mfjchudes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="66dp">
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="密封件入库验收单备注" />
-
-            <EditText
-                android:id="@+id/mfjyan_des"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:ems="10" />
         </TableRow>
 
         <TableRow
@@ -186,10 +169,10 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="用户名" />
+                android:text="UserName" />
 
             <TextView
                 android:id="@+id/username"
@@ -197,27 +180,41 @@
                 android:layout_height="wrap_content"
                 android:text="TextView" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UseDeptName" />
+
+            <TextView
+                android:id="@+id/UseDeptName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
     </TableLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/outset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:background="@color/green_200"
         android:text="修改"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout2"
-        app:layout_constraintStart_toStartOf="@+id/tableLayout2" />
+        app:layout_constraintBottom_toBottomOf="@+id/tableLayout4"
+        app:layout_constraintStart_toStartOf="@+id/tableLayout4" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/outcancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="80dp"
         android:background="@color/green_200"
         android:text="取消"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/tableLayout2" />
+        app:layout_constraintBottom_toBottomOf="@+id/tableLayout4"
+        app:layout_constraintEnd_toEndOf="@+id/tableLayout4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
