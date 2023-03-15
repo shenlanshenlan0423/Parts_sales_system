@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
+package com.example.parts_sales_system.ui.basic_setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 
 //入库管理界面
-public class AuthorityManagement extends Fragment {
+public class UserManagement extends Fragment {
     public TextView add;
     public TextView del;
     public TextView set;
@@ -48,13 +48,13 @@ public class AuthorityManagement extends Fragment {
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
-    public AuthorityManagement(){}
+    public UserManagement(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.activity_public_basic_setting_authority_management,container,false);
+        View view=inflater.inflate(R.layout.activity_public_basic_setting_user_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
@@ -69,7 +69,7 @@ public class AuthorityManagement extends Fragment {
                 startActivity(intent);
             }
         });
-        System.out.println(mflag);
+//        System.out.println(mflag);
         if (mflag==null){mflag=false;}
         initList(mflag,view);
         return view;
@@ -88,7 +88,7 @@ public class AuthorityManagement extends Fragment {
         public void onClick(View view){
             for (int i=0;i<cbx_Adapter.index.size();i++){
                 String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
-                System.out.println(id);
+//                System.out.println(id);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -129,7 +129,7 @@ public class AuthorityManagement extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-                        System.out.println(data);//点击跳出弹窗，显示数据
+//                        System.out.println(data);//点击跳出弹窗，显示数据
                         Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
@@ -235,7 +235,7 @@ public class AuthorityManagement extends Fragment {
             models.add(model);
             ID.add((String) data.get(i).get("ID"));
         }
-        System.out.println(ID);
+//        System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
         cbxAdapter = new cbx_Adapter(data,models, getActivity(), new ProductData.AllCheckListener() {

@@ -9,19 +9,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.data.api_connection.addData;
 import com.example.parts_sales_system.data.api_connection.getData;
-import com.example.parts_sales_system.databinding.ActivityLoginBinding;
 import com.example.parts_sales_system.public_MainActivity;
 
 import org.json.JSONArray;
@@ -75,7 +70,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 setArrayData(jsonArray);
-                ArrayAdapter<String> adapter=new ArrayAdapter<String>(Register.this,R.layout.order_id_list,deptname);
+                ArrayAdapter<String> adapter=new ArrayAdapter<String>(Register.this,R.layout.common_spinner_list,deptname);
                 companySpinner.setAdapter(adapter);
                 companySpinner.setSelection(0);
                 companySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

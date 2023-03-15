@@ -109,7 +109,7 @@ public class AddInData_Alertdialog extends Activity {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
                         data1.add(jsonObject.getString("ID"));
                     }
-                    System.out.println(data1);
+//                    System.out.println(data1);
                     Message msg=new Message();
                     msg.obj=data1;
                     msg.what=1;
@@ -140,7 +140,7 @@ public class AddInData_Alertdialog extends Activity {
                 for(int i=0;i<data2.size();i++){
                     // 1-组别、2-数据项id、3-数据项顺序、4-数据项内容
                     menu.add(0,i,i,String.valueOf(data2.get(i)));
-                    System.out.println(data2.get(i));
+//                    System.out.println(data2.get(i));
                 }
                 // 添加单击数据项事件
                 pm2.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -166,7 +166,7 @@ public class AddInData_Alertdialog extends Activity {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
                         data2.add(jsonObject.getString("DeptID"));
                     }
-                    System.out.println(data2);
+//                    System.out.println(data2);
                     Message msg=new Message();
                     msg.obj=data2;
                     msg.what=1;
@@ -198,11 +198,11 @@ public class AddInData_Alertdialog extends Activity {
                                 "\",\"MFJYanOrder\":\""+order+
                                 "\",\"MFJYanDes\":\""+des+
                                 "\",\"UserID\":\""+userid+"\"}");
-                        System.out.println("\"{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
-                                "\",\"MFJYanDate\":\""+date+
-                                "\",\"MFJYanOrder\":\""+order+
-                                "\",\"MFJYanDes\":\""+des+
-                                "\",\"UserID\":\""+userid+"\"}");
+//                        System.out.println("\"{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
+//                                "\",\"MFJYanDate\":\""+date+
+//                                "\",\"MFJYanOrder\":\""+order+
+//                                "\",\"MFJYanDes\":\""+des+
+//                                "\",\"UserID\":\""+userid+"\"}");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
