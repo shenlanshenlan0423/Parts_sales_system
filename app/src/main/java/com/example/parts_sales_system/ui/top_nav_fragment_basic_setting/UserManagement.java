@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_invent;
+package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,14 +19,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
+import com.example.parts_sales_system.AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.private_inventmanage_AddOutData_AlertDialog;
-import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
+import com.example.parts_sales_system.SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
-import com.example.parts_sales_system.private_InventManageActivity;
-import com.example.parts_sales_system.private_inventmanage_SetOutData_AlertDialog;
+import com.example.parts_sales_system.public_BasicSettingActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,11 +34,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//出库管理界面
-public class OutManagement extends Fragment {
-    public com.getbase.floatingactionbutton.FloatingActionButton add;
-    public com.getbase.floatingactionbutton.FloatingActionButton del;
-    com.getbase.floatingactionbutton.FloatingActionButton manage;
+//入库管理界面
+public class UserManagement extends Fragment {
+    public TextView add;
+    public TextView del;
+    public TextView set;
+    Button manage;
     Boolean mflag;
     public boolean mIsFromItem = false;
     ListView listView;
@@ -49,24 +48,24 @@ public class OutManagement extends Fragment {
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
+    public UserManagement(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
-    public OutManagement(){}
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.activity_private_invent_manage_out_management,container,false);
+        View view=inflater.inflate(R.layout.activity_public_basic_setting_user_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
+        set=view.findViewById(R.id.set);
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), private_InventManageActivity.class);
-                intent.putExtra("flag_out",mflag);
-                intent.putExtra("page",1);
+                Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
+                intent.putExtra("flag",mflag);
                 startActivity(intent);
             }
         });
@@ -79,8 +78,7 @@ public class OutManagement extends Fragment {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(getActivity(), private_inventmanage_AddOutData_AlertDialog.class);
-            intent.putExtra("page",1);
+            intent=new Intent(getActivity(), AddInData_Alertdialog.class);
             startActivity(intent);
         }
     }
@@ -95,25 +93,21 @@ public class OutManagement extends Fragment {
                     @Override
                     public void run() {
                         try {
-                            System.out.println("{\"ID\":\"" + id + "\"}");
-                            delData.delData("MFJChu", "{\"ID\":\"" + id + "\"}");
+//                            System.out.println("{\"ID\":\"" + id + "\"}");
+                            delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     }
                 }).start();
             }
-            Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
-            intent.putExtra("page",1);
-            startActivity(intent);
+            Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
         }
     }
 
     public void initList(boolean flag,View view){
         if (!flag){//管理按钮没有按下的初始化列表
             listView=view.findViewById(R.id.listView);
-            CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
-            checkAllBox.setVisibility(View.INVISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -136,7 +130,7 @@ public class OutManagement extends Fragment {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), private_inventmanage_SetOutData_AlertDialog.class);
+                        Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -149,7 +143,7 @@ public class OutManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJChu","null");
+                        JSONArray jsonArray= getData.getData("MFJYan","null");
 //                    System.out.println(jsonArray);
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
@@ -160,11 +154,11 @@ public class OutManagement extends Fragment {
                             item.put("updater",jsonObject.getString("updateBy"));
                             item.put("updatetime",jsonObject.getString("updateDateTime"));
                             item.put("ID",jsonObject.getString("ID"));
-                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("orderid",jsonObject.getString("MFJOrderID"));
                             item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("UseDeptName",jsonObject.getString("UseDeptName"));
-                            item.put("MFJChuDate",jsonObject.getString("MFJChuDate"));
-                            item.put("MFJChuDes",jsonObject.getString("MFJChuDes"));
+                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
+                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
+                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
                             item.put("Username",jsonObject.getString("UserName"));
                             data.add(item);
                         }
@@ -181,7 +175,6 @@ public class OutManagement extends Fragment {
         else{//管理按钮按下的初始化列表
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
-            mMainCkb.setVisibility(View.VISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -200,7 +193,7 @@ public class OutManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJChu","null");
+                        JSONArray jsonArray= getData.getData("MFJYan","null");
 //                    System.out.println(jsonArray);
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
@@ -211,11 +204,11 @@ public class OutManagement extends Fragment {
                             item.put("updater",jsonObject.getString("updateBy"));
                             item.put("updatetime",jsonObject.getString("updateDateTime"));
                             item.put("ID",jsonObject.getString("ID"));
-                            item.put("UseDeptID",jsonObject.getString("UseDeptID"));
+                            item.put("orderid",jsonObject.getString("MFJOrderID"));
                             item.put("UserID",jsonObject.getString("UserID"));
-                            item.put("UseDeptName",jsonObject.getString("UseDeptName"));
-                            item.put("MFJChuDate",jsonObject.getString("MFJChuDate"));
-                            item.put("MFJChuDes",jsonObject.getString("MFJChuDes"));
+                            item.put("MFJYanOrder",jsonObject.getString("MFJYanOrder"));
+                            item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
+                            item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
                             item.put("Username",jsonObject.getString("UserName"));
                             data.add(item);
                         }
@@ -245,7 +238,7 @@ public class OutManagement extends Fragment {
         System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new InManagement.AllCheckListener() {
+        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new ProductData.AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理

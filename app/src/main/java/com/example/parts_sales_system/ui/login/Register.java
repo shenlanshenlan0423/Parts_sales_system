@@ -37,8 +37,6 @@ public class Register extends AppCompatActivity {
     String[] deptid=new String[15];
     int dept;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,21 +54,6 @@ public class Register extends AppCompatActivity {
         
         //写入已有单位
         getJsonArrayData();
-        setArrayData(jsonArray);
-        
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,deptname);
-        companySpinner.setAdapter(adapter);
-        companySpinner.setSelection(0);
-        companySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                dept=companySpinner.getSelectedItemPosition();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView){
-
-            }
-        });
         //返回登录
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,13 +74,24 @@ public class Register extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable editable) {
+                setArrayData(jsonArray);
+                ArrayAdapter<String> adapter=new ArrayAdapter<String>(Register.this,R.layout.order_id_list,deptname);
+                companySpinner.setAdapter(adapter);
+                companySpinner.setSelection(0);
+                companySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        dept=companySpinner.getSelectedItemPosition();
+                    }
+                    public void onNothingSelected(AdapterView<?> adapterView){
+                    }
+                });
                 if (password.getText().toString().equals( confirm_password.getText().toString())) {
                     register.setEnabled(username.getText().toString() != null&&password.getText().toString() != null);
                     return;
                 }else{
                 Toast toast5=Toast.makeText(getApplicationContext(),"确认密码是否相同",Toast.LENGTH_LONG);
                 toast5.show();}
-
             }
         });
 
@@ -132,19 +126,18 @@ public class Register extends AppCompatActivity {
 
     };
     void getJsonArrayData(){
-        //new Thread(new Runnable(){
-            //@Override
-            //public void run() {
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
                 try {
-                    JSONArray jdata = getData.getData("UseDept","");//此处不需要按条件查询，返回全表信息即可
-                    jsonArray = jdata;
+                    jsonArray = getData.getData("UseDept","");//此处不需要按条件查询，返回全表信息即可
                 } catch (Exception e) {
                     Toast toast2=Toast.makeText(getApplicationContext(),"wrong",Toast.LENGTH_LONG);
                     toast2.show();
                     e.printStackTrace();
                 }
-            //}
-        //}).start();
+            }
+        }).start();
     };
     void setArrayData(JSONArray jdata){
         try{
@@ -158,9 +151,9 @@ public class Register extends AppCompatActivity {
         }
     }
     void addJsonArrayData(String jsonObjectstring){
-        //new Thread(new Runnable(){
-           // @Override
-        // public void run() {
+        new Thread(new Runnable(){
+            @Override
+         public void run() {
                 try {
                     addData.addData("User",jsonObjectstring);
                 } catch (Exception e) {
@@ -168,7 +161,7 @@ public class Register extends AppCompatActivity {
                     Toast toast3=Toast.makeText(getApplicationContext(),"addwrong",Toast.LENGTH_LONG);
                     toast3.show();
                 }
-            //}
-        //}).start();
+            }
+        }).start();
     }
 }

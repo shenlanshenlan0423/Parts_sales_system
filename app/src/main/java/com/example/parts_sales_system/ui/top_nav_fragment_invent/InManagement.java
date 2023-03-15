@@ -1,6 +1,10 @@
 package com.example.parts_sales_system.ui.top_nav_fragment_invent;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,9 +16,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -54,11 +61,12 @@ public class InManagement extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.in_management,container,false);
+        View view=inflater.inflate(R.layout.activity_private_invent_manage_in_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
+        set=view.findViewById(R.id.set);
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,16 +111,12 @@ public class InManagement extends Fragment {
                 }).start();
             }
             Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
-            intent.putExtra("page",0);
-            startActivity(intent);
         }
     }
 
     public void initList(boolean flag,View view){
         if (!flag){//管理按钮没有按下的初始化列表
             listView=view.findViewById(R.id.listView);
-            CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
-            checkAllBox.setVisibility(View.INVISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -135,7 +139,7 @@ public class InManagement extends Fragment {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
+                        Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -180,7 +184,6 @@ public class InManagement extends Fragment {
         else{//管理按钮按下的初始化列表
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
-            mMainCkb.setVisibility(View.VISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {

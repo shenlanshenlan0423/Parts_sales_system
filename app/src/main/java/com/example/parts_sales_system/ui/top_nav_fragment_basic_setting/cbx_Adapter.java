@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.top_nav_fragment_invent;
+package com.example.parts_sales_system.ui.top_nav_fragment_basic_setting;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,7 +18,7 @@ import java.util.List;
 public class cbx_Adapter extends BaseAdapter {
     private List<Model_check> data;
     private Context context;
-    private InManagement.AllCheckListener allCheckListener;
+    private ProductData.AllCheckListener allCheckListener;
     private List<HashMap<String, Object>> data_data;
     private String creator;
     private String creatime;
@@ -26,7 +26,7 @@ public class cbx_Adapter extends BaseAdapter {
     private String updatetime;
     private String mfjyanid;
     public static List index;
-    public cbx_Adapter(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, InManagement.AllCheckListener allCheckListener) {
+    public cbx_Adapter(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, ProductData.AllCheckListener allCheckListener) {
         this.data_data=data_data;
         this.data = data;
         this.context = context;

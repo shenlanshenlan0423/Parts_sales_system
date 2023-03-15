@@ -4,11 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/rectangle_border_design"
+        android:layout_marginLeft="@dimen/item_margin">
+        <TextView
+            android:id="@+id/itemNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  1  "
+            android:layout_gravity="center_vertical"/>
+    </FrameLayout>
     <TableLayout
-        android:layout_width="397dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/corner"
-        android:padding="10dip">
+        android:padding="10dip"
+        android:layout_marginRight="@dimen/item_margin">
 
         <TableRow
             android:layout_width="match_parent"
@@ -17,12 +34,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="创建者" />
+                android:text="@string/CreateBy"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/creator"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow>
@@ -30,12 +50,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="创建时间" />
+                android:text="@string/CreateDateTime"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/creatTime"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow>
@@ -43,12 +66,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更新者" />
+                android:text="@string/UpdateBy"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/updater"
                 android:layout_width="272dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center" />
 
         </TableRow>
 
@@ -57,12 +83,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更新时间" />
+                android:text="@string/UpdateDateTime"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/updateTime"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow>
@@ -70,13 +99,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="单据编码" />
+                android:text="单据编码"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/receipts_Id"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center" />
         </TableRow>
     </TableLayout>
 
+    </LinearLayout>
 </LinearLayout>

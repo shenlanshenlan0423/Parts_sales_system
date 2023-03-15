@@ -108,6 +108,7 @@
     <string name="PreviousPage">上一页</string>
     <string name="NextPage">下一页</string>
     <string name="LastPage">尾页</string>
+    <string name="add_info">新增</string>
     <string name="modify_info">修改</string>
     <string name="del_info">删除</string>
     <string name="close_item">关闭</string>
@@ -134,6 +135,28 @@
 
     <!--库存管理-->
     <string name="submit">提交</string>
+    <!--使用单位列表-->
+    <string name="UseDeptID">使用单位编码ID：</string>
+    <!--密封件列表-->
+    <string name="MFJID">密封件编码ID：</string>
+    <string name="MFJName">名称：</string>
+    <string name="MFJXing">型号：</string>
+    <string name="MFJWaiJing">外径：</string>
+    <string name="MFJGuang">光杆尺寸：</string>
+    <string name="MFJYuJiGeng">使用预计更换周期：</string>
+    <string name="MFJDes">描述：</string>
+    <string name="MFJZaiTu">在途数：</string>
+    <string name="MFJTuiHuo">退货数：</string>
+    <string name="MFJZaiKu">在库数：</string>
+    <string name="MFJChuKu">出库数：</string>
+    <string name="MFJZaiYong">在用数：</string>
+    <string name="MFJModelNo">样品或模具编号：</string>
+    <string name="MFJModelName">样品或模具名称：</string>
+    <string name="MFJModelDes">样品或模具描述：</string>
+    <string name="MFJModelIfYou">样品或模具是否邮寄：</string>
+    <string name="MFJModelDate">样品或模具邮寄日期：</string>
+    <string name="MFJModelDan">样品或模具邮寄单号：</string>
+    <string name="MFJModelIfShou">样品或模具是否收到：</string>
     <!--密封件订货付款列表-->
     <string name="title_activity_FinancialManagement">财务管理</string>
     <string name="PaymentManagement">付款管理</string>

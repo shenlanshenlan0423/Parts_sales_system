@@ -80,7 +80,7 @@ public class public_MainActivity extends AppCompatActivity {
         Intent intent;
         @Override
         public void onClick(View view) {
-            intent = new Intent(public_MainActivity.this, public_BasicSetting.class);
+            intent = new Intent(public_MainActivity.this, public_BasicSettingActivity.class);
             startActivity(intent);
         }
     }
