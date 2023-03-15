@@ -124,7 +124,7 @@ public class OutManagement extends Fragment {
                         }
                     }
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"creator","createTime","updater","updatetime","ID"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                            new String[]{"creator","createTime","updater","updatetime","ID","itemNumber"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id,R.id.itemNumber});
                     //实现列表的显示
                     listView.setAdapter(adapter);
                     //条目点击事件
@@ -166,6 +166,7 @@ public class OutManagement extends Fragment {
                             item.put("MFJChuDate",jsonObject.getString("MFJChuDate"));
                             item.put("MFJChuDes",jsonObject.getString("MFJChuDes"));
                             item.put("Username",jsonObject.getString("UserName"));
+                            item.put("itemNumber"," "+String.valueOf(i+1)+" ");
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -217,6 +218,7 @@ public class OutManagement extends Fragment {
                             item.put("MFJChuDate",jsonObject.getString("MFJChuDate"));
                             item.put("MFJChuDes",jsonObject.getString("MFJChuDes"));
                             item.put("Username",jsonObject.getString("UserName"));
+                            item.put("itemNumber"," "+String.valueOf(i+1)+" ");
                             data.add(item);
                         }
                         Message msg=new Message();

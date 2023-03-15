@@ -32,7 +32,6 @@ import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.private_InventManageActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -66,7 +65,6 @@ public class InManagement extends Fragment {
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
-        set=view.findViewById(R.id.set);
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +115,8 @@ public class InManagement extends Fragment {
     public void initList(boolean flag,View view){
         if (!flag){//管理按钮没有按下的初始化列表
             listView=view.findViewById(R.id.listView);
+            CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
+            checkAllBox.setVisibility(View.INVISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -127,7 +127,7 @@ public class InManagement extends Fragment {
                         }
                     }
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"creator","createTime","updater","updatetime","ID"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                            new String[]{"creator","createTime","updater","updatetime","ID","itemNumber"}, new int[]{R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id,R.id.itemNumber});
                     //实现列表的显示
                     listView.setAdapter(adapter);
                     //条目点击事件
@@ -139,7 +139,7 @@ public class InManagement extends Fragment {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
+                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -169,6 +169,7 @@ public class InManagement extends Fragment {
                             item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
                             item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
                             item.put("Username",jsonObject.getString("UserName"));
+                            item.put("itemNumber"," "+String.valueOf(i+1)+" ");
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -184,6 +185,7 @@ public class InManagement extends Fragment {
         else{//管理按钮按下的初始化列表
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
+            mMainCkb.setVisibility(View.VISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -219,6 +221,7 @@ public class InManagement extends Fragment {
                             item.put("MFJYanDate",jsonObject.getString("MFJYanDate"));
                             item.put("MFJYanDes",jsonObject.getString("MFJYanDes"));
                             item.put("Username",jsonObject.getString("UserName"));
+                            item.put("itemNumber"," "+String.valueOf(i+1)+" ");
                             data.add(item);
                         }
                         Message msg=new Message();

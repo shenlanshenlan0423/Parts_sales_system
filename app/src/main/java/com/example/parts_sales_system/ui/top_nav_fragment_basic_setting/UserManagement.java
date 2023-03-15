@@ -19,9 +19,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.parts_sales_system.AddInData_Alertdialog;
+import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.SetInData_Alertdialog;
+import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_BasicSettingActivity;
@@ -78,7 +78,7 @@ public class UserManagement extends Fragment {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(getActivity(), AddInData_Alertdialog.class);
+            intent=new Intent(getActivity(), private_inventmanage_AddInData_Alertdialog.class);
             startActivity(intent);
         }
     }
@@ -130,7 +130,7 @@ public class UserManagement extends Fragment {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
+                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);

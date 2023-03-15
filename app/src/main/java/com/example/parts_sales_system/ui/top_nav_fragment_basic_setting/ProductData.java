@@ -19,9 +19,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.parts_sales_system.AddInData_Alertdialog;
+import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.SetInData_Alertdialog;
+import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_BasicSettingActivity;
@@ -77,7 +77,7 @@ public class ProductData extends Fragment {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(getActivity(), AddInData_Alertdialog.class);
+            intent=new Intent(getActivity(),private_inventmanage_AddInData_Alertdialog.class);
             startActivity(intent);
         }
     }
