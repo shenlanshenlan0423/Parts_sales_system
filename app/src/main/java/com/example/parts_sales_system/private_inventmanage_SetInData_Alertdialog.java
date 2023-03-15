@@ -1,7 +1,5 @@
 package com.example.parts_sales_system;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +10,10 @@ import android.widget.TextView;
 
 import com.example.parts_sales_system.data.api_connection.addData;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
-public class SetInData_Alertdialog extends Activity {
+public class private_inventmanage_SetInData_Alertdialog extends Activity {
     TextView mfjyan_creator;
     TextView mfjyan_cdt;
     TextView mfjyan_udb;
@@ -42,7 +37,7 @@ public class SetInData_Alertdialog extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_in_data_alertdialog);
-        Intent intent=getIntent();
+        //Intent intent=getIntent();
         HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
         mfjyan_creator=findViewById(R.id.mfjyan_creator);
         mfjyan_creator.setText((String)data.get("creator"));
@@ -96,7 +91,8 @@ public class SetInData_Alertdialog extends Activity {
                                 "\"MFJYanDes\":\""+des+"\"," +
                                 "\"UserID\":\""+userid+"\"" +
                                 "}");
-                        Intent intent=new Intent(SetInData_Alertdialog.this,private_InventManageActivity.class);
+                        Intent intent=new Intent(private_inventmanage_SetInData_Alertdialog.this,private_InventManageActivity.class);
+                        intent.putExtra("page",0);
                         startActivity(intent);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -109,7 +105,8 @@ public class SetInData_Alertdialog extends Activity {
     public class cancel implements  View.OnClickListener{
         @Override
         public void onClick(View view){
-            Intent intent=new Intent(SetInData_Alertdialog.this,private_InventManageActivity.class);
+            Intent intent=new Intent(private_inventmanage_SetInData_Alertdialog.this,private_InventManageActivity.class);
+            intent.putExtra("page",0);
             startActivity(intent);
         }
     }

@@ -168,4 +168,5 @@
     <string name="Add">添加</string>
     <string name="Del">删除</string>
     <string name="Set">修改</string>
+    <string name="Manage">管理</string>
 </resources>

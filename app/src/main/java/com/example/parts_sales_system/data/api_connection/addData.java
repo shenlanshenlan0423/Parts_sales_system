@@ -21,7 +21,7 @@ public class addData {
         //设置请求的头
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Charset", "utf-8");
-        conn.setRequestProperty("Connection","close");
+        conn.addRequestProperty("Connection","close");
 //        String data = "参数1=" + URLEncoder.encode("参数1值", "UTF-8")+
 //                "&参数2=" + URLEncoder.encode("参数2值", "UTF-8")
 //                ;//传递的数据

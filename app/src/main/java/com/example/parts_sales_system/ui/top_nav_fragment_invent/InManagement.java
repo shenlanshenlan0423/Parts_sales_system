@@ -1,10 +1,6 @@
 package com.example.parts_sales_system.ui.top_nav_fragment_invent;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,23 +12,20 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.parts_sales_system.AddInData_Alertdialog;
+import com.example.parts_sales_system.private_inventmanage_AddInData_Alertdialog;
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.SetInData_Alertdialog;
-import com.example.parts_sales_system.data.api_connection.addData;
+import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.private_InventManageActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,10 +37,9 @@ import java.util.List;
 
 //入库管理界面
 public class InManagement extends Fragment {
-    public TextView add;
-    public TextView del;
-    public TextView set;
-    Button manage;
+    public com.getbase.floatingactionbutton.FloatingActionButton add;
+    public com.getbase.floatingactionbutton.FloatingActionButton del;
+    com.getbase.floatingactionbutton.FloatingActionButton manage;
     Boolean mflag;
     public boolean mIsFromItem = false;
     ListView listView;
@@ -67,13 +59,13 @@ public class InManagement extends Fragment {
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
-        set=view.findViewById(R.id.set);
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
                 intent.putExtra("flag",mflag);
+                intent.putExtra("page",0);
                 startActivity(intent);
             }
         });
@@ -86,7 +78,8 @@ public class InManagement extends Fragment {
         @Override
         public void onClick(View view){
             Intent intent;
-            intent=new Intent(getActivity(), AddInData_Alertdialog.class);
+            intent=new Intent(getActivity(), private_inventmanage_AddInData_Alertdialog.class);
+            intent.putExtra("page",0);
             startActivity(intent);
         }
     }
@@ -110,12 +103,16 @@ public class InManagement extends Fragment {
                 }).start();
             }
             Intent intent=new Intent(getActivity(),private_InventManageActivity.class);
+            intent.putExtra("page",0);
+            startActivity(intent);
         }
     }
 
     public void initList(boolean flag,View view){
         if (!flag){//管理按钮没有按下的初始化列表
             listView=view.findViewById(R.id.listView);
+            CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
+            checkAllBox.setVisibility(View.INVISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -138,7 +135,7 @@ public class InManagement extends Fragment {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         System.out.println(data);//点击跳出弹窗，显示数据
-                        Intent intent=new Intent(getActivity(), SetInData_Alertdialog.class);
+                        Intent intent=new Intent(getActivity(), private_inventmanage_SetInData_Alertdialog.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -183,6 +180,7 @@ public class InManagement extends Fragment {
         else{//管理按钮按下的初始化列表
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
+            mMainCkb.setVisibility(View.VISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {

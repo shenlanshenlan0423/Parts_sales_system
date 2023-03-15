@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         final Intent[] intent = new Intent[1];
 
         getJsonArrayData();
-        setArrayData(jsonArray);
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -137,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setArrayData(jsonArray);
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
@@ -167,9 +168,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     void getJsonArrayData(){
-        //new Thread(new Runnable(){
-        //@Override
-        //public void run() {
+        new Thread(new Runnable(){
+        @Override
+        public void run() {
         try {
             JSONArray jdata = getData.getData("User","");//此处不需要按条件查询，返回全表信息即可
             jsonArray = jdata;
@@ -177,8 +178,8 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "UserLoginPwd", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        //}
-        //}).start();
+        }
+        }).start();
     };
     void setArrayData(JSONArray jdata){
         try{
@@ -188,6 +189,7 @@ public class LoginActivity extends AppCompatActivity {
                 usernames[i]=jobject.getString("UserName");
                 userpwds[i]=jobject.getString("UserLoginPwd");
             }
+            System.out.print(usernames);
         }catch (Exception e) {
 
             e.printStackTrace();
