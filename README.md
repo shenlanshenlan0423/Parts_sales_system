@@ -17,9 +17,7 @@
 以下文件均为巡检管理所用到的文件，**复用时请相应生成**：
 - ui.use_management:
   - cbx_Adapter.java
-  - FragmentAdapter.java
   - HomeFragment.java
-  - Model_check.java
   - PatrolManagement.java
 - private_UseManagement_PatrolManagement_PatrolList_AddData.java
 - private_UseManagement_PatrolManagement_PatrolList_SetData.java
@@ -39,36 +37,6 @@
 - public_BasicSetting.java:**公共功能**-基础配置界面
 - public_FinancialManagementActivity.java：**公共功能**-财务管理界面
 - ui_login_Register.java:**公共功能**-注册界面
-- 禁止侧滑返回的方法
-
-```    
-    //禁止侧滑返回方法
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
-            return false;
-        }else {
-            return super.onKeyDown(keyCode, event);
-        }
-    }
-```
-    //选项菜单跳转主界面
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.MainActivity:
-                Intent intent=new Intent(private_UseManagementActivity.this,public_MainActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
 ### res文件夹解释：
