@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Parts_sales_system">
         <activity
             android:name=".private_StatisticsAnalyzeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="统计分析"/>
         <activity
             android:name=".private_UseManagementActivity"
             android:exported="false"
@@ -38,7 +39,7 @@
         <activity
             android:name=".public_BasicSetting_ProductData_MFJList_AddData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Dialog"/>
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
             android:name=".private_inventmanage_SetOutData_AlertDialog"
             android:exported="false"

@@ -1,5 +1,6 @@
 package com.example.parts_sales_system;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.app.Activity;
@@ -9,6 +10,9 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -19,14 +23,18 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.parts_sales_system.ui.statistics_analyze.DateAdapter;
 import com.example.parts_sales_system.ui.statistics_analyze.SpecialCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class private_StatisticsAnalyzeActivity extends Activity implements OnGestureListener {
+public class private_StatisticsAnalyzeActivity extends AppCompatActivity implements OnGestureListener {
     private static String TAG = "MainActivity";
     private ViewFlipper flipper1 = null;
     private GridView gridView = null;
@@ -137,8 +145,8 @@ public class private_StatisticsAnalyzeActivity extends Activity implements OnGes
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private_statistics_analyze);
-//        tvDate = (TextView) findViewById(R.id.tv_date);
-//        tvDate.setText(year_c + "年" + month_c + "月" + day_c + "日");
+        tvDate = (TextView) findViewById(R.id.tv_date);
+        tvDate.setText(year_c + "年" + month_c + "月" + day_c + "日");
         gestureDetector = new GestureDetector(this);
         flipper1 = (ViewFlipper) findViewById(R.id.flipper1);
         dateAdapter = new DateAdapter(this, currentYear, currentMonth,currentWeek, currentWeek == 1 ? true : false);
@@ -284,5 +292,29 @@ public class private_StatisticsAnalyzeActivity extends Activity implements OnGes
             return true;
         }
         return false;
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+    //选项菜单跳转主界面
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.MainActivity:
+                Intent intent=new Intent(private_StatisticsAnalyzeActivity.this,public_MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
