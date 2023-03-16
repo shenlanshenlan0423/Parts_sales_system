@@ -25,6 +25,7 @@ import com.example.parts_sales_system.private_inventmanage_SetInData_Alertdialog
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_BasicSettingActivity;
+import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

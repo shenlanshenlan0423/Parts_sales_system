@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.ui.use_management.FragmentAdapter;
+import com.example.parts_sales_system.ui.top_nav_fragment_invent.FragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

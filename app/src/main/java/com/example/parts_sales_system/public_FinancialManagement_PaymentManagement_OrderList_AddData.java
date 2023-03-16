@@ -60,9 +60,10 @@ public class public_FinancialManagement_PaymentManagement_OrderList_AddData exte
                 MFJDingKuanOrderString=MFJDingKuanOrder.getText().toString();
                 try {
                     jsonObject.put("ID","").put("MFJOrderID",OrderCodeIDString).put("UserID",UserCodeIDString)
-                            .put("MFJDingKuanDate",MFJDingKuanDateString).put("MFJDingKuanOrder",MFJDingKuanNumString)
-                            .put("MFJDingKuanDes",MFJDingKuanDesString).put("MFJDingKuanNum",MFJDingKuanOrderString);
+                            .put("MFJDingKuanDate",MFJDingKuanDateString).put("MFJDingKuanNum",MFJDingKuanNumString)
+                            .put("MFJDingKuanDes",MFJDingKuanDesString).put("MFJDingKuanOrder",MFJDingKuanOrderString);
                     jsonObjectstring = String.valueOf(jsonObject);
+//                    System.out.println("新增："+jsonObjectstring);
                     addJsonArrayData(jsonObjectstring);
                 } catch (JSONException e) {
                     e.printStackTrace();

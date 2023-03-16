@@ -23,14 +23,13 @@ import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_FinancialManagementActivity;
 import com.example.parts_sales_system.public_FinancialManagement_PaymentManagement_OrderList_AddData;
 import com.example.parts_sales_system.public_FinancialManagement_PaymentManagement_OrderList_SetData;
-import com.example.parts_sales_system.ui.use_management.Model_check;
+import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,8 +88,6 @@ public class PaymentManagement extends Fragment {
             bundle.putSerializable("array2",UserCodeIDStringArray);
             intent.putExtra("page",0);
             intent.putExtras(bundle);
-//            System.out.println(intent.getSerializableExtra("array1"));
-//            System.out.println(intent.getSerializableExtra("array2"));
             startActivity(intent);
         }
     }
@@ -149,9 +146,6 @@ public class PaymentManagement extends Fragment {
                         Intent intent=new Intent(getActivity(), public_FinancialManagement_PaymentManagement_OrderList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
-                        //如果访问了多个外键表，生成了多个外键可选值字符数组，这里就分成array1,array2,...
-                        bundle.putSerializable("array1",OrderCodeIDStringArray);
-                        bundle.putSerializable("array2",UserCodeIDStringArray);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
@@ -280,7 +274,7 @@ public class PaymentManagement extends Fragment {
                 //当监听来源为点击item改变maincbk状态时不在监听改变，防止死循环
                 if (mIsFromItem) {
                     mIsFromItem = false;
-//                    Log.e("mainCheckBox", "此时我不可以触发");
+                    Log.e("mainCheckBox", "此时我不可以触发");
                     return;
                 }
                 //改变数据
@@ -306,6 +300,7 @@ public class PaymentManagement extends Fragment {
     }
     //从外键所在表中获取外键可取值的最新数据
     void getFKData(){
+        //需要访问多个外键所在表，请使用多个子线程，不然只会完成第一个外键的访问和赋值
         new Thread(new Runnable(){
             @Override
             public void run() {
@@ -323,7 +318,15 @@ public class PaymentManagement extends Fragment {
                     //固定的测试例子
                     OrderCodeIDString[jdataOrderCodeID1.length()] = "2023030609293529357";
                     OrderCodeIDStringArray = OrderCodeIDString;
-
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
                     JSONArray jdataUserCodeID2 = getData.getData("User","");
                     String[] UserCodeIDString = new String[jdataUserCodeID2.length()+1];
                     for (int i=0;i<jdataUserCodeID2.length();i++){

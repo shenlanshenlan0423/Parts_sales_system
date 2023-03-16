@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,19 +20,16 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class private_UseManagement_PatrolManagement_PatrolList_SetData extends Activity {
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,PatrolRecordCodeID;
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,PatrolRecordCodeID,BuildRecordCodeID;
     private EditText MFJXunJianDate,MFJXunJianCont,MFJXunJianUser;
     private Button modify_button,del_button,close_button;
-    private String[] BuildRecordCodeIDStringArray;
-    private Spinner BuildRecordCodeID;
-    private String MFJXunJianDateString,MFJXunJianContString,MFJXunJianUserString;
+    private String BuildRecordCodeIDString,MFJXunJianDateString,MFJXunJianContString,MFJXunJianUserString;
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.private_use_management_patrolrecordlist_setdata);
         HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
-        BuildRecordCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array");
         CreateBy=findViewById(R.id.CreateBy);
         CreateBy.setText((String)data.get("CreateBy"));
         CreateDateTime=findViewById(R.id.CreateDateTime);
@@ -46,10 +41,7 @@ public class private_UseManagement_PatrolManagement_PatrolList_SetData extends A
         PatrolRecordCodeID=findViewById(R.id.PatrolRecordCodeID);
         PatrolRecordCodeID.setText((String)data.get("PatrolRecordCodeID"));
         BuildRecordCodeID=findViewById(R.id.BuildRecordCodeID);
-        //下拉列表的数组适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(private_UseManagement_PatrolManagement_PatrolList_SetData.this, R.layout.common_spinner_list, BuildRecordCodeIDStringArray);
-        BuildRecordCodeID.setAdapter(adapter); // 设置下拉框的数组适配器
-        BuildRecordCodeID.setSelection(BuildRecordCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
+        BuildRecordCodeID.setText((String)data.get("MFJUseID"));
 
         MFJXunJianDate=findViewById(R.id.MFJXunJianDate);
         MFJXunJianDate.setText((String)data.get("MFJXunJianDate"));
@@ -85,11 +77,12 @@ public class private_UseManagement_PatrolManagement_PatrolList_SetData extends A
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
+                    BuildRecordCodeIDString= String.valueOf(BuildRecordCodeID.getText());
                     MFJXunJianDateString= String.valueOf(MFJXunJianDate.getText());
                     MFJXunJianContString=String.valueOf(MFJXunJianCont.getText());
                     MFJXunJianUserString=String.valueOf(MFJXunJianUser.getText());
                     try {
-                        jsonObject.put("ID",String.valueOf(PatrolRecordCodeID.getText()))
+                        jsonObject.put("ID",String.valueOf(PatrolRecordCodeID.getText())).put("MFJUseID",BuildRecordCodeIDString)
                                 .put("MFJXunJianDate",MFJXunJianDateString).put("MFJXunJianCont",MFJXunJianContString)
                                 .put("MFJXunJianUser",MFJXunJianUserString);
                     } catch (JSONException e) {

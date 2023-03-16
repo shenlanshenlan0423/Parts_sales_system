@@ -23,6 +23,7 @@ import com.example.parts_sales_system.private_UseManagement_PatrolManagement_Pat
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
+import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -144,8 +145,6 @@ public class PatrolManagement extends Fragment {
                         Intent intent=new Intent(getActivity(), private_UseManagement_PatrolManagement_PatrolList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
-                        //如果访问了多个外键表，生成了多个外键可选值字符数组，这里就分成array1,array2,...
-                        bundle.putSerializable("array",BuildRecordCodeIDStringArray);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
@@ -296,6 +295,7 @@ public class PatrolManagement extends Fragment {
     }
     //从外键所在表中获取外键可取值的最新数据
     void getFKData(){
+        //需要访问多个外键所在表，请使用多个子线程，不然只会完成第一个外键的访问和赋值
         new Thread(new Runnable(){
             @Override
             public void run() {

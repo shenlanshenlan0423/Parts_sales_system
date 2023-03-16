@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.parts_sales_system.R;
-import com.example.parts_sales_system.ui.use_management.Model_check;
+import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class cbx_Adapter extends BaseAdapter {
     private PaymentManagement.AllCheckListener allCheckListener;
     private List<HashMap<String, Object>> data_data;
     //最后一个字符串命名要改
-    private String creator,creatime,updater,updatetime,PatrolRecordCodeID;
+    private String creator,creatime,updater,updatetime,OrderPaymentCodeID;
     public static List index;
     public cbx_Adapter(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, PaymentManagement.AllCheckListener allCheckListener) {
         this.data_data=data_data;
@@ -51,14 +51,14 @@ public class cbx_Adapter extends BaseAdapter {
             hd = new ViewHoder();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             //对应的布局文件要改
-            view = layoutInflater.inflate(R.layout.private_use_management_patrolrecordlist_item_cbx, null);
+            view = layoutInflater.inflate(R.layout.public_financial_management_orderpaymentlist_item_cbx, null);
             hd.itemNumber = view.findViewById(R.id.itemNumber);
             hd.creator= view.findViewById(R.id.creator);
             hd.createTime= view.findViewById(R.id.creatTime);
             hd.updater= view.findViewById(R.id.updater);
             hd.updateTime= view.findViewById(R.id.updateTime);
             //PatrolRecordCodeID要改
-            hd.ID= view.findViewById(R.id.PatrolRecordCodeID);
+            hd.ID= view.findViewById(R.id.OrderPaymentCodeID);
             hd.checkBox = view.findViewById(R.id.cbx);
             view.setTag(hd);
         }
@@ -74,8 +74,8 @@ public class cbx_Adapter extends BaseAdapter {
         updatetime=String.valueOf(data_data.get(i).get("UpdateDateTime"));
         hd.updateTime.setText(updatetime);
         //PatrolRecordCodeID要改
-        PatrolRecordCodeID=String.valueOf(data_data.get(i).get("PatrolRecordCodeID"));
-        hd.ID.setText(PatrolRecordCodeID);
+        OrderPaymentCodeID=String.valueOf(data_data.get(i).get("OrderPaymentCodeID"));
+        hd.ID.setText(OrderPaymentCodeID);
         final ViewHoder hdFinal = hd;
         hd.checkBox.setChecked(mModel.ischeck());
         view.setOnClickListener(new View.OnClickListener() {

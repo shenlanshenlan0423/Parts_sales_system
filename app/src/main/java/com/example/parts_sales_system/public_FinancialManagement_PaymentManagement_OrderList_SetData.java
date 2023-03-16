@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +21,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class public_FinancialManagement_PaymentManagement_OrderList_SetData extends Activity {
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,OrderPaymentCodeID;
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,OrderPaymentCodeID,OrderCodeID,UserCodeID;
     private EditText MFJDingKuanDate,MFJDingKuanNum,MFJDingKuanDes,MFJDingKuanOrder;
     private Button modify_button,del_button,close_button;
-    private String[] OrderCodeIDStringArray,UserCodeIDStringArray;
-    private Spinner OrderCodeID,UserCodeID;
     private String OrderCodeIDString,UserCodeIDString,MFJDingKuanDateString,MFJDingKuanNumString,MFJDingKuanDesString,MFJDingKuanOrderString;
     private Intent intent;
     @Override
@@ -45,22 +41,10 @@ public class public_FinancialManagement_PaymentManagement_OrderList_SetData exte
         UpdateDateTime.setText((String)data.get("UpdateDateTime"));
         OrderPaymentCodeID=findViewById(R.id.OrderPaymentCodeID);
         OrderPaymentCodeID.setText((String)data.get("OrderPaymentCodeID"));
-
-        OrderCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array1");
         OrderCodeID=findViewById(R.id.OrderCodeID);
-        //下拉列表的数组适配器
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(public_FinancialManagement_PaymentManagement_OrderList_SetData.this, R.layout.common_spinner_list, OrderCodeIDStringArray);
-        OrderCodeID.setAdapter(adapter1); // 设置下拉框的数组适配器
-        OrderCodeID.setSelection(OrderCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
-
-        UserCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array2");
-        //有时候会突然为空？？？
-        System.out.println(Arrays.toString(UserCodeIDStringArray));
+        OrderCodeID.setText((String)data.get("MFJOrderID"));
         UserCodeID=findViewById(R.id.UserCodeID);
-        //下拉列表的数组适配器
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(public_FinancialManagement_PaymentManagement_OrderList_SetData.this, R.layout.common_spinner_list, UserCodeIDStringArray);
-        UserCodeID.setAdapter(adapter2);
-        UserCodeID.setSelection(UserCodeIDStringArray.length-1);
+        UserCodeID.setText((String)data.get("UserID"));
 
         MFJDingKuanDate=findViewById(R.id.MFJDingKuanDate);
         MFJDingKuanDate.setText((String)data.get("MFJDingKuanDate"));
@@ -98,16 +82,18 @@ public class public_FinancialManagement_PaymentManagement_OrderList_SetData exte
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
-                    OrderCodeIDString = OrderCodeID.getSelectedItem().toString();
-                    UserCodeIDString = UserCodeID.getSelectedItem().toString();
+                    OrderCodeIDString = OrderCodeID.getText().toString();
+                    UserCodeIDString = UserCodeID.getText().toString();
                     MFJDingKuanDateString= MFJDingKuanDate.getText().toString();
                     MFJDingKuanNumString=MFJDingKuanNum.getText().toString();
                     MFJDingKuanDesString=MFJDingKuanDes.getText().toString();
                     MFJDingKuanOrderString=MFJDingKuanOrder.getText().toString();
                     try {
-                        jsonObject.put("ID",OrderPaymentCodeID.getText().toString()).put("MFJOrderID",OrderCodeIDString).put("UserID",UserCodeIDString)
-                                .put("MFJDingKuanDate",MFJDingKuanDateString).put("MFJDingKuanOrder",MFJDingKuanNumString)
-                                .put("MFJDingKuanDes",MFJDingKuanDesString).put("MFJDingKuanNum",MFJDingKuanOrderString);
+                        jsonObject.put("ID",OrderPaymentCodeID.getText().toString())
+                                .put("MFJOrderID",OrderCodeIDString)
+                                .put("UserID",UserCodeIDString)
+                                .put("MFJDingKuanDate",MFJDingKuanDateString).put("MFJDingKuanNum",MFJDingKuanNumString)
+                                .put("MFJDingKuanDes",MFJDingKuanDesString).put("MFJDingKuanOrder",MFJDingKuanOrderString);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -117,6 +103,7 @@ public class public_FinancialManagement_PaymentManagement_OrderList_SetData exte
                         @Override
                         public void run() {
                             try {
+//                                System.out.println("修改："+jsonObjectstring);
                                 modifyData.modifyData("MFJDingKuan",jsonObjectstring);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
