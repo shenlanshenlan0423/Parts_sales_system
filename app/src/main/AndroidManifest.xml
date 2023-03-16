@@ -10,20 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parts_sales_system">
         <activity
-            android:name=".public_FinancialManagementActivity"
+            android:name=".private_StatisticsAnalyzeActivity"
             android:exported="false"
-            android:label="@string/title_activity_FinancialManagement">
-        </activity>
-        <activity
-            android:name=".public_FinancialManagement_PaymentManagement_OrderList_SetData"
-            android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog">
-        </activity>
-        <activity
-            android:name=".public_FinancialManagement_PaymentManagement_OrderList_AddData"
-            android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog">
-        </activity>
+            android:label="统计分析"/>
         <activity
             android:name=".private_UseManagementActivity"
             android:exported="false"
@@ -52,10 +41,6 @@
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
-            android:name=".private_InventManageActivity"
-            android:exported="false"
-            android:label="@string/title_activity_invent"/>
-        <activity
             android:name=".private_inventmanage_SetOutData_AlertDialog"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
@@ -71,6 +56,10 @@
             android:name=".private_inventmanage_AddInData_Alertdialog"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
+        <activity
+            android:name=".private_InventManageActivity"
+            android:exported="false"
+            android:label="@string/title_activity_invent"/>
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
@@ -89,6 +78,11 @@
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
+        <activity
+            android:name=".public_FinancialManagementActivity"
+            android:exported="false"
+            android:label="@string/title_activity_FinancialManagement">
+        </activity>
     </application>
 
 </manifest>

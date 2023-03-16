@@ -65,9 +65,6 @@ public class InManagement extends Fragment {
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
-        if (mflag){
-            del.setEnabled(true);
-        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +189,7 @@ public class InManagement extends Fragment {
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
             mMainCkb.setVisibility(View.VISIBLE);
+            del.setEnabled(true);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {

@@ -38,81 +38,81 @@
                     android:focusableInTouchMode="false" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CreateBy"
-                    android:textColor="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CreateBy"
+                android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/creator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"  />
-            </TableRow>
+            <TextView
+                android:id="@+id/creator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"  />
+        </TableRow>
 
-            <TableRow>
+        <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CreateDateTime"
-                    android:textColor="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CreateDateTime"
+                android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/creatTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"  />
-            </TableRow>
+            <TextView
+                android:id="@+id/creatTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"  />
+        </TableRow>
 
-            <TableRow>
+        <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/UpdateBy"
-                    android:textColor="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/UpdateBy"
+                android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/updater"
-                    android:layout_width="272dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"  />
+            <TextView
+                android:id="@+id/updater"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"  />
 
-            </TableRow>
+        </TableRow>
 
-            <TableRow>
+        <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/UpdateDateTime"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"  />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/UpdateDateTime"
+                android:textColor="@color/black"
+                android:textAlignment="center"  />
 
-                <TextView
-                    android:id="@+id/updateTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"  />
-            </TableRow>
+            <TextView
+                android:id="@+id/updateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"  />
+        </TableRow>
 
-            <TableRow>
+        <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="单据编码"
-                    android:textColor="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="单据编码"
+                android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/receipts_Id"

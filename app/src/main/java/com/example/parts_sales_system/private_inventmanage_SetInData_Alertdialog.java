@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.parts_sales_system.data.api_connection.addData;
+import com.example.parts_sales_system.data.api_connection.delData;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class private_inventmanage_SetInData_Alertdialog extends Activity {
     EditText mfjyan_des;
     TextView username;
     Button set;
+    Button del;
     Button cancel;
     String id;
     String order;
@@ -68,7 +70,8 @@ public class private_inventmanage_SetInData_Alertdialog extends Activity {
         set.setOnClickListener(new set());
         cancel=findViewById(R.id.button2);
         cancel.setOnClickListener(new cancel());
-
+        del=findViewById(R.id.del_single_in);
+        del.setOnClickListener(new del());
     }
     public class set implements View.OnClickListener{
         @Override
@@ -79,13 +82,12 @@ public class private_inventmanage_SetInData_Alertdialog extends Activity {
             new Thread(new Runnable(){
                 @Override
                 public void run() {
-                    System.out.println(order);
                     try {
-                        System.out.println("{\"ID\":\""+id+"\","+ "\"MFJOrderID\":\""+orderid+"\","+ "\"MFJYanDate\":\""+date+"\",\n" +
-                                "\"MFJYanOrder\":\""+order+"\","+
-                                "\"MFJYanDes\":\""+des+"\"," +
-                                "\"UserID\":\""+userid+"\"" +
-                                "}");
+//                        System.out.println("{\"ID\":\""+id+"\","+ "\"MFJOrderID\":\""+orderid+"\","+ "\"MFJYanDate\":\""+date+"\",\n" +
+//                                "\"MFJYanOrder\":\""+order+"\","+
+//                                "\"MFJYanDes\":\""+des+"\"," +
+//                                "\"UserID\":\""+userid+"\"" +
+//                                "}");
                         addData.addData("MFJYan","{\"ID\":\""+id+"\","+ "\"MFJOrderID\":\""+orderid+"\","+ "\"MFJYanDate\":\""+date+"\",\n" +
                                 "\"MFJYanOrder\":\""+order+"\","+
                                 "\"MFJYanDes\":\""+des+"\"," +
@@ -100,6 +102,24 @@ public class private_inventmanage_SetInData_Alertdialog extends Activity {
                 }
             }).start();
 
+        }
+    }
+    public class del implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
+                        Intent intent=new Intent(private_inventmanage_SetInData_Alertdialog.this,private_InventManageActivity.class);
+                        intent.putExtra("page",0);
+                        startActivity(intent);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }).start();
         }
     }
     public class cancel implements  View.OnClickListener{

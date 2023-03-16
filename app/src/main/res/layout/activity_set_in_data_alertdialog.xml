@@ -8,8 +8,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout2"
-        android:layout_width="391dp"
-        android:layout_height="346dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件入库验收单编码ID" />
+                android:text="入库验收单编码" />
 
             <TextView
                 android:id="@+id/mfjyan_receiptid"
@@ -104,7 +104,7 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件订货单编码ID" />
+                android:text="订货单编码" />
 
             <TextView
                 android:id="@+id/mfjyan_orderid"
@@ -138,7 +138,7 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件入库验收序列数" />
+                android:text="入库验收序列数" />
 
             <EditText
                 android:id="@+id/mfjyan_order"
@@ -155,7 +155,7 @@
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件入库验收单日期" />
+                android:text="入库验收单日期" />
 
             <EditText
                 android:id="@+id/mfjyan_date"
@@ -172,7 +172,7 @@
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密封件入库验收单备注" />
+                android:text="入库验收单备注" />
 
             <EditText
                 android:id="@+id/mfjyan_des"
@@ -199,25 +199,34 @@
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:background="@color/green_200"
-        android:text="修改"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout2"
-        app:layout_constraintStart_toStartOf="@+id/tableLayout2" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:background="@color/green_200"
-        android:text="取消"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/tableLayout2" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/green_200"
+            android:text="修改"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/del_single_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/green_200"
+            android:text="删除" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/green_200"
+            android:text="取消"
+            android:textColor="@color/black" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

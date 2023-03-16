@@ -16,6 +16,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.parts_sales_system.data.api_connection.addData;
+import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 
 import org.json.JSONArray;
@@ -38,6 +39,7 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
     TextView username;//不能改
     TextView usedeptname;//不能改
     Button set;
+    Button del;
     Button cancel;
     String id_str;
     String usedeptid_str;
@@ -94,6 +96,8 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
         set.setOnClickListener(new set());
         cancel=findViewById(R.id.outcancel);
         cancel.setOnClickListener(new cancel());
+        del=findViewById(R.id.del_single_out);
+
     }
     private void initMenu_usedeptid(){
         // 这里的catagory是下拉菜单控件
@@ -113,7 +117,6 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
                 for(int i=0;i<data_usedeptid.size();i++){
                     // 1-组别、2-数据项id、3-数据项顺序、4-数据项内容
                     menu.add(0,i,i,String.valueOf(data_usedeptid.get(i)));
-                    System.out.println(data_usedeptid.get(i));
                 }
                 // 添加单击数据项事件
                 pm_usedeptid.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -140,7 +143,6 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
                         data_usedeptid.add(jsonObject.getString("ID"));
                     }
                     data_usedeptid.add("20230227110803832");
-                    System.out.println(data_usedeptid);
                     Message msg=new Message();
                     msg.obj=data_usedeptid;
                     msg.what=1;
@@ -170,7 +172,6 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
                 for(int i=0;i<data_userid.size();i++){
                     // 1-组别、2-数据项id、3-数据项顺序、4-数据项内容
                     menu.add(0,i,i,String.valueOf(data_userid.get(i)));
-                    System.out.println(data_userid.get(i));
                 }
                 // 添加单击数据项事件
                 pm_userid.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -197,7 +198,6 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
                         data_userid.add(jsonObject.getString("ID"));
                     }
                     data_userid.add("1");
-                    System.out.println(data_userid);
                     Message msg=new Message();
                     msg.obj=data_userid;
                     msg.what=1;
@@ -221,10 +221,10 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
                 @Override
                 public void run() {
                     try {
-                        System.out.println("{\"ID\":\""+id_str+"\","+ "\"UseDeptID\":\""+usedeptid_str+"\","+ "\"MFJChuDate\":\""+date_str+"\"," +
-                                "\"MFJChuDes\":\""+des_str+"\"," +
-                                "\"UserID\":\""+userid_str+"\"" +
-                                "}");
+//                        System.out.println("{\"ID\":\""+id_str+"\","+ "\"UseDeptID\":\""+usedeptid_str+"\","+ "\"MFJChuDate\":\""+date_str+"\"," +
+//                                "\"MFJChuDes\":\""+des_str+"\"," +
+//                                "\"UserID\":\""+userid_str+"\"" +
+//                                "}");
                         addData.addData("MFJChu","{\"ID\":\""+id_str+"\","+ "\"UseDeptID\":\""+usedeptid_str+"\","+ "\"MFJChuDate\":\""+date_str+"\","+
                                 "\"MFJChuDes\":\""+des_str+"\"," +
                                 "\"UserID\":\""+userid_str+"\"" +
@@ -238,6 +238,25 @@ public class private_inventmanage_SetOutData_AlertDialog extends Activity {
                 }
             }).start();
 
+        }
+    }
+    public class del implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
+            id_str=String.valueOf(id.getText());
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        delData.delData("MFJChu", "{\"ID\":\"" + id_str + "\"}");
+                        Intent intent=new Intent(private_inventmanage_SetOutData_AlertDialog.this,private_InventManageActivity.class);
+                        intent.putExtra("page",1);
+                        startActivity(intent);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }).start();
         }
     }
     public class cancel implements  View.OnClickListener{

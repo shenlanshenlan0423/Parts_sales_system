@@ -9,8 +9,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="396dp"
-        android:layout_height="444dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
@@ -114,24 +114,28 @@
 
     </TableLayout>
 
-    <Button
-        android:id="@+id/in_submit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:background="@color/green_200"
-        android:text="提交"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-        app:layout_constraintStart_toStartOf="@+id/tableLayout" />
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
 
-    <Button
-        android:id="@+id/in_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:background="@color/green_200"
-        android:text="取消"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-        app:layout_constraintEnd_toEndOf="@+id/tableLayout" />
+        <Button
+            android:id="@+id/in_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:background="@color/green_200"
+            android:text="提交" />
+
+        <Button
+            android:id="@+id/in_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="80dp"
+            android:background="@color/green_200"
+            android:text="取消" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
