@@ -1,7 +1,6 @@
 package com.example.parts_sales_system.ui.use_management;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +19,8 @@ public class cbx_Adapter extends BaseAdapter {
     private Context context;
     private PatrolManagement.AllCheckListener allCheckListener;
     private List<HashMap<String, Object>> data_data;
-    private String creator;
-    private String creatime;
-    private String updater;
-    private String updatetime;
-    private String mfjyanid;
-    private String itemnumber;
+    //最后一个字符串命名要改
+    private String creator,creatime,updater,updatetime,PatrolRecordCodeID;
     public static List index;
     public cbx_Adapter(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, PatrolManagement.AllCheckListener allCheckListener) {
         this.data_data=data_data;
@@ -54,30 +49,32 @@ public class cbx_Adapter extends BaseAdapter {
         if (view == null) {
             hd = new ViewHoder();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            view = layoutInflater.inflate(R.layout.item_cbx, null);
-            hd.textView = (TextView) view.findViewById(R.id.text_title);
-            hd.creator=(TextView)view.findViewById(R.id.creator);
-            hd.createTime=(TextView)view.findViewById(R.id.creatTime);
-            hd.updater=(TextView)view.findViewById(R.id.updater);
-            hd.updateTime=(TextView)view.findViewById(R.id.updateTime);
-            hd.mfjyanid=(TextView)view.findViewById(R.id.receipts_Id);
-            hd.checkBox = (CheckBox) view.findViewById(R.id.cbx);
+            //对应的布局文件要改
+            view = layoutInflater.inflate(R.layout.private_use_management_patrolrecordlist_item_cbx, null);
+            hd.itemNumber = view.findViewById(R.id.itemNumber);
+            hd.creator= view.findViewById(R.id.creator);
+            hd.createTime= view.findViewById(R.id.creatTime);
+            hd.updater= view.findViewById(R.id.updater);
+            hd.updateTime= view.findViewById(R.id.updateTime);
+            //PatrolRecordCodeID要改
+            hd.ID= view.findViewById(R.id.PatrolRecordCodeID);
+            hd.checkBox = view.findViewById(R.id.cbx);
             view.setTag(hd);
         }
         Model_check mModel = data.get(i);
         hd = (ViewHoder) view.getTag();
-        hd.textView.setText(String.valueOf(Integer.parseInt(mModel.getSt())+1));
-        creator=String.valueOf(data_data.get(i).get("creator"));
+        hd.itemNumber.setText(String.valueOf(Integer.parseInt(mModel.getSt())+1));
+        creator=String.valueOf(data_data.get(i).get("CreateBy"));
         hd.creator.setText(creator);
-        creatime=String.valueOf(data_data.get(i).get("createTime"));
+        creatime=String.valueOf(data_data.get(i).get("CreateDateTime"));
         hd.createTime.setText(creatime);
-        updater=String.valueOf(data_data.get(i).get("updater"));
+        updater=String.valueOf(data_data.get(i).get("UpdateBy"));
         hd.updater.setText(updater);
-        updatetime=String.valueOf(data_data.get(i).get("updatetime"));
+        updatetime=String.valueOf(data_data.get(i).get("UpdateDateTime"));
         hd.updateTime.setText(updatetime);
-        mfjyanid=String.valueOf(data_data.get(i).get("ID"));
-        hd.mfjyanid.setText(mfjyanid);
-        Log.e("myadapter", mModel.getSt()+ "------" + mModel.ischeck());
+        //PatrolRecordCodeID要改
+        PatrolRecordCodeID=String.valueOf(data_data.get(i).get("PatrolRecordCodeID"));
+        hd.ID.setText(PatrolRecordCodeID);
         final ViewHoder hdFinal = hd;
         hd.checkBox.setChecked(mModel.ischeck());
         view.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +98,6 @@ public class cbx_Adapter extends BaseAdapter {
                         continue;
                     }
                 }
-                System.out.println(index);
                 //监听每个item，若所有checkbox都为选中状态则更改main的全选checkbox状态
                 for (Model_check model: data) {
                     if (!model.ischeck()) {
@@ -116,13 +112,13 @@ public class cbx_Adapter extends BaseAdapter {
     }
 
     class ViewHoder {
-        TextView textView;
+        TextView itemNumber;
         CheckBox checkBox;
         TextView creator;
         TextView createTime;
         TextView updater;
         TextView updateTime;
-        TextView mfjyanid;
+        TextView ID;
     }
 
 }

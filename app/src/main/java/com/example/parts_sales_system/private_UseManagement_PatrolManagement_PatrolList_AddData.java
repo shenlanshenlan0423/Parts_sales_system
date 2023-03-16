@@ -3,11 +3,13 @@ package com.example.parts_sales_system;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.parts_sales_system.data.api_connection.addData;
 import org.json.JSONException;
@@ -69,6 +71,17 @@ public class private_UseManagement_PatrolManagement_PatrolList_AddData extends A
                 startActivity(intent);
             }
         });
+    }
+
+    //禁止侧滑返回方法
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
     }
     //向表中新增item
     void addJsonArrayData(String jsonObjectstring){

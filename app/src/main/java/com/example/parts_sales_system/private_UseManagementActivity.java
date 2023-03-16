@@ -3,7 +3,12 @@ package com.example.parts_sales_system;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.parts_sales_system.ui.use_management.HomeFragment;
 
@@ -37,5 +42,31 @@ public class private_UseManagementActivity extends AppCompatActivity {
         homeFragment.setpage(page);
         transaction.add(R.id.fragment_container, homeFragment);
         transaction.commit();
+
+    }
+    //禁止侧滑返回方法
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+    //选项菜单跳转主界面
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.MainActivity:
+                Intent intent=new Intent(private_UseManagementActivity.this,public_MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

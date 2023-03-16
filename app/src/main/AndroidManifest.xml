@@ -74,8 +74,6 @@
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
-
-
         <activity
             android:name=".public_FinancialManagementActivity"
             android:exported="false"

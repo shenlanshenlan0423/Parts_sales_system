@@ -13,6 +13,24 @@
 - 新增功能若为公共功能，则以public_开头，若为私有功能，则以private_开头
 - 进行一部分工作后记得在git中commit，commit命名：日期+新增功能+By+姓名，例：0228-基本框架与使用方私有功能-使用管理-By-hhw
 
+### 私有功能-使用管理-巡检管理模板复用指南：
+以下文件均为巡检管理所用到的文件，**复用时请相应生成**：
+- ui.use_management:
+  - cbx_Adapter.java
+  - FragmentAdapter.java
+  - HomeFragment.java
+  - Model_check.java
+  - PatrolManagement.java
+- private_UseManagement_PatrolManagement_PatrolList_AddData.java
+- private_UseManagement_PatrolManagement_PatrolList_SetData.java
+- private_UseManagementActivity.java
+- **manifest中声明这三个java文件**
+- activity_private_use_management.xml
+- private_use_management_patrolrecordlist_setdata.xml
+- private_use_management_patrolrecordlist_adddata.xml
+- private_use_management_patrolrecordlist_item_cbx.xml
+- private_use_management_patrolrecordlist_item.xml
+- **在string.xml中增加相应字段（规范化开发）**
 
 ### java文件夹解释：
 - public_MainActivity.java：用户登陆后的主界面
@@ -21,7 +39,38 @@
 - public_BasicSetting.java:**公共功能**-基础配置界面
 - public_FinancialManagementActivity.java：**公共功能**-财务管理界面
 - ui_login_Register.java:**公共功能**-注册界面
-  
+- 禁止侧滑返回的方法
+
+```    
+    //禁止侧滑返回方法
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+```
+    //选项菜单跳转主界面
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.MainActivity:
+                Intent intent=new Intent(private_UseManagementActivity.this,public_MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 ### res文件夹解释：
 - drawable：图片资源
   - circle_border_design.xml：圆形布局设计
@@ -72,3 +121,4 @@
     }
   }
   }).start();
+```

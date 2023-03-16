@@ -61,11 +61,16 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/out_management.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/patrol_record_list_item.xml" value="0.5" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_UseManagement.xml" value="0.2767210144927536" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrol_record_list_item.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrol_record_list_item_cbx.xml" value="0.2" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_adddata.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_setdata.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/user_management.xml" value="0.176" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/activity_main_drawer.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/catagory.xml" value="0.33" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/menu_scrolling.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/popmenu.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/popmenu_PatrolManagement.xml" value="0.36614583333333334" />

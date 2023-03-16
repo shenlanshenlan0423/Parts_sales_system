@@ -20,8 +20,10 @@ public class HomeFragment extends Fragment {
     private FragmentAdapter fragmentAdapter;
     private ArrayList fragmentList;
     private TabLayout tabLayout;
+    //实例化对象名要改
     private PatrolManagement PatrolManagement=new PatrolManagement();
     private List<String> mTitles;
+    //title要改
     private String [] title={"巡检管理"};
     Boolean flag_in;
     Boolean flag_out;
@@ -44,8 +46,10 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         fragmentList=new ArrayList<>();
         mTitles=new ArrayList<>();
+        //PatrolManagement要改，几个二级功能就添加几次
         PatrolManagement.setFlag(flag_in);
         fragmentList.add(PatrolManagement);
+        //title不止一个字符时，还要添加title[1]、title[2]等
         mTitles.add(title[0]);
 
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);

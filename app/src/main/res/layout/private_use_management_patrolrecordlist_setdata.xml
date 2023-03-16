@@ -165,20 +165,26 @@
             android:layout_height="wrap_content"
             android:text="@string/modify_info"
             android:layout_margin="@dimen/item_detail_button_size"
-            android:background="@color/green_200"/>
+            android:background="@color/blue_500"
+            android:textColor="@color/white"
+            android:textSize="@dimen/item_detail_button_text_size"/>
         <Button
             android:id="@+id/del_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/del_info"
             android:layout_margin="@dimen/item_detail_button_size"
-            android:background="@color/green_200"/>
+            android:background="@color/blue_500"
+            android:textColor="@color/white"
+            android:textSize="@dimen/item_detail_button_text_size"/>
         <Button
             android:id="@+id/close_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/close_item"
             android:layout_margin="@dimen/item_detail_button_size"
-            android:background="@color/green_200"/>
+            android:background="@color/blue_500"
+            android:textColor="@color/white"
+            android:textSize="@dimen/item_detail_button_text_size"/>
     </LinearLayout>
 </LinearLayout>

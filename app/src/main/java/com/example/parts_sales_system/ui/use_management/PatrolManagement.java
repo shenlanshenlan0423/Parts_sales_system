@@ -32,10 +32,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//入库管理界面
 public class PatrolManagement extends Fragment {
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
     Boolean mflag=false;
+    //外键的数组名要改
     private String[] BuildRecordCodeIDStringArray;
     public boolean mIsFromItem = false;
     ListView listView;
@@ -44,6 +44,7 @@ public class PatrolManagement extends Fragment {
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
+    //实例化的对象要改
     public PatrolManagement(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
@@ -51,6 +52,7 @@ public class PatrolManagement extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         getFKData();
+        //布局文件要改
         View view=inflater.inflate(R.layout.activity_private_use_management_patrol_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
@@ -63,6 +65,7 @@ public class PatrolManagement extends Fragment {
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), private_UseManagementActivity.class);
                 intent.putExtra("flag",mflag);
                 intent.putExtra("page",0);
@@ -76,8 +79,10 @@ public class PatrolManagement extends Fragment {
     private class Add implements View.OnClickListener{
         @Override
         public void onClick(View view){
+            //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(), private_UseManagement_PatrolManagement_PatrolList_AddData.class);
             Bundle bundle=new Bundle();
+            //外键的数组名要改
             bundle.putSerializable("array",BuildRecordCodeIDStringArray);
             intent.putExtra("page",0);
             intent.putExtras(bundle);
@@ -94,13 +99,15 @@ public class PatrolManagement extends Fragment {
                     @Override
                     public void run() {
                         try {
-                            delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
+                            //访问的数据库表名要改
+                            delData.delData("MFJXunJian", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     }
                 }).start();
             }
+            //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),private_UseManagementActivity.class);
             intent.putExtra("page",0);
             startActivity(intent);
@@ -122,11 +129,10 @@ public class PatrolManagement extends Fragment {
                             data=(List<HashMap<String, Object>>)msg.obj;
                         }
                     }
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.private_use_management_patrol_record_list_item,
+                    //最后一个字段名和对应的布局对象要改
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.private_use_management_patrolrecordlist_item,
                             new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","PatrolRecordCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.PatrolRecordCodeID});
-                    //实现列表的显示
                     listView.setAdapter(adapter);
-                    //条目点击事件
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
                 class ItemClickListener implements AdapterView.OnItemClickListener {
@@ -134,9 +140,11 @@ public class PatrolManagement extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
+                        //跳转的SetActivity要改
                         Intent intent=new Intent(getActivity(), private_UseManagement_PatrolManagement_PatrolList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
+                        //如果访问了多个外键表，生成了多个外键可选值字符数组，这里就分成array1,array2,...
                         bundle.putSerializable("array",BuildRecordCodeIDStringArray);
                         intent.putExtras(bundle);
                         startActivity(intent);
@@ -148,6 +156,7 @@ public class PatrolManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
+                        //访问的数据库表名和字段要改
                         JSONArray jsonArray= getData.getData("MFJXunJian","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
@@ -197,6 +206,7 @@ public class PatrolManagement extends Fragment {
                 @Override
                 public void run() {
                     try{
+                        //访问的数据库表名和字段要改
                         JSONArray jsonArray= getData.getData("MFJXunJian","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
@@ -226,7 +236,6 @@ public class PatrolManagement extends Fragment {
         }
     }
     private void initData(List<HashMap<String, Object>> data) {
-        //模拟数据
         models = new ArrayList<>();
         ID=new ArrayList<>();
         Model_check model;
@@ -235,14 +244,14 @@ public class PatrolManagement extends Fragment {
             model.setSt(String.valueOf(i));
             model.setIscheck(false);
             models.add(model);
-            ID.add((String) data.get(i).get("ID"));
+            //这里的PatrolRecordCodeID也要改成表中的主键
+            ID.add((String) data.get(i).get("PatrolRecordCodeID"));
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
         cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
-                //根据不同的情况对maincheckbox做处理
                 if (!b && !mMainCkb.isChecked()) {
                     return;
                 } else if (!b && mMainCkb.isChecked()) {
@@ -255,7 +264,6 @@ public class PatrolManagement extends Fragment {
             }
         });
         listView.setAdapter(cbxAdapter);
-        //全选的点击监听
         mMainCkb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -285,12 +293,15 @@ public class PatrolManagement extends Fragment {
     }
     interface AllCheckListener {
         void onCheckedChanged(boolean b);
-    }    //从外键所在表中获取外键可取值的最新数据
+    }
+    //从外键所在表中获取外键可取值的最新数据
     void getFKData(){
         new Thread(new Runnable(){
             @Override
             public void run() {
                 try {
+                    //访问的数据库表名和字段要改
+                    //外键需要访问几个表就生成几个StringArray
                     JSONArray jdataUseDeptID = getData.getData("MFJUse","");
                     int jsonArrayOrderIDlength = jdataUseDeptID.length();
                     //字符串数组,用于存储目标字段的全部可取值
