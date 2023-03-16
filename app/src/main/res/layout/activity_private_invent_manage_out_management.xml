@@ -29,9 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="21dp"
-        fab:fab_addButtonColorNormal="#9C27B0"
+        app:fab_addButtonColorNormal="@color/blue_500"
         fab:fab_expandDirection="up"
         fab:fab_labelStyle="@style/menu_sons_style"
         fab:fab_labelsPosition="left">

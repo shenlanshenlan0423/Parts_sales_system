@@ -60,6 +60,9 @@ public class OutManagement extends Fragment {
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
+        if (mflag){
+            del.setEnabled(true);
+        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override

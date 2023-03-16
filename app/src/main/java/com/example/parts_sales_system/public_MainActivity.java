@@ -2,9 +2,11 @@ package com.example.parts_sales_system;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -62,6 +64,17 @@ public class public_MainActivity extends AppCompatActivity {
         InventManagementButton.setOnClickListener(new InventoryManagement());
         StatisticsAnalyzeButton=findViewById(R.id.PrivateStatisticalAnalysisButton);
         StatisticsAnalyzeButton.setOnClickListener(new StatisticsAnalyze());
+    }
+
+    //禁止侧滑返回方法
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
     }
 
     @Override

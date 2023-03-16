@@ -258,7 +258,6 @@ public class ProductData extends Fragment {
             models.add(model);
             ID.add((String) data.get(i).get("ID"));
         }
-//        System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
         cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {

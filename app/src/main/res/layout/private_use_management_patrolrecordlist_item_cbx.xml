@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,8 +24,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/corner"
-            android:padding="10dip"
-            android:layout_marginRight="@dimen/item_margin">
+            android:padding="10dip">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+                <CheckBox
+                    android:id="@+id/cbx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -42,8 +52,7 @@
                     android:id="@+id/creator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
+                    android:textColor="@color/black" />
             </TableRow>
 
             <TableRow>
@@ -58,8 +67,7 @@
                     android:id="@+id/creatTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
+                    android:textColor="@color/black"/>
             </TableRow>
 
             <TableRow>
@@ -72,10 +80,9 @@
 
                 <TextView
                     android:id="@+id/updater"
-                    android:layout_width="272dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
+                    android:textColor="@color/black" />
 
             </TableRow>
 
@@ -91,8 +98,7 @@
                     android:id="@+id/updateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
+                    android:textColor="@color/black" />
             </TableRow>
 
             <TableRow>
@@ -100,17 +106,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="单据编码："
+                    android:text="@string/PatrolRecordCodeID"
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/receipts_Id"
+                    android:id="@+id/PatrolRecordCodeID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
+                    android:textColor="@color/black"/>
             </TableRow>
         </TableLayout>
-
     </LinearLayout>
 </LinearLayout>

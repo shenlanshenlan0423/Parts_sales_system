@@ -3,29 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/corner"
-        android:padding="10dip">
+        android:layout_height="wrap_content">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <CheckBox
-                android:id="@+id/cbx"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangle_border_design"
+            android:layout_marginLeft="@dimen/item_margin">
             <TextView
                 android:id="@+id/text_title"
-                android:text="">
-            </TextView>
-        </TableRow>
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:text="  1  "
+                android:layout_gravity="center_vertical"
+                android:gravity="center"/>
+        </FrameLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corner"
+            android:padding="10dip">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+                <CheckBox
+                    android:id="@+id/cbx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+            </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -103,12 +114,13 @@
                 android:text="单据编码"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/receipts_Id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textAlignment="center"  />
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:id="@+id/receipts_Id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"  />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
 </LinearLayout>

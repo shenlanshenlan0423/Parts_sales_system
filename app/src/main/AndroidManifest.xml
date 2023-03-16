@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.parts_sales_system">
-
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,21 +13,40 @@
             android:name=".private_StatisticsAnalyzeActivity"
             android:exported="false" />
         <activity
+            android:name=".private_UseManagementActivity"
+            android:exported="false"
+            android:label="@string/title_activity_UseManagement">
+        </activity>
+        <activity
+            android:name=".private_UseManagement_PatrolManagement_PatrolList_SetData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
+        <activity
+            android:name=".private_UseManagement_PatrolManagement_PatrolList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
+        <activity
+            android:name=".public_BasicSettingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_BasicSetting"></activity>
+        <activity
             android:name=".public_BasicSetting_ProductData_MFJList_SetData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Dialog" />
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
             android:name=".public_BasicSetting_ProductData_MFJList_AddData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Dialog" />
+            android:theme="@android:style/Theme.Holo.Dialog"/>
         <activity
             android:name=".private_inventmanage_SetOutData_AlertDialog"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog" />
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
             android:name=".private_inventmanage_AddOutData_AlertDialog"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog" />
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
             android:name=".private_inventmanage_SetInData_Alertdialog"
             android:exported="false"
@@ -40,40 +57,31 @@
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".private_InventManageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/title_activity_invent"/>
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.Register"
-            android:label="@string/title_activity_register" />
+            android:exported="false"
+            android:label="@string/title_activity_register"></activity>
         <activity
             android:name=".public_MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Parts_sales_system.NoActionBar" />
-        <activity
-            android:name=".public_BasicSettingActivity"
-            android:exported="false"
-            android:label="@string/title_activity_BasicSetting"
-            android:theme="@style/Theme.Parts_sales_system.NoActionBar" />
-        <activity
-            android:name=".private_UseManagementActivity"
-            android:exported="false"
-            android:label="@string/title_activity_UseManagement"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
         <activity
             android:name=".public_FinancialManagementActivity"
             android:exported="false"
-            android:label="@string/title_activity_FinancialManagement"
-            android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
+            android:label="@string/title_activity_FinancialManagement">
+        </activity>
     </application>
 
 </manifest>
