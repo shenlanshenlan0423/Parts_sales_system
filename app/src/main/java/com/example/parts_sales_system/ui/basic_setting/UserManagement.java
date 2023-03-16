@@ -45,7 +45,7 @@ public class UserManagement extends Fragment {
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
-    cbx_Adapter cbxAdapter;
+    cbx_Adapter_MFJList cbxAdapter;
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
@@ -87,8 +87,8 @@ public class UserManagement extends Fragment {
     private class Del implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            for (int i=0;i<cbx_Adapter.index.size();i++){
-                String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
+            for (int i = 0; i< cbx_Adapter_MFJList.index.size(); i++){
+                String id = ID.get(Integer.parseInt((String) cbx_Adapter_MFJList.index.get(i)));
 //                System.out.println(id);
                 new Thread(new Runnable() {
                     @Override
@@ -239,11 +239,11 @@ public class UserManagement extends Fragment {
 //        System.out.println(ID);
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new ProductData.AllCheckListener() {
+        cbxAdapter = new cbx_Adapter_MFJList(data,models, getActivity(), new ProductData.AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理
-                System.out.println(cbx_Adapter.index);
+                System.out.println(cbx_Adapter_MFJList.index);
                 if (!b && !mMainCkb.isChecked()) {
                     return;
                 } else if (!b && mMainCkb.isChecked()) {
@@ -270,16 +270,16 @@ public class UserManagement extends Fragment {
                 for (Model_check model : models) {
                     model.setIscheck(b);
                 }
-                cbx_Adapter.index=new ArrayList<>();
+                cbx_Adapter_MFJList.index=new ArrayList<>();
                 for (Model_check model: models) {
                     if (model.ischeck()) {
-                        cbx_Adapter.index.add(model.getSt());
+                        cbx_Adapter_MFJList.index.add(model.getSt());
                     }
                     else {
                         continue;
                     }
                 }
-                System.out.println(cbx_Adapter.index);
+                System.out.println(cbx_Adapter_MFJList.index);
                 //刷新listview
                 cbxAdapter.notifyDataSetChanged();
             }

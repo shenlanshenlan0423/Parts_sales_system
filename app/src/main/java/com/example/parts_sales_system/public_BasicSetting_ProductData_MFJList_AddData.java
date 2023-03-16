@@ -4,129 +4,126 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.parts_sales_system.data.api_connection.addData;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class public_BasicSetting_ProductData_MFJList_AddData extends Activity {
-    TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJID;
     EditText MFJName,MFJXing,MFJWaiJing,MFJGuang,MFJYuJiGeng,MFJDes,MFJZaiTu,MFJTuiHuo,MFJZaiKu,MFJChuKu,MFJZaiYong,MFJModelNo,MFJModelName,MFJModelDes,
             MFJModelIfYou,MFJModelDate,MFJModelDan,MFJModelIfShou;
-    Button modify_button,del_button,close_button;
-    String id;
-    String order;
-    String date;
-    String des;
-    String orderid;
-    String userid;
+    private String[] UseDeptIDStringArray;
+    private Spinner UseDeptID;
+    private Button add_info,close_item;
+    Intent intent;
+    JSONObject jsonObject = new JSONObject();
+    String jsonObjectstring;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AlertDialog.Builder builder = new AlertDialog.Builder(public_BasicSetting_ProductData_MFJList_AddData.this);
-        final AlertDialog dialog = builder.create();
-        dialog.setIcon(R.mipmap.ic_launcher);
-        dialog.setTitle("详细信息");
-        View dialogView = View.inflate(public_BasicSetting_ProductData_MFJList_AddData.this, R.layout.public_basic_setting_product_data_mfjlist_setdata, null);
-        dialog.setView(dialogView);
-//        setContentView(R.layout.activity_public_basic_setting_product_data_mfjlist_detailed);
-        Intent intent=getIntent();
-        HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
+        setContentView(R.layout.public_basic_setting_product_data_mfjlist_adddata);
+        UseDeptIDStringArray = (String[]) getIntent().getSerializableExtra("array");
+        UseDeptID=findViewById(R.id.UseDeptID);
+        //下拉列表的数组适配器
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_BasicSetting_ProductData_MFJList_AddData.this, R.layout.common_spinner_list, UseDeptIDStringArray);
+        UseDeptID.setAdapter(adapter); // 设置下拉框的数组适配器
+        UseDeptID.setSelection(UseDeptIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
 
-
-        CreateBy=dialogView.findViewById(R.id.CreateBy);
-        CreateBy.setText((String)data.get("CreateBy"));
-        CreateDateTime=dialogView.findViewById(R.id.CreateDateTime);
-        CreateDateTime.setText((String)data.get("CreateDateTime"));
-        UpdateBy=dialogView.findViewById(R.id.UpdateBy);
-        UpdateBy.setText((String)data.get("UpdateBy"));
-        UpdateDateTime=dialogView.findViewById(R.id.UpdateDateTime);
-        UpdateDateTime.setText((String)data.get("UpdateDateTime"));
-        MFJID=dialogView.findViewById(R.id.MFJID);
-        MFJID.setText((String)data.get("MFJID"));
-
-
-        MFJXing=dialogView.findViewById(R.id.MFJXing);
-        MFJXing.setText((String)data.get("MFJXing"));
-        MFJWaiJing=dialogView.findViewById(R.id.MFJWaiJing);
-        MFJWaiJing.setText((String)data.get("MFJWaiJing"));
-        MFJGuang=dialogView.findViewById(R.id.MFJGuang);
-        MFJGuang.setText((String)data.get("MFJGuang"));
-        MFJYuJiGeng=dialogView.findViewById(R.id.MFJYuJiGeng);
-        MFJYuJiGeng.setText((String)data.get("MFJYuJiGeng"));
-        MFJDes=dialogView.findViewById(R.id.MFJDes);
-        MFJDes.setText((String)data.get("MFJDes"));
-        MFJZaiTu=dialogView.findViewById(R.id.MFJZaiTu);
-        MFJZaiTu.setText((String)data.get("MFJZaiTu"));
-        MFJTuiHuo=dialogView.findViewById(R.id.MFJTuiHuo);
-        MFJTuiHuo.setText((String)data.get("MFJTuiHuo"));
-        MFJZaiKu=dialogView.findViewById(R.id.MFJZaiKu);
-        MFJZaiKu.setText((String)data.get("MFJZaiKu"));
-        MFJChuKu=dialogView.findViewById(R.id.MFJChuKu);
-        MFJChuKu.setText((String)data.get("MFJChuKu"));
-        MFJZaiYong=dialogView.findViewById(R.id.MFJZaiYong);
-        MFJZaiYong.setText((String)data.get("MFJZaiYong"));
-        MFJModelNo=dialogView.findViewById(R.id.MFJModelNo);
-        MFJModelNo.setText((String)data.get("MFJModelNo"));
-        MFJModelName=dialogView.findViewById(R.id.MFJModelName);
-        MFJModelName.setText((String)data.get("MFJModelName"));
-        MFJModelDes=dialogView.findViewById(R.id.MFJModelDes);
-        MFJModelDes.setText((String)data.get("MFJModelDes"));
-        MFJModelIfYou=dialogView.findViewById(R.id.MFJModelIfYou);
-        MFJModelIfYou.setText((String)data.get("MFJModelIfYou"));
-        MFJModelDate=dialogView.findViewById(R.id.MFJModelDate);
-        MFJModelDate.setText((String)data.get("MFJModelDate"));
-        MFJModelIfShou=dialogView.findViewById(R.id.MFJModelIfShou);
-        MFJModelIfShou.setText((String)data.get("MFJModelIfShou"));
-
-        modify_button = dialogView.findViewById(R.id.modify_info);
-        modify_button.setOnClickListener(new buttonClick());
-        del_button = dialogView.findViewById(R.id.del_info);
-        del_button.setOnClickListener(new buttonClick());
-        close_button = dialogView.findViewById(R.id.close_item);
-        close_button.setOnClickListener(new buttonClick());
-
-        dialog.show();
+        MFJName=findViewById(R.id.MFJName);
+        MFJXing=findViewById(R.id.MFJXing);
+        MFJWaiJing=findViewById(R.id.MFJWaiJing);
+        MFJGuang=findViewById(R.id.MFJGuang);
+        MFJYuJiGeng=findViewById(R.id.MFJYuJiGeng);
+        MFJDes=findViewById(R.id.MFJDes);
+        MFJZaiTu=findViewById(R.id.MFJZaiTu);
+        MFJZaiTu.setText("数据库中无此字段");
+        MFJTuiHuo=findViewById(R.id.MFJTuiHuo);
+        MFJZaiKu=findViewById(R.id.MFJZaiKu);
+        MFJChuKu=findViewById(R.id.MFJChuKu);
+        MFJChuKu.setText("此字段无法写入和更改");
+        MFJZaiYong=findViewById(R.id.MFJZaiYong);
+        MFJModelNo=findViewById(R.id.MFJModelNo);
+        MFJModelName=findViewById(R.id.MFJModelName);
+        MFJModelDes=findViewById(R.id.MFJModelDes);
+        MFJModelIfYou=findViewById(R.id.MFJModelIfYou);
+        MFJModelDate=findViewById(R.id.MFJModelDate);
+        MFJModelDan=findViewById(R.id.MFJModelDan);
+        MFJModelIfShou=findViewById(R.id.MFJModelIfShou);
+        add_info=findViewById(R.id.add_info);
+        add_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    jsonObject.put("ID","").put("UseDeptID",UseDeptID.getSelectedItem().toString())
+                            .put("MFJName",MFJName.getText().toString())
+                            .put("MFJXing",MFJXing.getText().toString())
+                            .put("MFJWaiJing",MFJWaiJing.getText().toString())
+                            .put("MFJGuang",MFJGuang.getText().toString())
+                            .put("MFJYuJiGeng",MFJYuJiGeng.getText().toString())
+                            .put("MFJDes",MFJDes.getText().toString())
+                            .put("MFJTuiHuo",MFJTuiHuo.getText().toString())
+                            .put("MFJZaiKu",MFJZaiKu.getText().toString())
+                            .put("MFJZaiYong",MFJZaiYong.getText().toString())
+                            .put("MFJModelNo",MFJModelNo.getText().toString())
+                            .put("MFJModelName",MFJModelName.getText().toString())
+                            .put("MFJModelDes",MFJModelDes.getText().toString())
+                            .put("MFJModelIfYou",MFJModelIfYou.getText().toString())
+                            .put("MFJModelDate",MFJModelDate.getText().toString())
+                            .put("MFJModelDan",MFJModelDan.getText().toString())
+                            .put("MFJModelIfShou",MFJModelIfShou.getText().toString());
+                    jsonObjectstring = String.valueOf(jsonObject);
+                    addJsonArrayData(jsonObjectstring);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                intent=new Intent(public_BasicSetting_ProductData_MFJList_AddData.this,public_BasicSettingActivity.class);
+                intent.putExtra("page",2);
+                startActivity(intent);
+            }
+        });
+        close_item=findViewById(R.id.close_item);
+        close_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent=new Intent(public_BasicSetting_ProductData_MFJList_AddData.this,public_BasicSettingActivity.class);
+                intent.putExtra("page",2);
+                startActivity(intent);
+            }
+        });
     }
-    public class buttonClick implements  View.OnClickListener{
-        @Override
-        public void onClick(View view){
-            Intent intent=new Intent(public_BasicSetting_ProductData_MFJList_AddData.this,public_BasicSettingActivity.class);
-            startActivity(intent);
+    //禁止侧滑返回方法
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
         }
     }
-//    public class set implements View.OnClickListener{
-//        @Override
-//        public void onClick(View view){
-//            order= String.valueOf(mfjyan_order.getText());
-//            date=String.valueOf(mfjyan_date.getText());
-//            des=String.valueOf(mfjyan_des.getText());
-//            new Thread(new Runnable(){
-//                @Override
-//                public void run() {
-//                    try {
-//                        addData.addData("MFJYan","{\"ID\":\""+id+"\","+ "\"MFJOrderID\":\""+orderid+"\","+ "\"MFJYanDate\":\""+date+"\",\n" +
-//                                "\"MFJYanOrder\":\""+order+"\","+
-//                                "\"MFJYanDes\":\""+des+"\"," +
-//                                "\"UserID\":\""+userid+"\"" +
-//                                "}");
-//                        Intent intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
-//                        startActivity(intent);
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                }
-//            }).start();
-//
-//        }
-//    }
-//    public class cancel implements  View.OnClickListener{
-//        @Override
-//        public void onClick(View view){
-//            Intent intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
-//            startActivity(intent);
-//        }
-//    }
+    //向表中新增item
+    void addJsonArrayData(String jsonObjectstring){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    addData.addData("MFJ",jsonObjectstring);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }

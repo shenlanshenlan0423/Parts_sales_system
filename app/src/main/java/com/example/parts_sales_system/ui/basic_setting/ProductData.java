@@ -9,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -35,16 +33,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//入库管理界面
 public class ProductData extends Fragment {
-    public TextView add, del, set;
-    Button manage;
+    public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
+    Boolean mflag=false;
+    //外键的数组名要改
     private String[] UseDeptIDStringArray;
-    Boolean mflag;
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
-    cbx_Adapter cbxAdapter;
+    cbx_Adapter_MFJList cbxAdapter;
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
@@ -55,18 +52,22 @@ public class ProductData extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         getFKData();
-        View view=inflater.inflate(R.layout.activity_public_basic_setting_product_data,container,false);
+        View view=inflater.inflate(R.layout.activity_public_basic_setting_productdata,container,false);
         add=view.findViewById(R.id.add);
-        add.setOnClickListener(new Add());
+        add.setOnClickListener(new ProductData.Add());
         del=view.findViewById(R.id.del);
-        del.setOnClickListener(new Del());
-        set=view.findViewById(R.id.set);
+        del.setOnClickListener(new ProductData.Del());
+        if (mflag){
+            del.setEnabled(true);
+        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
                 intent.putExtra("flag",mflag);
+                intent.putExtra("page",2);
                 startActivity(intent);
             }
         });
@@ -77,8 +78,13 @@ public class ProductData extends Fragment {
     private class Add implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            Intent intent;
-            intent=new Intent(getActivity(), public_BasicSetting_ProductData_MFJList_AddData.class);
+            //跳转的AddActivity要改
+            Intent intent=new Intent(getActivity(), public_BasicSetting_ProductData_MFJList_AddData.class);
+            Bundle bundle=new Bundle();
+            //外键的数组名要改
+            bundle.putSerializable("array",UseDeptIDStringArray);
+            intent.putExtra("page",2);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
@@ -86,26 +92,34 @@ public class ProductData extends Fragment {
     private class Del implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            for (int i=0;i<cbx_Adapter.index.size();i++){
-                String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
+            for (int i = 0; i< cbx_Adapter_MFJList.index.size(); i++){
+                String id = ID.get(Integer.parseInt((String) cbx_Adapter_MFJList.index.get(i)));
+                System.out.println(ID);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            delData.delData("MFJYan", "{\"ID\":\"" + id + "\"}");
+                            //访问的数据库表名要改
+                            delData.delData("MFJ", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     }
                 }).start();
             }
-            Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
+            //跳转的AddActivity要改
+            Intent intent=new Intent(getActivity(),public_BasicSettingActivity.class);
+            intent.putExtra("page",2);
+            startActivity(intent);
         }
     }
 
     public void initList(boolean flag,View view){
         if (!flag){//管理按钮没有按下的初始化列表
-            listView=view.findViewById(R.id.MFJList);
+            listView=view.findViewById(R.id.listView);
+            CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
+            checkAllBox.setVisibility(View.INVISIBLE);
+            del.setEnabled(false);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -115,11 +129,10 @@ public class ProductData extends Fragment {
                             data=(List<HashMap<String, Object>>)msg.obj;
                         }
                     }
+                    //最后一个字段名和对应的布局对象要改
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_basic_setting_product_data_mfjlist_item,
-                            new String[]{"itemnumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","MFJID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJID});
-                    //实现列表的显示
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","MFJID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJID});
                     listView.setAdapter(adapter);
-                    //条目点击事件
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
                 class ItemClickListener implements AdapterView.OnItemClickListener {
@@ -127,10 +140,10 @@ public class ProductData extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
+                        //跳转的SetActivity要改
                         Intent intent=new Intent(getActivity(), public_BasicSetting_ProductData_MFJList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
-                        bundle.putSerializable("array",UseDeptIDStringArray);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
@@ -147,7 +160,7 @@ public class ProductData extends Fragment {
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
                             //当前item的序号
-                            item.put("itemnumber",(i + 1));
+                            item.put("itemNumber",(i+1));
                             //以下为对应表的字段信息
                             item.put("CreateBy",jsonObject.getString("createBy"));
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
@@ -186,8 +199,9 @@ public class ProductData extends Fragment {
             }).start();
         }
         else{//管理按钮按下的初始化列表
-            listView=view.findViewById(R.id.MFJList);
+            listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
+            mMainCkb.setVisibility(View.VISIBLE);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -206,11 +220,13 @@ public class ProductData extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("MFJYan","");
+                        JSONArray jsonArray= getData.getData("MFJ","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
+                            item.put("itemNumber",(i+1));
+                            //以下为对应表的字段信息
                             item.put("CreateBy",jsonObject.getString("createBy"));
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
@@ -223,6 +239,7 @@ public class ProductData extends Fragment {
                             item.put("MFJGuang",jsonObject.getString("MFJGuang"));
                             item.put("MFJYuJiGeng",jsonObject.getString("MFJYuJiGeng"));
                             item.put("MFJDes",jsonObject.getString("MFJDes"));
+                            item.put("MFJZaiTu","");
                             item.put("MFJTuiHuo",jsonObject.getString("MFJTuiHuo"));
                             item.put("MFJZaiKu",jsonObject.getString("MFJZaiKu"));
                             item.put("MFJChuKu",jsonObject.getString("MFJChuKu"));
@@ -248,7 +265,6 @@ public class ProductData extends Fragment {
         }
     }
     private void initData(List<HashMap<String, Object>> data) {
-        //模拟数据
         models = new ArrayList<>();
         ID=new ArrayList<>();
         Model_check model;
@@ -257,15 +273,15 @@ public class ProductData extends Fragment {
             model.setSt(String.valueOf(i));
             model.setIscheck(false);
             models.add(model);
-            ID.add((String) data.get(i).get("ID"));
+            //这里的PatrolRecordCodeID也要改成表中的主键
+            ID.add((String) data.get(i).get("MFJID"));
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
+        cbxAdapter = new cbx_Adapter_MFJList(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理
-//                System.out.println(cbx_Adapter.index);
                 if (!b && !mMainCkb.isChecked()) {
                     return;
                 } else if (!b && mMainCkb.isChecked()) {
@@ -292,10 +308,10 @@ public class ProductData extends Fragment {
                 for (Model_check model : models) {
                     model.setIscheck(b);
                 }
-                cbx_Adapter.index=new ArrayList<>();
+                cbx_Adapter_MFJList.index=new ArrayList<>();
                 for (Model_check model: models) {
                     if (model.ischeck()) {
-                        cbx_Adapter.index.add(model.getSt());
+                        cbx_Adapter_MFJList.index.add(model.getSt());
                     }
                     else {
                         continue;
@@ -311,6 +327,7 @@ public class ProductData extends Fragment {
     }
     //从外键所在表中获取外键可取值的最新数据
     void getFKData(){
+        //需要访问多个外键所在表，请使用多个子线程，不然只会完成第一个外键的访问和赋值
         new Thread(new Runnable(){
             @Override
             public void run() {

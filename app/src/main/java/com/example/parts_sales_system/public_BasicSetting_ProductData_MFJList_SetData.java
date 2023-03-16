@@ -3,12 +3,14 @@ package com.example.parts_sales_system;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.modifyData;
@@ -20,22 +22,19 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJID;
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJID,UseDeptID;
     private EditText MFJName,MFJXing,MFJWaiJing,MFJGuang,MFJYuJiGeng,MFJDes,MFJZaiTu,MFJTuiHuo,MFJZaiKu,MFJChuKu,MFJZaiYong,MFJModelNo,MFJModelName,MFJModelDes,
             MFJModelIfYou,MFJModelDate,MFJModelDan,MFJModelIfShou;
     private Button modify_button,del_button,close_button;
-    private String[] UseDeptIDStringArray;
-    private Spinner UseDeptID;
-    private String MFJNameString,MFJXingString,MFJWaiJingString,MFJGuangString,MFJYuJiGengString,MFJDesString,MFJZaiTuString,MFJTuiHuoString,MFJZaiKuString,
+    private String UseDeptIDString,MFJNameString,MFJXingString,MFJWaiJingString,MFJGuangString,MFJYuJiGengString,MFJDesString,MFJZaiTuString,MFJTuiHuoString,MFJZaiKuString,
             MFJChuKuString,MFJZaiYongString,MFJModelNoString,MFJModelNameString,MFJModelDesString,
             MFJModelIfYouString,MFJModelDateString,MFJModelDanString,MFJModelIfShouString;
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_basic_setting_product_data_mfjlist_setdata);
         HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
-        UseDeptIDStringArray = (String[]) getIntent().getSerializableExtra("array");
-//        System.out.println("这是获取的使用单位ID数组："+Arrays.toString(UseDeptIDStringArray));
         CreateBy=findViewById(R.id.CreateBy);
         CreateBy.setText((String)data.get("CreateBy"));
         CreateDateTime=findViewById(R.id.CreateDateTime);
@@ -47,10 +46,7 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
         MFJID=findViewById(R.id.MFJID);
         MFJID.setText((String)data.get("MFJID"));
         UseDeptID=findViewById(R.id.UseDeptID);
-        //下拉列表的数组适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_BasicSetting_ProductData_MFJList_SetData.this, R.layout.common_spinner_list, UseDeptIDStringArray);
-        UseDeptID.setAdapter(adapter); // 设置下拉框的数组适配器
-        UseDeptID.setSelection(UseDeptIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
+        UseDeptID.setText((String)data.get("UseDeptID"));
 
         MFJName=findViewById(R.id.MFJName);
         MFJName.setText((String)data.get("MFJName"));
@@ -107,6 +103,7 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
+                    UseDeptIDString = String.valueOf(UseDeptID.getText());
                     MFJNameString= String.valueOf(MFJName.getText());
                     MFJXingString=String.valueOf(MFJXing.getText());
                     MFJWaiJingString=String.valueOf(MFJWaiJing.getText());
@@ -126,7 +123,8 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
                     MFJModelDanString=String.valueOf(MFJModelDan.getText());
                     MFJModelIfShouString=String.valueOf(MFJModelIfShou.getText());
                     try {
-                        jsonObject.put("ID",String.valueOf(MFJID.getText())).put("MFJName",MFJNameString)
+                        jsonObject.put("ID",String.valueOf(MFJID.getText())).put("UseDeptID",UseDeptIDString)
+                                .put("MFJName",MFJNameString)
                                 .put("MFJXing",MFJXingString).put("MFJWaiJing",MFJWaiJingString)
                                 .put("MFJGuang",MFJGuangString).put("MFJYuJiGeng",MFJYuJiGengString)
                                 .put("MFJDes",MFJDesString).put("MFJTuiHuo",MFJTuiHuoString)
@@ -150,8 +148,10 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
                             }
                         }
                     }).start();
+                    intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
+                    intent.putExtra("page",2);
+                    startActivity(intent);
                     break;
-                    //这里写一个刷新页面的代码
                 case R.id.del_info:
                     try {
                         jsonObject.put("ID",String.valueOf(MFJID.getText()));
@@ -160,24 +160,36 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
                     }
                     //jsonObject转String
                     jsonObjectstring = String.valueOf(jsonObject);
+                    System.out.println(jsonObjectstring);
                     new Thread(new Runnable(){
                         @Override
                         public void run() {
                             try {
                                 delData.delData("MFJ",jsonObjectstring);
                             } catch (IOException e) {
-                                throw new RuntimeException(e);
+                                e.printStackTrace();
                             }
                         }
                     }).start();
+                    intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
+                    intent.putExtra("page",2);
+                    startActivity(intent);
                     break;
                 case R.id.close_item:
-                    Intent intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
+                    intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
+                    intent.putExtra("page",2);
                     startActivity(intent);
                     break;
             }
-//            Intent intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this, ProductData.class);
-//            startActivity(intent);
+        }
+    }//禁止侧滑返回方法
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
         }
     }
 }

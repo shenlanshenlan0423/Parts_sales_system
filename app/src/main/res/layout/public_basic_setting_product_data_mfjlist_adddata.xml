@@ -6,7 +6,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_marginTop="@dimen/nav_header_vertical_spacing">
         <TableLayout
             android:id="@+id/item"
@@ -23,30 +23,133 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/BuildRecordCodeID"
+                    android:text="@string/UseDeptID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <Spinner
-                    android:id="@+id/BuildRecordCodeID"
+                    android:id="@+id/UseDeptID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJName"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJXing"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJXing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJWaiJing"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJWaiJing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJGuang"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJGuang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/Main_button_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJYuJiGeng"
                     android:textColor="@color/black"
-                    android:spinnerMode="dropdown"/>
+                    android:textSize="@dimen/item_detail_text_size" />
+
+                <EditText
+                    android:id="@+id/MFJYuJiGeng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJDes"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJDes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
             </TableRow>
             <TableRow
                 android:layout_margin="@dimen/Main_button_margin">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PatrolRecordDate"
+                    android:text="@string/MFJZaiTu"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MFJXunJianDate"
+                    android:id="@+id/MFJZaiTu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
                     android:textColor="@color/black"/>
             </TableRow>
             <TableRow
@@ -54,14 +157,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PatrolRecordContent"
+                    android:text="@string/MFJTuiHuo"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MFJXunJianCont"
+                    android:id="@+id/MFJTuiHuo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
                     android:textColor="@color/black"/>
             </TableRow>
             <TableRow
@@ -69,14 +173,159 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PatrolRecordPerson"
+                    android:text="@string/MFJZaiKu"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MFJXunJianUser"
+                    android:id="@+id/MFJZaiKu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJChuKu"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJChuKu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJZaiYong"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJZaiYong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJModelNo"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJModelNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJModelName"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJModelName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJModelDes"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJModelDes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJModelIfYou"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJModelIfYou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJModelDate"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJModelDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJModelDan"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJModelDan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJModelIfShou"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJModelIfShou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
                     android:textColor="@color/black"/>
             </TableRow>
         </TableLayout>
