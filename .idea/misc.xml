@@ -35,12 +35,13 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_user_management.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_financia_management.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_financial_management.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_financial_management_payment_management.xml" value="0.2" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_scrolling.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_set_in_data_alertdialog.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/common_fragment.xml" value="0.22" />
-        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/common_spinner_list.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/common_spinner_list.xml" value="0.2" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/confirm_delete.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/content_scrolling.xml" value="0.25364583333333335" />
@@ -64,8 +65,17 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrol_record_list_item.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrol_record_list_item_cbx.xml" value="0.2" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_adddata.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_item.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_item_cbx.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_setdata.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_adddata.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_item_cbx.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_adddata.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_item.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_item_cbx.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_setdata.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/user_management.xml" value="0.176" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/activity_main_drawer.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/catagory.xml" value="0.33" />

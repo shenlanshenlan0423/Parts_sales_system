@@ -52,7 +52,6 @@ public class private_UseManagement_PatrolManagement_PatrolList_AddData extends A
                             .put("MFJXunJianDate",MFJXunJianDateString).put("MFJXunJianCont",MFJXunJianContString)
                             .put("MFJXunJianUser",MFJXunJianUserString);
                     jsonObjectstring = String.valueOf(jsonObject);
-                    System.out.println(jsonObjectstring);
                     addJsonArrayData(jsonObjectstring);
                 } catch (JSONException e) {
                     e.printStackTrace();

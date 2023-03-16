@@ -17,86 +17,7 @@
             android:layout_marginRight="@dimen/fab_margin"
             android:background="@color/white"
             android:layout_gravity="center_horizontal">
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CreateBy"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/item_detail_text_size" />
-                <TextView
-                    android:id="@+id/CreateBy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"/>
-            </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CreateDateTime"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/item_detail_text_size" />
-                <TextView
-                    android:id="@+id/CreateDateTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-            </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/UpdateBy"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/UpdateBy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-            </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/UpdateDateTime"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/UpdateDateTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-            </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/OrderPaymentCodeID"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/OrderPaymentCodeID"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-            </TableRow>
+
             <TableRow
                 android:layout_margin="@dimen/Main_button_margin">
                 <TextView
@@ -105,13 +26,14 @@
                     android:text="@string/OrderCodeID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
-                <TextView
+                <Spinner
                     android:id="@+id/OrderCodeID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:spinnerMode="dropdown"/>
             </TableRow>
             <TableRow
                 android:layout_margin="@dimen/Main_button_margin">
@@ -121,24 +43,42 @@
                     android:text="@string/UserCodeID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
-                <TextView
+                <Spinner
                     android:id="@+id/UserCodeID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:spinnerMode="dropdown"/>
             </TableRow>
             <TableRow
                 android:layout_margin="@dimen/Main_button_margin">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/OrderPaymentDateTime"
+                    android:text="@string/MFJDingKuanDate"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/MFJDingKuanDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MFJDingKuanNum"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/OrderPaymentDateTime"
+                    android:id="@+id/MFJDingKuanNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
@@ -150,11 +90,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/OrderPaymentAmount"
+                    android:text="@string/MFJDingKuanDes"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/OrderPaymentAmount"
+                    android:id="@+id/MFJDingKuanDes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
@@ -166,27 +106,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/OrderPaymentRemark"
+                    android:text="@string/MFJDingKuanOrder"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/OrderPaymentRemark"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-            </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/OrderPaymentOrder"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
-                <EditText
-                    android:id="@+id/OrderPaymentOrder"
+                    android:id="@+id/MFJDingKuanOrder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
@@ -200,22 +124,22 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
-            android:id="@+id/modify_info"
+            android:id="@+id/add_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/modify_info"
-            android:layout_margin="@dimen/item_detail_button_size"/>
-        <Button
-            android:id="@+id/del_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/del_info"
-            android:layout_margin="@dimen/item_detail_button_size"/>
+            android:text="@string/add_info"
+            android:layout_margin="@dimen/item_detail_button_size"
+            android:background="@color/blue_500"
+            android:textColor="@color/white"
+            android:textSize="@dimen/item_detail_button_text_size"/>
         <Button
             android:id="@+id/close_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/close_item"
-            android:layout_margin="@dimen/item_detail_button_size"/>
+            android:layout_margin="@dimen/item_detail_button_size"
+            android:background="@color/blue_500"
+            android:textColor="@color/white"
+            android:textSize="@dimen/item_detail_button_text_size"/>
     </LinearLayout>
 </LinearLayout>

@@ -32,7 +32,7 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_public_basic_setting_product_data_mfjlist_detailed);
+        setContentView(R.layout.public_basic_setting_product_data_mfjlist_setdata);
         HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
         UseDeptIDStringArray = (String[]) getIntent().getSerializableExtra("array");
 //        System.out.println("这是获取的使用单位ID数组："+Arrays.toString(UseDeptIDStringArray));

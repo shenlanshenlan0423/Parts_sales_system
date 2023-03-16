@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parts_sales_system">
         <activity
+            android:name=".public_FinancialManagementActivity"
+            android:exported="false"
+            android:label="@string/title_activity_FinancialManagement">
+        </activity>
+        <activity
+            android:name=".public_FinancialManagement_PaymentManagement_OrderList_SetData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
+        <activity
+            android:name=".public_FinancialManagement_PaymentManagement_OrderList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
+        <activity
             android:name=".private_UseManagementActivity"
             android:exported="false"
             android:label="@string/title_activity_UseManagement">
@@ -74,11 +89,6 @@
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Parts_sales_system.NoActionBar"></activity>
-        <activity
-            android:name=".public_FinancialManagementActivity"
-            android:exported="false"
-            android:label="@string/title_activity_FinancialManagement">
-        </activity>
     </application>
 
 </manifest>

@@ -1,7 +1,5 @@
 package com.example.parts_sales_system;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -11,13 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.parts_sales_system.data.api_connection.addData;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 public class public_BasicSetting_ProductData_MFJList_AddData extends Activity {
     TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJID;
@@ -37,7 +29,7 @@ public class public_BasicSetting_ProductData_MFJList_AddData extends Activity {
         final AlertDialog dialog = builder.create();
         dialog.setIcon(R.mipmap.ic_launcher);
         dialog.setTitle("详细信息");
-        View dialogView = View.inflate(public_BasicSetting_ProductData_MFJList_AddData.this, R.layout.activity_public_basic_setting_product_data_mfjlist_detailed, null);
+        View dialogView = View.inflate(public_BasicSetting_ProductData_MFJList_AddData.this, R.layout.public_basic_setting_product_data_mfjlist_setdata, null);
         dialog.setView(dialogView);
 //        setContentView(R.layout.activity_public_basic_setting_product_data_mfjlist_detailed);
         Intent intent=getIntent();
