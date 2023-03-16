@@ -17,8 +17,10 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="680dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/checkAllBox"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"></ListView>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu

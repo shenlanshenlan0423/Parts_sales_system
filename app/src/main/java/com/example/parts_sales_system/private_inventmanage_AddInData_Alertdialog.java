@@ -82,7 +82,6 @@ public class private_inventmanage_AddInData_Alertdialog extends Activity {
                 for(int i=0;i<data1.size();i++){
                     // 1-组别、2-数据项id、3-数据项顺序、4-数据项内容
                     menu.add(0,i,i,String.valueOf(data1.get(i)));
-                    System.out.println(data1.get(i));
                 }
                 menu.add(0,data1.size(),data1.size(),"2023030609293529357");
                 // 添加单击数据项事件
@@ -109,7 +108,6 @@ public class private_inventmanage_AddInData_Alertdialog extends Activity {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
                         data1.add(jsonObject.getString("ID"));
                     }
-                    System.out.println(data1);
                     Message msg=new Message();
                     msg.obj=data1;
                     msg.what=1;
@@ -140,7 +138,6 @@ public class private_inventmanage_AddInData_Alertdialog extends Activity {
                 for(int i=0;i<data2.size();i++){
                     // 1-组别、2-数据项id、3-数据项顺序、4-数据项内容
                     menu.add(0,i,i,String.valueOf(data2.get(i)));
-                    System.out.println(data2.get(i));
                 }
                 // 添加单击数据项事件
                 pm2.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -164,9 +161,9 @@ public class private_inventmanage_AddInData_Alertdialog extends Activity {
                     data2 = new ArrayList();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
-                        data2.add(jsonObject.getString("DeptID"));
+                        data2.add(jsonObject.getString("ID"));
                     }
-                    System.out.println(data2);
+                    data2.add("1");
                     Message msg=new Message();
                     msg.obj=data2;
                     msg.what=1;
@@ -198,11 +195,11 @@ public class private_inventmanage_AddInData_Alertdialog extends Activity {
                                 "\",\"MFJYanOrder\":\""+order+
                                 "\",\"MFJYanDes\":\""+des+
                                 "\",\"UserID\":\""+userid+"\"}");
-                        System.out.println("{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
-                                "\",\"MFJYanDate\":\""+date+
-                                "\",\"MFJYanOrder\":\""+order+
-                                "\",\"MFJYanDes\":\""+des+
-                                "\",\"UserID\":\""+userid+"\"}");
+//                        System.out.println("{\"ID\":\"\",\"MFJOrderID\":\"" +orderid+
+//                                "\",\"MFJYanDate\":\""+date+
+//                                "\",\"MFJYanOrder\":\""+order+
+//                                "\",\"MFJYanDes\":\""+des+
+//                                "\",\"UserID\":\""+userid+"\"}");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

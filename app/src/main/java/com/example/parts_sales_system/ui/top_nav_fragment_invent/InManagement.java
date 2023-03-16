@@ -117,6 +117,7 @@ public class InManagement extends Fragment {
             listView=view.findViewById(R.id.listView);
             CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
             checkAllBox.setVisibility(View.INVISIBLE);
+            del.setEnabled(false);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -186,6 +187,7 @@ public class InManagement extends Fragment {
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
             mMainCkb.setVisibility(View.VISIBLE);
+            del.setEnabled(true);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -290,7 +292,6 @@ public class InManagement extends Fragment {
                         continue;
                     }
                 }
-                System.out.println(cbx_Adapter.index);
                 //刷新listview
                 cbxAdapter.notifyDataSetChanged();
             }

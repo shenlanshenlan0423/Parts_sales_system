@@ -29,7 +29,7 @@ public class public_MainActivity extends AppCompatActivity {
         //使用binding就不用findViewByID了
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Button InventManagementButton;
+        Button InventManagementButton,StatisticsAnalyzeButton;
         //公共功能和私有功能的按钮声明
         Button  BasicConfigurationButton, FinancialManagementButton, UseManagementButton;
         setSupportActionBar(binding.appBarMain.toolbar);
@@ -60,6 +60,8 @@ public class public_MainActivity extends AppCompatActivity {
         FinancialManagementButton.setOnClickListener(new FinancialManagement());
         InventManagementButton=findViewById(R.id.InventoryManagementButton);
         InventManagementButton.setOnClickListener(new InventoryManagement());
+        StatisticsAnalyzeButton=findViewById(R.id.PrivateStatisticalAnalysisButton);
+        StatisticsAnalyzeButton.setOnClickListener(new StatisticsAnalyze());
     }
 
     @Override
@@ -108,6 +110,15 @@ public class public_MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             intent = new Intent(public_MainActivity.this,private_InventManageActivity.class);
+            startActivity(intent);
+        }
+    }
+    //统计分析的跳转方法
+    private class StatisticsAnalyze implements View.OnClickListener{
+        Intent intent;
+        @Override
+        public void onClick(View view) {
+            intent = new Intent(public_MainActivity.this,private_StatisticsAnalyzeActivity.class);
             startActivity(intent);
         }
     }
