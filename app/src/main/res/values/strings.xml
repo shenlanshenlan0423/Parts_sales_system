@@ -40,10 +40,30 @@
     <string name="visitTime">登录时间：</string>
     <string name="visitEndTime">结束访问时间：</string>
 
-    <string name="company">使用单位：</string>
+    <string name="company">使用单位名称：</string>
 
-    <string name="user">系统用户：</string>
-    <string name="phone">手机号码：</string>
+    <string name="userID">用户编码ID：</string>
+    <string name="deptID">管理部门编码ID:</string>
+    <string name="companyID">使用单位编码ID:</string>
+    <string name="userNumber">用户工号：</string>
+    <string name="user">用户姓名：</string>
+    <string name="phone">用户电话：</string>
+    <string name="userloginname">用户登录名：</string>
+    <string name="userloginpwd">用户登录密码：</string>
+    <string name="userdes">用户描述：</string>
+    <string name="userval">用户是否有效：</string>
+    <string name="usertype">用户类型：</string>
+    <string name="userwechat">用户微信openID：</string>
+    <string name="userstatue">用户状态：</string>
+    <string name="userregistertime">用户注册时间：</string>
+    <!--使用单位列表-->
+    <string name="UserDeptCodeID">使用单位编码ID：</string>
+    <string name="SuperiorUserDeptCodeID">上级使用单位编码ID：</string>
+    <string name="UseDeptCode">使用单位代码：</string>
+    <string name="UseDeptName">使用单位名称：</string>
+    <string name="UseDeptAllName">使用单位全称：</string>
+    <string name="UseDeptDes">使用单位描述：</string>
+
     <!--系统用户日志-->
     <string name="UserOperateLogCodeID">操作日志编码ID：</string>
     <string name="UserOperIP">用户操作IP：</string>
