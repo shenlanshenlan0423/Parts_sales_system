@@ -22,12 +22,13 @@ public class HomeFragment extends Fragment {
     private ArrayList fragmentList;
     private TabLayout tabLayout;
     //实例化对象名要改
+    private UserDeptList UserDeptList=new UserDeptList();
     private SystemUserLog SystemUserLog=new SystemUserLog();
-    private UserManagement UserManagement=new UserManagement();
+//    private SystemUserList SystemUserList =new SystemUserList();
     private ProductData PatrolManagement=new ProductData();
     private List<String> mTitles;
     //title要改
-    private String [] title={"权限管理","用户管理","产品数据"};
+    private String [] title={"使用单位列表","系统用户列表","系统用户日志","密封件列表"};
     Boolean flag_in;
     Boolean flag_out;
     int page;
@@ -50,16 +51,19 @@ public class HomeFragment extends Fragment {
         fragmentList=new ArrayList<>();
         mTitles=new ArrayList<>();
         //PatrolManagement要改，几个二级功能就添加几次
+        UserDeptList.setFlag(flag_in);
         SystemUserLog.setFlag(flag_in);
-        UserManagement.setFlag(flag_in);
+//        SystemUserList.setFlag(flag_in);
         PatrolManagement.setFlag(flag_in);
+        fragmentList.add(UserDeptList);
         fragmentList.add(SystemUserLog);
-        fragmentList.add(UserManagement);
+//        fragmentList.add(SystemUserList);
         fragmentList.add(PatrolManagement);
         //title不止一个字符时，还要添加title[1]、title[2]等
         mTitles.add(title[0]);
         mTitles.add(title[1]);
         mTitles.add(title[2]);
+        mTitles.add(title[3]);
 
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);
         pager.setAdapter(fragmentAdapter);
