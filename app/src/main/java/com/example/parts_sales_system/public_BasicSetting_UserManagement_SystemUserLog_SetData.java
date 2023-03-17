@@ -72,7 +72,7 @@ public class public_BasicSetting_UserManagement_SystemUserLog_SetData extends Ac
             switch (view.getId()){
                 case R.id.close_item:
                     intent=new Intent(public_BasicSetting_UserManagement_SystemUserLog_SetData.this,public_BasicSettingActivity.class);
-                    intent.putExtra("page",0);
+                    intent.putExtra("page",1);
                     startActivity(intent);
                     break;
             }

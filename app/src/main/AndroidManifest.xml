@@ -76,11 +76,19 @@
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
+            android:name=".public_BasicSetting_UserManagement_UserDeptList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
             android:name=".public_BasicSetting_UserManagement_UserDeptList_SetData"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
-            android:name=".public_BasicSetting_UserManagement_UserDeptList_AddData"
+            android:name=".public_BasicSetting_SystemUserList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".public_BasicSetting_SystemUserList_SetData"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
@@ -103,6 +111,8 @@
             android:name=".private_inventmanage_AddInData_Alertdialog"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
+
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
