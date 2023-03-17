@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
     private ArrayList fragmentList;
     private TabLayout tabLayout;
     //实例化对象名要改
-    private AuthorityManagement AuthorityManagement=new AuthorityManagement();
+    private SystemUserLog SystemUserLog=new SystemUserLog();
     private UserManagement UserManagement=new UserManagement();
     private ProductData PatrolManagement=new ProductData();
     private List<String> mTitles;
@@ -50,10 +50,10 @@ public class HomeFragment extends Fragment {
         fragmentList=new ArrayList<>();
         mTitles=new ArrayList<>();
         //PatrolManagement要改，几个二级功能就添加几次
-        AuthorityManagement.setFlag(flag_in);
+        SystemUserLog.setFlag(flag_in);
         UserManagement.setFlag(flag_in);
         PatrolManagement.setFlag(flag_in);
-        fragmentList.add(AuthorityManagement);
+        fragmentList.add(SystemUserLog);
         fragmentList.add(UserManagement);
         fragmentList.add(PatrolManagement);
         //title不止一个字符时，还要添加title[1]、title[2]等

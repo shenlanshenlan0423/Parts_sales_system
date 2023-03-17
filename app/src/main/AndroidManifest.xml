@@ -72,6 +72,10 @@
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
+            android:name=".public_BasicSetting_UserManagement_SystemUserLog_SetData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
             android:name=".private_InventManageActivity"
             android:exported="false"
             android:label="@string/title_activity_invent"/>

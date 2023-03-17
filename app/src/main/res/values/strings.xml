@@ -44,7 +44,13 @@
 
     <string name="user">系统用户：</string>
     <string name="phone">手机号码：</string>
-
+    <!--系统用户日志-->
+    <string name="UserOperateLogCodeID">操作日志编码ID：</string>
+    <string name="UserOperIP">用户操作IP：</string>
+    <string name="UserOperLogDes">用户操作描述：</string>
+    <string name="UserOperSource">用户操作来源：</string>
+    <string name="UserOperName">用户操作名称：</string>
+    <string name="UserOperType">用户操作类型：</string>
     <!--库存管理-->
     <string name="submit">提交</string>
     <!--使用单位列表-->

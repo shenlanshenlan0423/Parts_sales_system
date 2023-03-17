@@ -37,10 +37,7 @@ import java.util.List;
 
 //入库管理界面
 public class UserManagement extends Fragment {
-    public TextView add;
-    public TextView del;
-    public TextView set;
-    Button manage;
+    public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
     Boolean mflag;
     public boolean mIsFromItem = false;
     ListView listView;
@@ -55,22 +52,25 @@ public class UserManagement extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.activity_public_basic_setting_user_management,container,false);
+        View view=inflater.inflate(R.layout.activity_public_basic_setting_usermanagement,container,false);
         add=view.findViewById(R.id.add);
-        add.setOnClickListener(new Add());
+        add.setOnClickListener(new UserManagement.Add());
         del=view.findViewById(R.id.del);
-        del.setOnClickListener(new Del());
-        set=view.findViewById(R.id.set);
+        del.setOnClickListener(new UserManagement.Del());
+        if (mflag){
+            del.setEnabled(true);
+        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
                 intent.putExtra("flag",mflag);
+                intent.putExtra("page",0);
                 startActivity(intent);
             }
         });
-//        System.out.println(mflag);
         if (mflag==null){mflag=false;}
         initList(mflag,view);
         return view;
