@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.public_use_management;
+package com.example.parts_sales_system.ui.private_use_management;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +17,12 @@ import android.widget.SimpleAdapter;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.parts_sales_system.private_UseManagementActivity;
+import com.example.parts_sales_system.private_UseManagement_PatrolManagement_PatrolList_AddData;
+import com.example.parts_sales_system.private_UseManagement_PatrolManagement_PatrolList_SetData;
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
-import com.example.parts_sales_system.public_UseManagementActivity;
-import com.example.parts_sales_system.public_UseManagement_InstManagement_RPList_AddData;
-import com.example.parts_sales_system.public_UseManagement_InstManagement_RPList_SetData;
 import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
 
 import org.json.JSONArray;
@@ -33,11 +33,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class InstManagement extends Fragment {
+public class PatrolManagement extends Fragment {
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
     Boolean mflag=false;
     //外键的数组名要改
-    private String[] BuildInstiCodeIDStringArray;
+    private String[] BuildRecordCodeIDStringArray;
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
@@ -46,7 +46,7 @@ public class InstManagement extends Fragment {
     List<HashMap<String, Object>> data;
     List<String> ID;
     //实例化的对象要改
-    public InstManagement(){}
+    public PatrolManagement(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
@@ -54,7 +54,7 @@ public class InstManagement extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         getFKData();
         //布局文件要改
-        View view=inflater.inflate(R.layout.activity_public_use_management_inst_management,container,false);
+        View view=inflater.inflate(R.layout.activity_private_use_management_patrol_management,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
@@ -67,7 +67,7 @@ public class InstManagement extends Fragment {
             @Override
             public void onClick(View v) {
                 //跳转的Activity要改
-                Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
+                Intent intent=new Intent(getActivity(), private_UseManagementActivity.class);
                 intent.putExtra("flag",mflag);
                 intent.putExtra("page",0);
                 startActivity(intent);
@@ -81,10 +81,10 @@ public class InstManagement extends Fragment {
         @Override
         public void onClick(View view){
             //跳转的AddActivity要改
-            Intent intent=new Intent(getActivity(), public_UseManagement_InstManagement_RPList_AddData.class);
+            Intent intent=new Intent(getActivity(), private_UseManagement_PatrolManagement_PatrolList_AddData.class);
             Bundle bundle=new Bundle();
             //外键的数组名要改
-            bundle.putSerializable("array",BuildInstiCodeIDStringArray);
+            bundle.putSerializable("array",BuildRecordCodeIDStringArray);
             intent.putExtra("page",0);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -94,14 +94,14 @@ public class InstManagement extends Fragment {
     private class Del implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            for (int i = 0; i<cbx_Adapter.index.size(); i++){
+            for (int i=0;i<cbx_Adapter.index.size();i++){
                 String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             //访问的数据库表名要改
-                            delData.delData("MFJUse", "{\"ID\":\"" + id + "\"}");
+                            delData.delData("MFJXunJian", "{\"ID\":\"" + id + "\"}");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -109,7 +109,7 @@ public class InstManagement extends Fragment {
                 }).start();
             }
             //跳转的AddActivity要改
-            Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
+            Intent intent=new Intent(getActivity(),private_UseManagementActivity.class);
             intent.putExtra("page",0);
             startActivity(intent);
         }
@@ -131,8 +131,8 @@ public class InstManagement extends Fragment {
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_use_management_uselist_item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","InstaCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.InstaCodeID});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.private_use_management_patrolrecordlist_item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","PatrolRecordCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.PatrolRecordCodeID});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -142,7 +142,7 @@ public class InstManagement extends Fragment {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         //跳转的SetActivity要改
-                        Intent intent=new Intent(getActivity(), public_UseManagement_InstManagement_RPList_SetData.class);
+                        Intent intent=new Intent(getActivity(), private_UseManagement_PatrolManagement_PatrolList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -156,7 +156,7 @@ public class InstManagement extends Fragment {
                 public void run() {
                     try{
                         //访问的数据库表名和字段要改
-                        JSONArray jsonArray= getData.getData("MFJUse","");
+                        JSONArray jsonArray= getData.getData("MFJXunJian","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
@@ -166,11 +166,11 @@ public class InstManagement extends Fragment {
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("InstaCodeID",jsonObject.getString("ID"));
+                            item.put("PatrolRecordCodeID",jsonObject.getString("ID"));
                             item.put("MFJUseID",jsonObject.getString("MFJUseID"));
-                            item.put("MFJUseDate",jsonObject.getString("MFJUseDate"));
-                            item.put("MFJUseCont",jsonObject.getString("MFJUseCont"));
-                            item.put("MFJUseUser",jsonObject.getString("MFJUseUser"));
+                            item.put("MFJXunJianDate",jsonObject.getString("MFJXunJianDate"));
+                            item.put("MFJXunJianCont",jsonObject.getString("MFJXunJianCont"));
+                            item.put("MFJXunJianUser",jsonObject.getString("MFJXunJianUser"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -206,7 +206,7 @@ public class InstManagement extends Fragment {
                 public void run() {
                     try{
                         //访问的数据库表名和字段要改
-                        JSONArray jsonArray= getData.getData("MFJUse","");
+                        JSONArray jsonArray= getData.getData("MFJXunJian","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
@@ -216,11 +216,11 @@ public class InstManagement extends Fragment {
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("InstaCodeID",jsonObject.getString("ID"));
+                            item.put("PatrolRecordCodeID",jsonObject.getString("ID"));
                             item.put("MFJUseID",jsonObject.getString("MFJUseID"));
-                            item.put("MFJUseDate",jsonObject.getString("MFJUseDate"));
-                            item.put("MFJUseCont",jsonObject.getString("MFJUseCont"));
-                            item.put("MFJUseUser",jsonObject.getString("MFJUseUser"));
+                            item.put("MFJXunJianDate",jsonObject.getString("MFJXunJianDate"));
+                            item.put("MFJXunJianCont",jsonObject.getString("MFJXunJianCont"));
+                            item.put("MFJXunJianUser",jsonObject.getString("MFJXunJianUser"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -243,12 +243,12 @@ public class InstManagement extends Fragment {
             model.setSt(String.valueOf(i));
             model.setIscheck(false);
             models.add(model);
-            //这里的InstaCodeID也要改成表中的主键
-            ID.add((String) data.get(i).get("InstaCodeID"));
+            //这里的PatrolRecordCodeID也要改成表中的主键
+            ID.add((String) data.get(i).get("PatrolRecordCodeID"));
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new RequirementManagement.AllCheckListener() {
+        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 if (!b && !mMainCkb.isChecked()) {
@@ -306,14 +306,14 @@ public class InstManagement extends Fragment {
                     int jsonArrayOrderIDlength = jdataUseDeptID.length();
                     //字符串数组,用于存储目标字段的全部可取值
                     //先加1是为了写进固定的测试例子
-                    String[] BuildInstiCodeIDString = new String[jsonArrayOrderIDlength+1];
+                    String[] BuildRecordCodeIDString = new String[jsonArrayOrderIDlength+1];
                     for (int i=0;i<jsonArrayOrderIDlength;i++){
                         JSONObject SubjsonObject = jdataUseDeptID.getJSONObject(i);
-                        BuildInstiCodeIDString[i] = SubjsonObject.getString("ID");
+                        BuildRecordCodeIDString[i] = SubjsonObject.getString("ID");
                     }
                     //固定的测试例子
-                    BuildInstiCodeIDString[jsonArrayOrderIDlength] = "20230306110908984";
-                    BuildInstiCodeIDStringArray = BuildInstiCodeIDString;
+                    BuildRecordCodeIDString[jsonArrayOrderIDlength] = "20230306110908984";
+                    BuildRecordCodeIDStringArray = BuildRecordCodeIDString;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

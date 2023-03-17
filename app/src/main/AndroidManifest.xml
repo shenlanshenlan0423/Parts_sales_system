@@ -12,7 +12,23 @@
         <activity
             android:name=".private_StatisticsAnalyzeActivity"
             android:exported="false"
-            android:label="统计分析"/>
+            android:label="统计分析">
+        </activity>
+        <activity
+            android:name=".public_UseManagementActivity"
+            android:exported="false"
+            android:label="@string/title_activity_UseManagement">
+        </activity>
+        <activity
+            android:name=".public_UseManagement_FeedBackManagement_LiveFeedBackList_SetData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
+        <activity
+            android:name=".public_UseManagement_FeedBackManagement_LiveFeedBackList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
         <activity
             android:name=".public_FinancialManagementActivity"
             android:exported="false"

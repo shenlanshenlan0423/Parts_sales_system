@@ -1,4 +1,4 @@
-package com.example.parts_sales_system.ui.use_management;
+package com.example.parts_sales_system.ui.private_use_management;
 
 import android.content.Context;
 import android.view.LayoutInflater;

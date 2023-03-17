@@ -24,16 +24,14 @@ public class public_MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-
+    private Button BasicConfigurationButton, PublicUseManagementButton, FinancialManagementButton, StatisticsAnalyzeButton, PrivateUseManagementButton, InventManagementButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //使用binding就不用findViewByID了
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Button InventManagementButton,StatisticsAnalyzeButton;
         //公共功能和私有功能的按钮声明
-        Button  BasicConfigurationButton, FinancialManagementButton, UseManagementButton;
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +54,10 @@ public class public_MainActivity extends AppCompatActivity {
 
         BasicConfigurationButton = findViewById(R.id.BasicConfigurationButton);
         BasicConfigurationButton.setOnClickListener(new BasicSetting());
-        UseManagementButton = findViewById(R.id.PrivateUseManagementButton);
-        UseManagementButton.setOnClickListener(new UseManagement());
+        PublicUseManagementButton = findViewById(R.id.PublicUseManagementButton);
+        PublicUseManagementButton.setOnClickListener(new PublicUseManagement());
+        PrivateUseManagementButton = findViewById(R.id.PrivateUseManagementButton);
+        PrivateUseManagementButton.setOnClickListener(new PrivateUseManagement());
         FinancialManagementButton = findViewById(R.id.FinancialManagementButton);
         FinancialManagementButton.setOnClickListener(new FinancialManagement());
         InventManagementButton=findViewById(R.id.InventoryManagementButton);
@@ -99,6 +99,15 @@ public class public_MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+    //共有使用管理跳转方法
+    private class PublicUseManagement implements View.OnClickListener{
+        Intent intent;
+        @Override
+        public void onClick(View view) {
+            intent = new Intent(public_MainActivity.this, public_UseManagementActivity.class);
+            startActivity(intent);
+        }
+    }
     //财务管理的跳转方法
     private class FinancialManagement implements View.OnClickListener{
         Intent intent;
@@ -109,7 +118,7 @@ public class public_MainActivity extends AppCompatActivity {
         }
     }
     //使用管理的跳转方法
-    private class UseManagement implements View.OnClickListener{
+    private class PrivateUseManagement implements View.OnClickListener{
         Intent intent;
         @Override
         public void onClick(View view) {

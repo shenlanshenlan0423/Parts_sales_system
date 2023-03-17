@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.parts_sales_system.ui.use_management.HomeFragment;
+import com.example.parts_sales_system.ui.private_use_management.HomeFragment;
 
 public class private_UseManagementActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
