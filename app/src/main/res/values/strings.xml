@@ -105,6 +105,14 @@
     <string name="title_activity_UseManagement">使用管理</string>
     <string name="PatrolManagement">巡检管理</string>
     <string name="PatrolRecordCodeID">巡检记录编码ID：</string>
+    <!--现场反馈列表-->
+    <string name="FeedBackCodeID">反馈编码ID：</string>
+    <string name="FeedBackMFJState">反馈密封件状态：</string>
+    <string name="FeedBackMFJNumber">反馈密封件数量：</string>
+    <string name="FeedBackDes">反馈描述：</string>
+    <string name="FeedBackType">反馈类型：</string>
+    <string name="FeedBackSource">反馈来源：</string>
+
     <string name="InManagement">入库管理</string>
     <string name="Add">添加</string>
     <string name="Del">删除</string>
