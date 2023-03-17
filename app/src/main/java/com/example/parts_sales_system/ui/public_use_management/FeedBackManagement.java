@@ -67,7 +67,7 @@ public class FeedBackManagement extends Fragment {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
                 intent.putExtra("flag",mflag);
-                intent.putExtra("page",2);
+                intent.putExtra("page",4);
                 startActivity(intent);
             }
         });
@@ -84,7 +84,7 @@ public class FeedBackManagement extends Fragment {
             //外键的数组名要改
             bundle.putSerializable("array1",UserCodeIDStringArray);
             bundle.putSerializable("array2",MFJIDStringArray);
-            intent.putExtra("page",2);
+            intent.putExtra("page",4);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -110,7 +110,7 @@ public class FeedBackManagement extends Fragment {
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
-            intent.putExtra("page",2);
+            intent.putExtra("page",4);
             startActivity(intent);
         }
     }

@@ -93,7 +93,7 @@ public class public_UseManagement_FeedBackManagement_LiveFeedBackList_SetData ex
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_FeedBackManagement_LiveFeedBackList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",2);
+                    intent.putExtra("page",4);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
@@ -115,12 +115,12 @@ public class public_UseManagement_FeedBackManagement_LiveFeedBackList_SetData ex
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_FeedBackManagement_LiveFeedBackList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",2);
+                    intent.putExtra("page",4);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
                     intent=new Intent(public_UseManagement_FeedBackManagement_LiveFeedBackList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",2);
+                    intent.putExtra("page",4);
                     startActivity(intent);
                     break;
             }

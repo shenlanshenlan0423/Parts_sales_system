@@ -134,7 +134,7 @@ public class SystemUserList extends Fragment {
                     }
                     //最后一个字段名和对应的布局对象要改
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_basic_setting_systemuserlist_item,
-                            new String[]{"itemNumber","ID","UserNo","UserName","UserTel","UserStatus"}, new int[]{R.id.itemNumber,R.id.userID,R.id.userNumber,R.id.user,R.id.phone,R.id.usertype});
+                            new String[]{"itemNumber","UserCodeID","UserNo","UserName","UserTel","UserStatus"}, new int[]{R.id.itemNumber,R.id.userID,R.id.userNumber,R.id.user,R.id.phone,R.id.usertype});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }

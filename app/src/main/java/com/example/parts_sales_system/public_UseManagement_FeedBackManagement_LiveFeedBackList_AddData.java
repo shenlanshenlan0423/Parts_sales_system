@@ -73,7 +73,7 @@ public class public_UseManagement_FeedBackManagement_LiveFeedBackList_AddData ex
                     e.printStackTrace();
                 }
                 intent=new Intent(public_UseManagement_FeedBackManagement_LiveFeedBackList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",2);
+                intent.putExtra("page",4);
                 startActivity(intent);
             }
         });
@@ -82,7 +82,7 @@ public class public_UseManagement_FeedBackManagement_LiveFeedBackList_AddData ex
             @Override
             public void onClick(View view) {
                 intent=new Intent(public_UseManagement_FeedBackManagement_LiveFeedBackList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",2);
+                intent.putExtra("page",4);
                 startActivity(intent);
             }
         });
