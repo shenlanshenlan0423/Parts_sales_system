@@ -48,7 +48,7 @@ public class DateAdapter extends BaseAdapter
         sys_day = sysDate.split("-")[2];
     }
 
-    public DateAdapter(Context context, int year_c, int month_c, int week_c,boolean isStart) {
+    public DateAdapter(Context context, int year_c, int month_c, int week_c, boolean isStart) {
         this();
         this.context = context;
         this.isStart = isStart;
@@ -72,8 +72,16 @@ public class DateAdapter extends BaseAdapter
         }
         return clickTemp;
     }
-
-
+    public int getDayPosition(String year,String month,String day){
+        int Week = sc.getWeekDayOfLastMonth(Integer.parseInt(year),
+                Integer.parseInt(month), Integer.parseInt(day));
+        if (Week == 7) {
+            clickTemp = 0;
+        } else {
+            clickTemp = Week;
+        }
+        return clickTemp;
+    }
     public int getCurrentMonth(int position) {
         int thisDayOfWeek = sc.getWeekdayOfMonth(Integer.parseInt(currentYear),
                 Integer.parseInt(currentMonth));
@@ -145,26 +153,6 @@ public class DateAdapter extends BaseAdapter
 
     public String[] getDayNumbers() {
         return dayNumber;
-    }
-
-
-    public int getWeeksOfMonth() {
-
-        int preMonthRelax = 0;
-        if (dayOfWeek != 7) {
-            preMonthRelax = dayOfWeek;
-        }
-        if ((daysOfMonth + preMonthRelax) % 7 == 0) {
-            weeksOfMonth = (daysOfMonth + preMonthRelax) / 7;
-        } else {
-            weeksOfMonth = (daysOfMonth + preMonthRelax) / 7 + 1;
-        }
-        return weeksOfMonth;
-    }
-
-
-    public void getDayInWeek(int year, int month) {
-
     }
 
     @Override

@@ -1,13 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/ll_week"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -67,11 +68,45 @@
 
     <TextView
         android:id="@+id/tv_date"
-        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fast_jumpto"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="2014年5月6日" />
+
+    <LinearLayout
+        android:id="@+id/fast_jumpto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/flipper1"
-        android:gravity="center"
-        android:text="2014年5月6日" />
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/jump"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/picChart"
+        android:layout_marginTop="0dp"
+        android:divider="@null"
+        android:dividerHeight="15dp" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/picChart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/tv_date"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp" />
 
 </RelativeLayout>
