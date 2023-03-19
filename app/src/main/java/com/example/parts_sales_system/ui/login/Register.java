@@ -38,15 +38,15 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Toast toast=Toast.makeText(getApplicationContext(),"start",Toast.LENGTH_LONG);
         toast.show();
-        
-        companySpinner =(Spinner)findViewById(R.id.company); 
+
+        companySpinner =(Spinner)findViewById(R.id.company);
         register=(Button)findViewById(R.id.register);
         login=(Button)findViewById(R.id.login);
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
         confirm_password=findViewById(R.id.confirm_password);
         final Intent[] intent = new Intent[1];
-        
+
         //写入已有单位
         getJsonArrayData();
         //返回登录
@@ -85,8 +85,8 @@ public class Register extends AppCompatActivity {
                     register.setEnabled(username.getText().toString() != null&&password.getText().toString() != null);
                     return;
                 }else{
-                Toast toast5=Toast.makeText(getApplicationContext(),"确认密码是否相同",Toast.LENGTH_LONG);
-                toast5.show();}
+                    Toast toast5=Toast.makeText(getApplicationContext(),"确认密码是否相同",Toast.LENGTH_LONG);
+                    toast5.show();}
             }
         });
 
@@ -110,8 +110,6 @@ public class Register extends AppCompatActivity {
                 String jsonObjectstring = String.valueOf(jsonObject);
                 //调用新增方法
                 addJsonArrayData(jsonObjectstring);
-                Toast toast4=Toast.makeText(getApplicationContext(),"addright",Toast.LENGTH_LONG);
-                toast4.show();
                 //登录界面
                 intent[0] = new Intent(Register.this, public_MainActivity.class);
                 startActivity(intent[0]);
@@ -127,7 +125,7 @@ public class Register extends AppCompatActivity {
                 try {
                     jsonArray = getData.getData("UseDept","");//此处不需要按条件查询，返回全表信息即可
                 } catch (Exception e) {
-                    Toast toast2=Toast.makeText(getApplicationContext(),"wrong",Toast.LENGTH_LONG);
+                    Toast toast2=Toast.makeText(getApplicationContext(),"数据库连接失败",Toast.LENGTH_LONG);
                     toast2.show();
                     e.printStackTrace();
                 }
@@ -148,12 +146,12 @@ public class Register extends AppCompatActivity {
     void addJsonArrayData(String jsonObjectstring){
         new Thread(new Runnable(){
             @Override
-         public void run() {
+            public void run() {
                 try {
                     addData.addData("User",jsonObjectstring);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast toast3=Toast.makeText(getApplicationContext(),"addwrong",Toast.LENGTH_LONG);
+                    Toast toast3=Toast.makeText(getApplicationContext(),"成功注册",Toast.LENGTH_LONG);
                     toast3.show();
                 }
             }
