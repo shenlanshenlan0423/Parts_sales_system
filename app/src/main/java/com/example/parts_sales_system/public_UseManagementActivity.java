@@ -35,7 +35,6 @@ public class public_UseManagementActivity extends AppCompatActivity {
         }
         if(flag_out==false){
             homeFragment.setFlagout(true);
-
         }
         else{
             homeFragment.setFlagout(false);
@@ -43,7 +42,6 @@ public class public_UseManagementActivity extends AppCompatActivity {
         homeFragment.setpage(page);
         transaction.add(R.id.fragment_container, homeFragment);
         transaction.commit();
-
     }
     //禁止侧滑返回方法
     @Override
