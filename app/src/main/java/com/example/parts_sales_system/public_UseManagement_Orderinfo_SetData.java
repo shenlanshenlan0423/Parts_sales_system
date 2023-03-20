@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.parts_sales_system.data.api_connection.addData;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.modifyData;
 
@@ -21,17 +24,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
-
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJUseYuJingID,MFJUseID;
-    private EditText MFJUseYuJingDate,MFJUseYuJingStatus,MFJUseYuJingDes;
+public class public_UseManagement_Orderinfo_SetData extends Activity {
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,ID,MFJOrderID,MFJID;
+    private EditText MFJOrderDetShu,MFJOrderDetPrise,MFJOrderDetDes,MFJOrderDetShuShou;
     private Button modify_button,del_button,close_button;
-    private String MFJUseYuJingID_str,MFJUseID_str,MFJUseYuJingDate_str,MFJUseYuJingStatus_str,MFJUseYuJingDes_str;
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_public_use_management_use_alert_set_data_alert_dialog);
+        setContentView(R.layout.activity_public_use_management_orderinfo_set_data);
         HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
         CreateBy=findViewById(R.id.CreateBy);
         CreateBy.setText((String)data.get("CreateBy"));
@@ -41,17 +42,20 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
         UpdateBy.setText((String)data.get("UpdateBy"));
         UpdateDateTime=findViewById(R.id.UpdateDateTime);
         UpdateDateTime.setText((String)data.get("UpdateDateTime"));
-        MFJUseYuJingID=findViewById(R.id.MFJUseYuJingID);
-        MFJUseYuJingID.setText((String)data.get("ID"));
-        MFJUseID = findViewById(R.id.MFJUseID);
-        MFJUseID.setText((String)data.get("MFJUseID"));
-        MFJUseYuJingDate=findViewById(R.id.MFJUseYuJingDate);
-        MFJUseYuJingDate.setText((String)data.get("MFJUseYuJingDate"));
-        MFJUseYuJingStatus=findViewById(R.id.MFJUseYuJingStatus);
-        MFJUseYuJingStatus.setText((String)data.get("MFJUseYuJingStatus"));
-        MFJUseYuJingDes=findViewById(R.id.MFJUseYuJingDes);
-        MFJUseYuJingDes.setText((String)data.get("MFJUseYuJingDes"));
-
+        ID=findViewById(R.id.ID);
+        ID.setText((String)data.get("ID"));
+        MFJOrderID=findViewById(R.id.MFJOrderID);
+        MFJOrderID.setText((String)data.get("MFJOrderID"));
+        MFJID=findViewById(R.id.MFJID);
+        MFJID.setText((String)data.get("MFJID"));
+        MFJOrderDetShu=findViewById(R.id.MFJOrderDetShu);
+        MFJOrderDetShu.setText((String)data.get("MFJOrderDetShu"));
+        MFJOrderDetPrise=findViewById(R.id.MFJOrderDetPrise);
+        MFJOrderDetPrise.setText((String)data.get("MFJOrderDetPrise"));
+        MFJOrderDetDes=findViewById(R.id.MFJOrderDetDes);
+        MFJOrderDetDes.setText((String)data.get("MFJOrderDetDes"));
+        MFJOrderDetShuShou=findViewById(R.id.MFJOrderDetShuShou);
+        MFJOrderDetShuShou.setText((String)data.get("MFJOrderDetShuShou"));
         modify_button=findViewById(R.id.modify_info);
         modify_button.setOnClickListener(new buttonClick());
         del_button=findViewById(R.id.del_info);
@@ -59,17 +63,6 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
         close_button = findViewById(R.id.close_item);
         close_button.setOnClickListener(new buttonClick());
 
-    }
-
-    //禁止侧滑返回方法
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
-            return false;
-        }else {
-            return super.onKeyDown(keyCode, event);
-        }
     }
     public class buttonClick implements  View.OnClickListener{
         @Override
@@ -79,15 +72,11 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
-                    MFJUseYuJingID_str= String.valueOf(MFJUseYuJingID.getText());
-                    MFJUseID_str= String.valueOf(MFJUseID.getText());
-                    MFJUseYuJingDate_str=String.valueOf(MFJUseYuJingDate.getText());
-                    MFJUseYuJingStatus_str=String.valueOf(MFJUseYuJingStatus.getText());
-                    MFJUseYuJingDes_str=String.valueOf(MFJUseYuJingDes.getText());
                     try {
-                        jsonObject.put("ID",MFJUseYuJingID_str).put("MFJUseID",MFJUseID_str)
-                                .put("MFJUseYuJingDate",MFJUseYuJingDate_str).put("MFJUseYuJingStatus",MFJUseYuJingStatus_str)
-                                .put("MFJUseYuJingDes",MFJUseYuJingDes_str);
+                        jsonObject.put("ID",String.valueOf(ID.getText())).put("MFJOrderID",MFJOrderID.getText().toString())
+                                .put("MFJID",MFJID.getText().toString())
+                                .put("",MFJOrderDetShu.getText().toString()).put("MFJOrderDetPrise",MFJOrderDetPrise.getText().toString())
+                                .put("MFJOrderDetDes",MFJOrderDetDes.getText().toString()).put("MFJOrderDetShuShou",MFJOrderDetShuShou.getText().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -97,19 +86,19 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
                         @Override
                         public void run() {
                             try {
-                                modifyData.modifyData("MJFUseYuJing",jsonObjectstring);
+                                modifyData.modifyData("MFJOrderDet",jsonObjectstring);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_UseAlertSetData_AlertDialog.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",3);
+                    intent=new Intent(public_UseManagement_Orderinfo_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",1);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
                     try {
-                        jsonObject.put("ID",String.valueOf(MFJUseYuJingID.getText()));
+                        jsonObject.put("ID",String.valueOf(ID.getText()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -119,22 +108,31 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
                         @Override
                         public void run() {
                             try {
-                                delData.delData("MFJUseYuJing",jsonObjectstring);
+                                delData.delData("MFJOrderDet",jsonObjectstring);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_UseAlertSetData_AlertDialog.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",3);
+                    intent=new Intent(public_UseManagement_Orderinfo_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",1);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
-                    intent=new Intent(public_UseManagement_UseAlertSetData_AlertDialog.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",3);
+                    intent=new Intent(public_UseManagement_Orderinfo_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",1);
                     startActivity(intent);
                     break;
             }
+        }
+    }//禁止侧滑返回方法
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Toast.makeText(this, "当前页面禁止侧滑返回", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
         }
     }
 }

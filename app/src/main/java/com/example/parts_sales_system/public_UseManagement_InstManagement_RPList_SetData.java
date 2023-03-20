@@ -101,6 +101,7 @@ public class public_UseManagement_InstManagement_RPList_SetData extends Activity
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_InstManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",2);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
@@ -122,10 +123,12 @@ public class public_UseManagement_InstManagement_RPList_SetData extends Activity
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_InstManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",2);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
                     intent=new Intent(public_UseManagement_InstManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",2);
                     startActivity(intent);
                     break;
             }

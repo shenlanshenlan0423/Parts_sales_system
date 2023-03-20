@@ -15,29 +15,53 @@ import com.example.parts_sales_system.ui.public_use_management.HomeFragment;
 
 public class public_UseManagementActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
-    Boolean flag;
-    Boolean flag_out;
+    Boolean flag_replan;
+    Boolean flag_orinfo;
+    Boolean flag_instpro;
+    Boolean flag_usealert;
+    Boolean flag_feedback;
     int page;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private_use_management);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        flag=getIntent().getBooleanExtra("flag",true);
-        flag_out=getIntent().getBooleanExtra("flag_out",true);
+        flag_replan=getIntent().getBooleanExtra("flag_replan",true);
+        flag_orinfo=getIntent().getBooleanExtra("flag_orinfo",true);
+        flag_instpro=getIntent().getBooleanExtra("flag_instpro",true);
+        flag_usealert=getIntent().getBooleanExtra("flag_usealert",true);
+        flag_feedback=getIntent().getBooleanExtra("flag_feedback",true);
         page=getIntent().getIntExtra("page",0);
         homeFragment = new HomeFragment();
-        if(flag==false){
-            homeFragment.setFlagin(true);
+        if(flag_replan==false){
+            homeFragment.setFlag_replan(true);
         }
         else {
-            homeFragment.setFlagin(false);
+            homeFragment.setFlag_replan(false);
         }
-        if(flag_out==false){
-            homeFragment.setFlagout(true);
+        if(flag_orinfo==false){
+            homeFragment.setFlag_orinfo(true);
         }
         else{
-            homeFragment.setFlagout(false);
+            homeFragment.setFlag_orinfo(false);
+        }
+        if(flag_instpro==false){
+            homeFragment.setFlag_instpro(true);
+        }
+        else{
+            homeFragment.setFlag_instpro(false);
+        }
+        if(flag_usealert==false){
+            homeFragment.setFlag_usealert(true);
+        }
+        else{
+            homeFragment.setFlag_usealert(false);
+        }
+        if(flag_feedback==false){
+            homeFragment.setFlag_feedback(true);
+        }
+        else{
+            homeFragment.setFlag_feedback(false);
         }
         homeFragment.setpage(page);
         transaction.add(R.id.fragment_container, homeFragment);

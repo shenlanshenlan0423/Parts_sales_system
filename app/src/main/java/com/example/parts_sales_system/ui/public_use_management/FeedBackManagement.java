@@ -35,7 +35,7 @@ import java.util.List;
 
 public class FeedBackManagement extends Fragment {
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
-    Boolean mflag=false;
+    Boolean mflag;
     //外键的数组名要改
     private String[] UserCodeIDStringArray,MFJIDStringArray;
     public boolean mIsFromItem = false;
@@ -57,16 +57,13 @@ public class FeedBackManagement extends Fragment {
         add.setOnClickListener(new FeedBackManagement.Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new FeedBackManagement.Del());
-        if (mflag){
-            del.setEnabled(true);
-        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
-                intent.putExtra("flag",mflag);
+                intent.putExtra("flag_feedback",mflag);
                 intent.putExtra("page",4);
                 startActivity(intent);
             }
@@ -131,8 +128,8 @@ public class FeedBackManagement extends Fragment {
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_use_management_livefeedbacklist_item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","FeedBackCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.FeedBackCodeID});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","FeedBackCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -191,6 +188,7 @@ public class FeedBackManagement extends Fragment {
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
             mMainCkb.setVisibility(View.VISIBLE);
+            del.setEnabled(true);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {

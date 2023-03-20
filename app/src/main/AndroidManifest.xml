@@ -12,9 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parts_sales_system">
         <activity
-            android:name=".public_UseManagement_UseAlertSetData_AlertDialog"
+            android:name=".public_UseManagement_Orderinfo_SetData"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".public_UseManagement_InstManagement_RPList_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".public_UseManagement_InstManagement_RPList_SetData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".public_UseManagement_Orderinfo_AddData"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".public_UseManagement_UseAlertSetData_AlertDialog"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".public_UseManagement_UseAlertAddData_AlertDialog"
             android:exported="false"
@@ -22,43 +38,43 @@
         <activity
             android:name=".private_StatisticsAnalyzeActivity"
             android:exported="false"
-            android:label="统计分析"></activity>
+            android:label="统计分析" />
         <activity
             android:name=".public_UseManagementActivity"
             android:exported="false"
-            android:label="@string/title_activity_UseManagement"></activity>
+            android:label="@string/title_activity_UseManagement" />
         <activity
             android:name=".public_UseManagement_FeedBackManagement_LiveFeedBackList_SetData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".public_UseManagement_FeedBackManagement_LiveFeedBackList_AddData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".public_FinancialManagementActivity"
             android:exported="false"
-            android:label="@string/title_activity_FinancialManagement"></activity>
+            android:label="@string/title_activity_FinancialManagement" />
         <activity
             android:name=".public_FinancialManagement_PaymentManagement_OrderList_SetData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".public_FinancialManagement_PaymentManagement_OrderList_AddData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".private_UseManagementActivity"
             android:exported="false"
-            android:label="@string/title_activity_UseManagement"></activity>
+            android:label="@string/title_activity_UseManagement" />
         <activity
             android:name=".private_UseManagement_PatrolManagement_PatrolList_SetData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".private_UseManagement_PatrolManagement_PatrolList_AddData"
             android:exported="false"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".public_BasicSettingActivity"
             android:exported="false"

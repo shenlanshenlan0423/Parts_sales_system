@@ -86,11 +86,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="信息编码"
+                    android:text="订货单详细编码"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/MFJUseYuJingID"
+                    android:id="@+id/ID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
@@ -102,11 +102,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="安装施工记录编码ID"
+                    android:text="订货单编码ID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/MFJUseID"
+                    android:id="@+id/MFJOrderID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
@@ -118,11 +118,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="使用预警日期"
+                    android:text="密封件编码ID"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/MFJID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订货数量"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MFJUseYuJingDate"
+                    android:id="@+id/MFJOrderDetShu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
@@ -134,11 +150,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="使用预警处理状态"
+                    android:text="订货单价"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MFJUseYuJingStatus"
+                    android:id="@+id/MFJOrderDetPrise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
@@ -150,11 +166,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="使用预警备注"
+                    android:text="订货描述"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MFJUseYuJingDes"
+                    android:id="@+id/MFJOrderDetDes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <TableRow
+                android:layout_margin="@dimen/Main_button_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="到货验收总数"
+                    android:textSize="@dimen/item_detail_text_size"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/MFJOrderDetShuShou"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"

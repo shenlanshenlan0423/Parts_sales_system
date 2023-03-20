@@ -25,16 +25,24 @@ public class HomeFragment extends Fragment {
     private InstManagement InstManagement=new InstManagement();
     private RequirementManagement RequirementManagement=new RequirementManagement();
     private FeedBackManagement FeedBackManagement=new FeedBackManagement();
+    private OrderInfoFragment OrderinfoFragment=new OrderInfoFragment();
+    private UseAlertFragment UseAlertFragment=new UseAlertFragment();
     private List<String> mTitles;
     //title要改
-    private String [] title={"需求管理","安装管理","反馈管理"};
-    Boolean flag_in;
-    Boolean flag_out;
+    private String [] title={"需求计划","订货信息","安装进度","使用预警","反馈管理"};
+    Boolean flag_replan;
+    Boolean flag_orinfo;
+    Boolean flag_instpro;
+    Boolean flag_usealert;
+    Boolean flag_feedback;
     int page;
-    public void setFlagin(Boolean flag){
-        this.flag_in=flag;
+    public void setFlag_replan(Boolean flag){
+        this.flag_replan=flag;
     }
-    public void setFlagout(Boolean flag){this.flag_out=flag;}
+    public void setFlag_orinfo(Boolean flag){this.flag_orinfo=flag;}
+    public void setFlag_instpro(Boolean flag){this.flag_instpro=flag;}
+    public void setFlag_usealert(Boolean flag){this.flag_usealert=flag;}
+    public void setFlag_feedback(Boolean flag){this.flag_feedback=flag;}
     public void setpage(int page){this.page=page;}
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
@@ -50,17 +58,22 @@ public class HomeFragment extends Fragment {
         fragmentList=new ArrayList<>();
         mTitles=new ArrayList<>();
         //PatrolManagement要改，几个二级功能就添加几次
-        InstManagement.setFlag(flag_in);
-        RequirementManagement.setFlag(flag_in);
-        FeedBackManagement.setFlag(flag_in);
-        fragmentList.add(InstManagement);
+        InstManagement.setFlag(flag_instpro);
+        RequirementManagement.setFlag(flag_replan);
+        FeedBackManagement.setFlag(flag_feedback);
+        OrderinfoFragment.setFlag(flag_orinfo);
+        UseAlertFragment.setFlag(flag_usealert);
         fragmentList.add(RequirementManagement);
+        fragmentList.add(OrderinfoFragment);
+        fragmentList.add(InstManagement);
+        fragmentList.add(UseAlertFragment);
         fragmentList.add(FeedBackManagement);
         //title不止一个字符时，还要添加title[1]、title[2]等
         mTitles.add(title[0]);
         mTitles.add(title[1]);
         mTitles.add(title[2]);
-
+        mTitles.add(title[3]);
+        mTitles.add(title[4]);
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles);
         pager.setAdapter(fragmentAdapter);
         tabLayout.setupWithViewPager(pager);//与ViewPage建立关系

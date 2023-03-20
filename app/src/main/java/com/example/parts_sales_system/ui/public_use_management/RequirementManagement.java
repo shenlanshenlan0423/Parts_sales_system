@@ -35,9 +35,9 @@ import java.util.List;
 
 public class RequirementManagement extends Fragment{
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
-    Boolean mflag=false;
+    Boolean mflag;
     //外键的数组名要改
-    private String[] BuildPlanningCodeIDStringArray;
+    private String[] MFJIDStringArray;
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
@@ -59,16 +59,13 @@ public class RequirementManagement extends Fragment{
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
-        if (mflag){
-            del.setEnabled(true);
-        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
-                intent.putExtra("flag",mflag);
+                intent.putExtra("flag_replan",mflag);
                 intent.putExtra("page",0);
                 startActivity(intent);
             }
@@ -84,7 +81,7 @@ public class RequirementManagement extends Fragment{
             Intent intent=new Intent(getActivity(), public_UseManagement_RequirementManagement_RPList_AddData.class);
             Bundle bundle=new Bundle();
             //外键的数组名要改
-            bundle.putSerializable("array",BuildPlanningCodeIDStringArray);
+            bundle.putSerializable("array",MFJIDStringArray);
             intent.putExtra("page",0);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -131,8 +128,8 @@ public class RequirementManagement extends Fragment{
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_use_management_rpllist_item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","Requirement_PlanningCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.Requirement_PlanningCodeID});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","ID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -166,11 +163,10 @@ public class RequirementManagement extends Fragment{
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("Requirement_PlanningCodeID",jsonObject.getString("ID"));
-                            item.put("MFJUseID",jsonObject.getString("MFJUseID"));
-                            item.put("MFJXuQiuDate",jsonObject.getString("MFJXuQiuDate"));
-                            item.put("MFJXuQiuCont",jsonObject.getString("MFJXuQiuCont"));
-                            item.put("MFJXuQiuUser",jsonObject.getString("MFJXuQiuUser"));
+                            item.put("ID",jsonObject.getString("ID"));
+                            item.put("MFJXuQiuNum",jsonObject.getString("MFJXuQiuNum"));
+                            item.put("MFJXuQiuTime",jsonObject.getString("MFJXuQiuTime"));
+                            item.put("MFJXuQiuDes",jsonObject.getString("MFJXuQiuDes"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -187,6 +183,7 @@ public class RequirementManagement extends Fragment{
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
             mMainCkb.setVisibility(View.VISIBLE);
+            del.setEnabled(true);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -216,11 +213,10 @@ public class RequirementManagement extends Fragment{
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("Requirement_PlanningCodeID",jsonObject.getString("ID"));
-                            item.put("MFJUseID",jsonObject.getString("MFJUseID"));
-                            item.put("MFJXuQiuDate",jsonObject.getString("MFJXuQiuDate"));
-                            item.put("MFJXuQiuCont",jsonObject.getString("MFJXuQiuCont"));
-                            item.put("MFJXuQiuUser",jsonObject.getString("MFJXuQiuUser"));
+                            item.put("ID",jsonObject.getString("ID"));
+                            item.put("MFJXuQiuNum",jsonObject.getString("MFJXuQiuNum"));
+                            item.put("MFJXuQiuTime",jsonObject.getString("MFJXuQiuTime"));
+                            item.put("MFJXuQiuDes",jsonObject.getString("MFJXuQiuDes"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -244,7 +240,7 @@ public class RequirementManagement extends Fragment{
             model.setIscheck(false);
             models.add(model);
             //这里的PatrolRecordCodeID也要改成表中的主键
-            ID.add((String) data.get(i).get("Requirement_PlanningCodeID"));
+            ID.add((String) data.get(i).get("ID"));
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
@@ -302,7 +298,7 @@ public class RequirementManagement extends Fragment{
                 try {
                     //访问的数据库表名和字段要改
                     //外键需要访问几个表就生成几个StringArray
-                    JSONArray jdataUseDeptID = getData.getData("MFJUse","");
+                    JSONArray jdataUseDeptID = getData.getData("MFJ","");
                     int jsonArrayOrderIDlength = jdataUseDeptID.length();
                     //字符串数组,用于存储目标字段的全部可取值
                     //先加1是为了写进固定的测试例子
@@ -312,8 +308,8 @@ public class RequirementManagement extends Fragment{
                         BuildPlanningCodeIDString[i] = SubjsonObject.getString("ID");
                     }
                     //固定的测试例子
-                    BuildPlanningCodeIDString[jsonArrayOrderIDlength] = "20230306110908984";
-                    BuildPlanningCodeIDStringArray = BuildPlanningCodeIDString;
+                    BuildPlanningCodeIDString[jsonArrayOrderIDlength] = "2023030608292429243";
+                    MFJIDStringArray = BuildPlanningCodeIDString;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

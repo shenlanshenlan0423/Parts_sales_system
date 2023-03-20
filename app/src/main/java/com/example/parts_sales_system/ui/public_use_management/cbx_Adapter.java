@@ -21,7 +21,7 @@ public class cbx_Adapter extends BaseAdapter{
     private RequirementManagement.AllCheckListener allCheckListener;
     private List<HashMap<String, Object>> data_data;
     //需求管理（需求计划列表、订货信息列表）安装管理（安装进度列表、使用预警列表）反馈管理（现场反馈列表）
-    private String creator,creatime,updater,updatetime,Requirement_PlanningCodeID;
+    private String creator,creatime,updater,updatetime,ID;
     public static List index;
     public cbx_Adapter(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, RequirementManagement.AllCheckListener allCheckListener) {
         this.data_data=data_data;
@@ -51,14 +51,14 @@ public class cbx_Adapter extends BaseAdapter{
             hd = new cbx_Adapter.ViewHoder();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             //对应的布局文件要改
-            view = layoutInflater.inflate(R.layout.public_use_management_rpllist_item_cbx, null);
-            hd.itemNumber = view.findViewById(R.id.itemNumber);
+            view = layoutInflater.inflate(R.layout.item_cbx, null);
+            hd.itemNumber = view.findViewById(R.id.text_title);
             hd.creator= view.findViewById(R.id.creator);
             hd.createTime= view.findViewById(R.id.creatTime);
             hd.updater= view.findViewById(R.id.updater);
             hd.updateTime= view.findViewById(R.id.updateTime);
             //PatrolRecordCodeID要改
-            hd.ID= view.findViewById(R.id.Requirement_PlanningCodeID);
+            hd.ID= view.findViewById(R.id.receipts_Id);
             hd.checkBox = view.findViewById(R.id.cbx);
             view.setTag(hd);
         }
@@ -74,8 +74,8 @@ public class cbx_Adapter extends BaseAdapter{
         updatetime=String.valueOf(data_data.get(i).get("UpdateDateTime"));
         hd.updateTime.setText(updatetime);
         //PatrolRecordCodeID要改
-        Requirement_PlanningCodeID=String.valueOf(data_data.get(i).get("Requirement_PlanningCodeID"));
-        hd.ID.setText(Requirement_PlanningCodeID);
+        ID=String.valueOf(data_data.get(i).get("ID"));
+        hd.ID.setText(ID);
         final cbx_Adapter.ViewHoder hdFinal = hd;
         hd.checkBox.setChecked(mModel.ischeck());
         view.setOnClickListener(new View.OnClickListener() {

@@ -22,8 +22,6 @@ import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_UseManagementActivity;
-import com.example.parts_sales_system.public_UseManagement_InstManagement_RPList_AddData;
-import com.example.parts_sales_system.public_UseManagement_InstManagement_RPList_SetData;
 import com.example.parts_sales_system.public_UseManagement_UseAlertAddData_AlertDialog;
 import com.example.parts_sales_system.public_UseManagement_UseAlertSetData_AlertDialog;
 import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
@@ -58,21 +56,18 @@ public class UseAlertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         getFKData();
         //布局文件要改
-        View view=inflater.inflate(R.layout.activity_public_use_management_inst_management,container,false);
+        View view=inflater.inflate(R.layout.public_use_management_use_alert_fragment,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
-        if (mflag){
-            del.setEnabled(true);
-        }
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
-                intent.putExtra("flag",mflag);
+                intent.putExtra("flag_usealert",mflag);
                 intent.putExtra("page",3);
                 startActivity(intent);
             }
@@ -135,8 +130,8 @@ public class UseAlertFragment extends Fragment {
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_use_management_uselist_item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","InstaCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.InstaCodeID});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","ID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -172,9 +167,9 @@ public class UseAlertFragment extends Fragment {
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
                             item.put("ID",jsonObject.getString("ID"));
                             item.put("MFJUseID",jsonObject.getString("MFJUseID"));
-                            item.put("MFJUseDate",jsonObject.getString("MFJUseDate"));
-                            item.put("MFJUseCont",jsonObject.getString("MFJUseCont"));
-                            item.put("MFJUseUser",jsonObject.getString("MFJUseUser"));
+                            item.put("MFJUseYuJingDate",jsonObject.getString("MFJUseYuJingDate"));
+                            item.put("MFJUseYuJingStatus",jsonObject.getString("MFJUseYuJingStatus"));
+                            item.put("MFJUseYuJingDes",jsonObject.getString("MFJUseYuJingDes"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -191,6 +186,7 @@ public class UseAlertFragment extends Fragment {
             listView=view.findViewById(R.id.listView);
             mMainCkb = (CheckBox) view.findViewById(R.id.checkAllBox);
             mMainCkb.setVisibility(View.VISIBLE);
+            del.setEnabled(true);
             Handler mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
@@ -210,7 +206,7 @@ public class UseAlertFragment extends Fragment {
                 public void run() {
                     try{
                         //访问的数据库表名和字段要改
-                        JSONArray jsonArray= getData.getData("MFJUse","");
+                        JSONArray jsonArray= getData.getData("MFJUseYuJing","");
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
@@ -220,11 +216,11 @@ public class UseAlertFragment extends Fragment {
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("InstaCodeID",jsonObject.getString("ID"));
+                            item.put("ID",jsonObject.getString("ID"));
                             item.put("MFJUseID",jsonObject.getString("MFJUseID"));
-                            item.put("MFJUseDate",jsonObject.getString("MFJUseDate"));
-                            item.put("MFJUseCont",jsonObject.getString("MFJUseCont"));
-                            item.put("MFJUseUser",jsonObject.getString("MFJUseUser"));
+                            item.put("MFJUseYuJingDate",jsonObject.getString("MFJUseYuJingDate"));
+                            item.put("MFJUseYuJingStatus",jsonObject.getString("MFJUseYuJingStatus"));
+                            item.put("MFJUseYuJingDes",jsonObject.getString("MFJUseYuJingDes"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -248,7 +244,7 @@ public class UseAlertFragment extends Fragment {
             model.setIscheck(false);
             models.add(model);
             //这里的InstaCodeID也要改成表中的主键
-            ID.add((String) data.get(i).get("InstaCodeID"));
+            ID.add((String) data.get(i).get("ID"));
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
@@ -306,18 +302,18 @@ public class UseAlertFragment extends Fragment {
                 try {
                     //访问的数据库表名和字段要改
                     //外键需要访问几个表就生成几个StringArray
-                    JSONArray jdataUseDeptID = getData.getData("MFJUse","");
-                    int jsonArrayOrderIDlength = jdataUseDeptID.length();
+                    JSONArray jdataUseID = getData.getData("MFJUse","");
+                    int jsonArrayUseIDlength = jdataUseID.length();
                     //字符串数组,用于存储目标字段的全部可取值
                     //先加1是为了写进固定的测试例子
-                    String[] MFJUseYuJingIDString = new String[jsonArrayOrderIDlength+1];
-                    for (int i=0;i<jsonArrayOrderIDlength;i++){
-                        JSONObject SubjsonObject = jdataUseDeptID.getJSONObject(i);
-                        MFJUseYuJingIDString [i] = SubjsonObject.getString("ID");
+                    String[] MFJUseIDString = new String[jsonArrayUseIDlength+1];
+                    for (int i=0;i<jsonArrayUseIDlength;i++){
+                        JSONObject SubjsonObject = jdataUseID.getJSONObject(i);
+                        MFJUseIDString [i] = SubjsonObject.getString("ID");
                     }
                     //固定的测试例子
-                    MFJUseYuJingIDString[jsonArrayOrderIDlength] = "20230306110908984";
-                    MFJUseIDStringArray = MFJUseIDStringArray;
+                    MFJUseIDString[jsonArrayUseIDlength] = "2023030608292429243";
+                    MFJUseIDStringArray = MFJUseIDString;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
