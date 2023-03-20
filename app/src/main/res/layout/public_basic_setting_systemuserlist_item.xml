@@ -27,8 +27,7 @@
             android:background="@drawable/corner"
             android:padding="10dip"
             android:layout_marginRight="@dimen/item_margin">
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -42,8 +41,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,8 +55,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,8 +69,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,8 +83,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black" />
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

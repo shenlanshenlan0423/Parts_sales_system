@@ -87,7 +87,7 @@ public class public_BasicSetting_ProductData_MFJList_AddData extends Activity {
                     e.printStackTrace();
                 }
                 intent=new Intent(public_BasicSetting_ProductData_MFJList_AddData.this,public_BasicSettingActivity.class);
-                intent.putExtra("page",2);
+                intent.putExtra("page",3);
                 startActivity(intent);
             }
         });
@@ -96,7 +96,7 @@ public class public_BasicSetting_ProductData_MFJList_AddData extends Activity {
             @Override
             public void onClick(View view) {
                 intent=new Intent(public_BasicSetting_ProductData_MFJList_AddData.this,public_BasicSettingActivity.class);
-                intent.putExtra("page",2);
+                intent.putExtra("page",3);
                 startActivity(intent);
             }
         });
