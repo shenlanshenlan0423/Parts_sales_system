@@ -23,11 +23,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PatrolRecordCodeID"
+                    android:text="@string/MFJID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <Spinner
-                    android:id="@+id/BuildPlanningCodeID"
+                    android:id="@+id/MFJID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
@@ -39,11 +39,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PatrolRecordDate"
+                    android:text="@string/MFJXuQiuNum"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MFJXuQiuate"
+                    android:id="@+id/MFJXuQiuNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
@@ -54,11 +54,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PatrolRecordContent"
+                    android:text="@string/MFJXuQiuTime"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MJFXuQiuCont"
+                    android:id="@+id/MFJXuQiuTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"
@@ -69,11 +69,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PatrolRecordPerson"
+                    android:text="@string/MFJXuQiuDes"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <EditText
-                    android:id="@+id/MJFXuQiuUser"
+                    android:id="@+id/MFJXuQiuDes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"

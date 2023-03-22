@@ -20,10 +20,9 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class public_UseManagement_InstManagement_RPList_SetData extends Activity {
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,InstaCodeID,BuildInstiCodeID;
-    private EditText MFJUseDate,MFJUseCont,MFJUseUser;
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJUseCodeID,UserCodeID,MFJID;
+    private EditText MFJUseIfXianChang;
     private Button modify_button,del_button,close_button;
-    private String BuildInstiCodeIDString,MFJUseDateString,MFJUseContString,MFJUseUserString;
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +37,16 @@ public class public_UseManagement_InstManagement_RPList_SetData extends Activity
         UpdateBy.setText((String)data.get("UpdateBy"));
         UpdateDateTime=findViewById(R.id.UpdateDateTime);
         UpdateDateTime.setText((String)data.get("UpdateDateTime"));
-        InstaCodeID=findViewById(R.id.InstaCodeID);
-        InstaCodeID.setText((String)data.get("InstaCodeID"));
-        BuildInstiCodeID = findViewById(R.id.BuildInstiCodeID);
-        BuildInstiCodeID.setText((String)data.get("MFJUseID"));
 
-        MFJUseDate=findViewById(R.id.MFJUseDate);
-        MFJUseDate.setText((String)data.get("MFJUseDate"));
-        MFJUseCont=findViewById(R.id.MFJUseCont);
-        MFJUseCont.setText((String)data.get("MFJUseCont"));
-        MFJUseUser=findViewById(R.id.MFJUseUser);
-        MFJUseUser.setText((String)data.get("MFJUseUser"));
+        MFJUseCodeID=findViewById(R.id.MFJUseCodeID);
+        MFJUseCodeID.setText((String)data.get("MFJUseCodeID"));
+        UserCodeID=findViewById(R.id.UserCodeID);
+        UserCodeID.setText((String)data.get("UserID"));
+        MFJID=findViewById(R.id.MFJID);
+        MFJID.setText((String)data.get("MFJID"));
+
+        MFJUseIfXianChang=findViewById(R.id.MFJUseIfXianChang);
+        MFJUseIfXianChang.setText((String)data.get("MFJUseIfXianChang"));
 
         modify_button=findViewById(R.id.modify_info);
         modify_button.setOnClickListener(new buttonClick());
@@ -77,14 +75,9 @@ public class public_UseManagement_InstManagement_RPList_SetData extends Activity
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
-                    BuildInstiCodeIDString= String.valueOf(BuildInstiCodeID.getText());
-                    MFJUseDateString= String.valueOf(MFJUseDate.getText());
-                    MFJUseContString=String.valueOf(MFJUseCont.getText());
-                    MFJUseUserString=String.valueOf(MFJUseUser.getText());
                     try {
-                        jsonObject.put("ID",String.valueOf(InstaCodeID.getText())).put("MFJUseID",BuildInstiCodeIDString)
-                                .put("MFJUseDate",MFJUseDateString).put("MFJUseCont",MFJUseContString)
-                                .put("MFJUseUser",MFJUseUserString);
+                        jsonObject.put("ID",String.valueOf(MFJUseCodeID.getText()))
+                                .put("MFJUseIfXianChang",MFJUseIfXianChang.getText().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -106,7 +99,7 @@ public class public_UseManagement_InstManagement_RPList_SetData extends Activity
                     break;
                 case R.id.del_info:
                     try {
-                        jsonObject.put("ID",String.valueOf(InstaCodeID.getText()));
+                        jsonObject.put("ID",String.valueOf(MFJUseCodeID.getText()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

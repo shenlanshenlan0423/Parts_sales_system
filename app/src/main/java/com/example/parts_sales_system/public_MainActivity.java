@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.parts_sales_system.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,7 +19,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.parts_sales_system.databinding.ActivityMainBinding;
 
 public class public_MainActivity extends AppCompatActivity {
 

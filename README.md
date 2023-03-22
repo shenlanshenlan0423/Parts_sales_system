@@ -37,6 +37,7 @@
 - public_BasicSetting.java:**公共功能**-基础配置界面
 - public_FinancialManagementActivity.java：**公共功能**-财务管理界面
 - ui_login_Register.java:**公共功能**-注册界面
+- public_UseManagementActivity.java：**公共功能**-使用管理界面
 
 
 ### res文件夹解释：
@@ -47,7 +48,8 @@
   - activity_main.xml：用户主界面侧滑窗口界面
   - activity_private_use_management.xml：**使用方私有功能**-使用管理底层界面 
   - activity_public_basic_setting.xml：**公共功能**-基础配置界面
-  - activity_public_financial_management.xml：**公共功能**-财务管理底层界面 
+  - activity_public_financial_management.xml：**公共功能**-财务管理底层界面
+  - activity_public_use_management.xml：**公共功能**-使用管理底层界面
   - activity_register.xml:**公共功能**-用户注册界面
   - activity_scrolling.xml：二级功能上层界面
   - app_bar_main.xml：用户主界面上层界面

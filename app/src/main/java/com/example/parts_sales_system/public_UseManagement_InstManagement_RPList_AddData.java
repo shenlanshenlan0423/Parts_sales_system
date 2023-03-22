@@ -17,10 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class public_UseManagement_InstManagement_RPList_AddData extends Activity {
-    private EditText MFJUseDate,MFJUseCont,MFJUseUser;
-    private String[] BuildInstiCodeIDStringArray;
-    private Spinner BuildInstiCodeID;
-    private String BuildInstiCodeIDString,MFJUseDateString,MFJUseContString,MFJUseUserString;
+    private EditText MFJUseIfXianChang;
+    private String[] UserCodeIDStringArray,MFJIDStringArray;
+    private Spinner UserCodeID,MFJID;
     private Button add_info,close_item;
     Intent intent;
     JSONObject jsonObject = new JSONObject();
@@ -29,29 +28,30 @@ public class public_UseManagement_InstManagement_RPList_AddData extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_use_management_uselist_adddata);
-        BuildInstiCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array");
-        BuildInstiCodeID=findViewById(R.id.BuildInstiCodeID);
+        UserCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array1");
+        UserCodeID=findViewById(R.id.UserCodeID);
         //下拉列表的数组适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_InstManagement_RPList_AddData.this, R.layout.common_spinner_list, BuildInstiCodeIDStringArray);
-        BuildInstiCodeID.setAdapter(adapter); // 设置下拉框的数组适配器
-        BuildInstiCodeID.setSelection(BuildInstiCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_InstManagement_RPList_AddData.this, R.layout.common_spinner_list, UserCodeIDStringArray);
+        UserCodeID.setAdapter(adapter); // 设置下拉框的数组适配器
+        UserCodeID.setSelection(UserCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
 
-        MFJUseDate=findViewById(R.id.MFJUseDate);
-        MFJUseCont=findViewById(R.id.MFJUseCont);
-        MFJUseUser=findViewById(R.id.MFJUseUser);
+        MFJIDStringArray = (String[]) getIntent().getSerializableExtra("array2");
+        MFJID=findViewById(R.id.MFJID);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(public_UseManagement_InstManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJIDStringArray);
+        MFJID.setAdapter(adapter2);
+        MFJID.setSelection(MFJIDStringArray.length-1);
+
+        MFJUseIfXianChang =findViewById(R.id.MFJUseIfXianChang);
 
         add_info=findViewById(R.id.add_info);
         add_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BuildInstiCodeIDString = BuildInstiCodeID.getSelectedItem().toString();
-                MFJUseDateString= MFJUseDate.getText().toString();
-                MFJUseContString=MFJUseCont.getText().toString();
-                MFJUseUserString=MFJUseUser.getText().toString();
                 try {
-                    jsonObject.put("ID","").put("MFJUseID",BuildInstiCodeIDString)
-                            .put("MFJXunJianDate",MFJUseDateString).put("MFJXunJianCont",MFJUseContString)
-                            .put("MFJXunJianUser",MFJUseUserString);
+                    jsonObject.put("ID","")
+                            .put("UserID",UserCodeID.getSelectedItem().toString())
+                            .put("MFJID",MFJID.getSelectedItem().toString())
+                            .put("MFJUseIfXianChang",MFJUseIfXianChang.getText().toString());
                     jsonObjectstring = String.valueOf(jsonObject);
                     addJsonArrayData(jsonObjectstring);
                 } catch (JSONException e) {
@@ -89,7 +89,7 @@ public class public_UseManagement_InstManagement_RPList_AddData extends Activity
             @Override
             public void run() {
                 try {
-                    addData.addData("MFJXunJian",jsonObjectstring);
+                    addData.addData("MFJUse",jsonObjectstring);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

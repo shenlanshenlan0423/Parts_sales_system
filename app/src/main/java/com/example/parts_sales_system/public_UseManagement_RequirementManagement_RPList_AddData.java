@@ -17,10 +17,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class public_UseManagement_RequirementManagement_RPList_AddData extends Activity {
-    private EditText MFJXuQiuDate,MFJXuQiuCont,MFJXuQiuUser;
-    private String[] BuildPlanningCodeIDStringArray;
-    private Spinner BuildPlanningCodeID;
-    private String BuildPlanningCodeIDString,MFJXuQiuDateString,MFJXuQiuContString,MFJXuQiuUserString;
+    private EditText MFJXuQiuNum,MFJXuQiuTime,MFJXuQiuDes;
+    private String[] MFJIDStringArray;
+    private Spinner MFJID;
+    private String MFJIDString,MFJXuQiuNumString,MFJXuQiuTimeString,MFJXuQiuDesString;
     private Button add_info,close_item;
     Intent intent;
     JSONObject jsonObject = new JSONObject();
@@ -29,29 +29,31 @@ public class public_UseManagement_RequirementManagement_RPList_AddData extends A
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_use_management_rpllist_adddata);
-        BuildPlanningCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array");
-        BuildPlanningCodeID=findViewById(R.id.BuildPlanningCodeID);
+        MFJIDStringArray = (String[]) getIntent().getSerializableExtra("array");
+        MFJID=findViewById(R.id.MFJID);
         //下拉列表的数组适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_RequirementManagement_RPList_AddData.this, R.layout.common_spinner_list, BuildPlanningCodeIDStringArray);
-        BuildPlanningCodeID.setAdapter(adapter); // 设置下拉框的数组适配器
-        BuildPlanningCodeID.setSelection(BuildPlanningCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_RequirementManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJIDStringArray);
+        MFJID.setAdapter(adapter); // 设置下拉框的数组适配器
+        MFJID.setSelection(MFJIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
 
-        MFJXuQiuDate=findViewById(R.id.MFJXuQiuDate);
-        MFJXuQiuCont=findViewById(R.id.MFJXuQiuCont);
-        MFJXuQiuUser=findViewById(R.id.MFJXuQiuUser);
+        MFJXuQiuNum=findViewById(R.id.MFJXuQiuNum);
+        MFJXuQiuTime=findViewById(R.id.MFJXuQiuTime);
+        MFJXuQiuDes=findViewById(R.id.MFJXuQiuDes);
 
         add_info=findViewById(R.id.add_info);
         add_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BuildPlanningCodeIDString = BuildPlanningCodeID.getSelectedItem().toString();
-                MFJXuQiuDateString= MFJXuQiuDate.getText().toString();
-                MFJXuQiuContString=MFJXuQiuCont.getText().toString();
-                MFJXuQiuUserString=MFJXuQiuUser.getText().toString();
+                MFJIDString = MFJID.getSelectedItem().toString();
+                MFJXuQiuNumString= MFJXuQiuNum.getText().toString();
+                MFJXuQiuTimeString=MFJXuQiuTime.getText().toString();
+                MFJXuQiuDesString=MFJXuQiuDes.getText().toString();
                 try {
-                    jsonObject.put("ID","").put("MFJUseID",BuildPlanningCodeIDString)
-                            .put("MJFXuQiuDate",MFJXuQiuDateString).put("MJFXuQiuCont",MFJXuQiuContString)
-                            .put("MJFXuQiuUser",MFJXuQiuUserString);
+                    jsonObject.put("ID","")
+                            .put("MFJID",MFJIDString)
+                            .put("MJFXuQiuDate",MFJXuQiuNumString)
+                            .put("MJFXuQiuCont",MFJXuQiuTimeString)
+                            .put("MJFXuQiuUser",MFJXuQiuDesString);
                     jsonObjectstring = String.valueOf(jsonObject);
                     addJsonArrayData(jsonObjectstring);
                 } catch (JSONException e) {
