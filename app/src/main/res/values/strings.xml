@@ -39,9 +39,7 @@
     <string name="visitBy">访问者：</string>
     <string name="visitTime">登录时间：</string>
     <string name="visitEndTime">结束访问时间：</string>
-
     <string name="company">使用单位名称：</string>
-
     <string name="userID">用户编码ID：</string>
     <string name="deptID">管理部门编码ID:</string>
     <string name="companyID">使用单位编码ID:</string>
@@ -57,6 +55,7 @@
     <string name="userstatue">用户状态：</string>
     <string name="userregistertime">用户注册时间：</string>
     <!--使用单位列表-->
+    <string name="UseDeptID">使用单位编码ID：</string>
     <string name="UserDeptCodeID">使用单位编码ID：</string>
     <string name="SuperiorUserDeptCodeID">上级使用单位编码ID：</string>
     <string name="UseDeptCode">使用单位代码：</string>
@@ -73,8 +72,7 @@
     <string name="UserOperType">用户操作类型：</string>
     <!--库存管理-->
     <string name="submit">提交</string>
-    <!--使用单位列表-->
-    <string name="UseDeptID">使用单位编码ID：</string>
+
     <!--密封件列表-->
     <string name="MFJID">密封件编码ID：</string>
     <string name="MFJName">名称：</string>
@@ -144,7 +142,7 @@
     <string name="Del">删除</string>
     <string name="Set">修改</string>
     <string name="Manage">管理</string>
-    <!--    需求计划列表-->
+    <!--需求计划列表-->
     <string name="MFJXuQiuID">密封件需求计划ID</string>
     <string name="MFJXuQiuNum">密封件需求数量</string>
     <string name="MFJXuQiuTime">需求时间</string>
@@ -161,21 +159,19 @@
     <string name="MFJUseDate">安装日期</string>
     <string name="MFJUseGengDate">更换日期</string>
     <string name="MFJUseTian">密封件使用天数</string>
-<!--    <string name="MFJUseWei">1</string>-->
-<!--    <string name="MFJUseJing">1</string>-->
     <string name="MFJUseAddress">安装地址</string>
-<!--    &lt;!&ndash;订货信息列表&ndash;&gt;-->
-<!--    <string name="MFJOrderDate">1</string>-->
-<!--    <string name="MFJOrderAllPrice">1</string>-->
-<!--    <string name="MFJOrderDes">1</string>-->
-<!--    <string name="MFJOrderPiCi">1</string>-->
     <!--使用预警列表-->
-    <string name="MFJUseID">密封件使用预警ID</string>
-    <string name="MFJUseYuJingDate">密封件预警日期</string>
-    <string name="MFJUseYuJingStatus">预警情况</string>
-    <string name="MFJUseYuJingDes">预警描述</string>
+    <string name="MFJUseID">密封件预警ID：</string>
+    <string name="MFJUseYuJingDate">预警日期：</string>
+    <string name="MFJUseYuJingStatus">预警处理状态：</string>
+    <string name="MFJUseYuJingDes">预警备注：</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--按条件查询——以系统用户列表为例-->
+    <string name="LimitNumber">显示条数：</string>
+    <string name="ItemStart">起始条数：</string>
+    <string name="ConditionSubQueryButton">Go</string>
 </resources>

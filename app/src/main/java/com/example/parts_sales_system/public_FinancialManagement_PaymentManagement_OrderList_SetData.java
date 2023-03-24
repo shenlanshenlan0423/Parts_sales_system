@@ -103,14 +103,14 @@ public class public_FinancialManagement_PaymentManagement_OrderList_SetData exte
                         @Override
                         public void run() {
                             try {
-//                                System.out.println("修改："+jsonObjectstring);
                                 modifyData.modifyData("MFJDingKuan",jsonObjectstring);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         }
                     }).start();
-                    intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_SetData.this,public_FinancialManagementActivity.class);
+                    intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_SetData.this,
+                            public_FinancialManagementActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
@@ -131,11 +131,13 @@ public class public_FinancialManagement_PaymentManagement_OrderList_SetData exte
                             }
                         }
                     }).start();
-                    intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_SetData.this,public_FinancialManagementActivity.class);
+                    intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_SetData.this,
+                            public_FinancialManagementActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
-                    intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_SetData.this,public_FinancialManagementActivity.class);
+                    intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_SetData.this,
+                            public_FinancialManagementActivity.class);
                     startActivity(intent);
                     break;
             }

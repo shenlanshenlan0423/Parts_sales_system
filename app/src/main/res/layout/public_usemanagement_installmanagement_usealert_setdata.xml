@@ -86,7 +86,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="密封件预警ID"
+                    android:text="密封件预警ID："
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <TextView
@@ -102,7 +102,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/MFJUseID"
+                    android:text="@string/BuildRecordCodeID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <TextView

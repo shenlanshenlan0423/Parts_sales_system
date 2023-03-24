@@ -1,7 +1,5 @@
 package com.example.parts_sales_system;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,7 +29,7 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_public_use_management_use_alert_set_data_alert_dialog);
+        setContentView(R.layout.public_usemanagement_installmanagement_usealert_setdata);
         HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
         CreateBy=findViewById(R.id.CreateBy);
         CreateBy.setText((String)data.get("CreateBy"));

@@ -5,6 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/LimitNumber"
+            android:layout_marginLeft="@dimen/item_margin"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/LimitNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ItemStart"
+            android:layout_marginLeft="@dimen/item_margin"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/ItemStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"/>
+        <Button
+            android:id="@+id/ConditionSubQueryButton"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/item_margin"
+            android:text="@string/ConditionSubQueryButton"/>
+    </LinearLayout>
+
+
     <CheckBox
         android:id="@+id/checkAllBox"
         android:layout_width="wrap_content"
@@ -12,7 +46,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:clickable="true"
-        android:text="全选按钮" />
+        android:text="全选" />
 
     <ListView
         android:id="@+id/listView"

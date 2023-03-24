@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class UseAlertFragment extends Fragment {
+public class UseAlert extends Fragment {
 
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
     Boolean mflag=false;
@@ -48,7 +48,7 @@ public class UseAlertFragment extends Fragment {
     List<HashMap<String, Object>> data;
     List<String> ID;
     //实例化的对象要改
-    public UseAlertFragment(){}
+    public UseAlert(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
@@ -56,7 +56,7 @@ public class UseAlertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         getFKData();
         //布局文件要改
-        View view=inflater.inflate(R.layout.public_use_management_use_alert_fragment,container,false);
+        View view=inflater.inflate(R.layout.activity_public_use_management_install_management_use_alert,container,false);
         add=view.findViewById(R.id.add);
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
@@ -130,8 +130,8 @@ public class UseAlertFragment extends Fragment {
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","ID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_usemanagement_useralertlist_item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","ID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJUseID});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -312,7 +312,7 @@ public class UseAlertFragment extends Fragment {
                         MFJUseIDString [i] = SubjsonObject.getString("ID");
                     }
                     //固定的测试例子
-                    MFJUseIDString[jsonArrayUseIDlength] = "2023030608292429243";
+                    MFJUseIDString[jsonArrayUseIDlength] = "20230306110908984";
                     MFJUseIDStringArray = MFJUseIDString;
                 } catch (Exception e) {
                     e.printStackTrace();

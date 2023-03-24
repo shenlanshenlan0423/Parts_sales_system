@@ -35,6 +35,7 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_productdata.xml" value="0.2" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_user_management.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_usermanagement.xml" value="0.2" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_usermanagement_systemuserlist.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_basic_setting_usermanagement_systemuserlog.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_financia_management.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_financial_management.xml" value="0.25" />
@@ -42,6 +43,7 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_feedback_management.xml" value="0.2" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_feedbackmanagement.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_inst_management.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_use_alert_set_data_alert_dialog.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_scrolling.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/activity_set_in_data_alertdialog.xml" value="0.22" />
@@ -77,7 +79,7 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_adddata.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_item.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_item_cbx.xml" value="0.25" />
-        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_setdata.xml" value="0.22" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_product_data_mfjlist_setdata.xml" value="0.5" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_productdata_adddata.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_productdata_item.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_productdata_item_cbx.xml" value="0.36614583333333334" />
@@ -90,47 +92,32 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_usermanagement_systemuserlog_item.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_usermanagement_systemuserlog_item_cbx.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_usermanagement_systemuserlog_setdata.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_usermanagement_userdeptlist_adddata.xml" value="0.21422101449275363" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_basic_setting_usermanagement_userdeptlist_setdata.xml" value="0.21422101449275363" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_adddata.xml" value="0.22" />
-        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_item.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_item.xml" value="0.33" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_item_cbx.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_financial_management_orderpaymentlist_setdata.xml" value="0.25" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_adddata.xml" value="0.5" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_item.xml" value="0.22" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_item_cbx.xml" value="0.67" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_setdata.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_use_management_use_alert_fragment.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_use_management_uselist_item_cbx.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_usemanagement_installmanagement_usealert_setdata.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_usemanagement_useralertlist_item.xml" value="0.33" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/public_usemanagement_useralertlist_item_cbx.xml" value="0.33" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/layout/user_management.xml" value="0.176" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/activity_main_drawer.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/catagory.xml" value="0.33" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/menu.xml" value="0.25" />
+        <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/menu.xml" value="0.33" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/menu_scrolling.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/popmenu.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/popmenu_PatrolManagement.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/popmenu_patrolmanagement.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3285" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/activity_public_use_management.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_feedbackmanagement.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_inst_management.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_orderinfo_set_data.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_requirement_management.xml" value="0.136" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_use_alert_add_data_alert_dialog.xml" value="0.176" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/activity_public_use_management_use_alert_set_data_alert_dialog.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_adddata.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/private_use_management_patrolrecordlist_setdata.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_adddata.xml" value="0.264" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_item.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_item_cbx.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_livefeedbacklist_setdata.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_rpllist_adddata.xml" value="0.2" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_rpllist_item.xml" value="0.2" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_rpllist_item_cbx.xml" value="0.2" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_rpllist_setdata.xml" value="0.2" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_use_alert_fragment.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_uselist_adddata.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_uselist_item.xml" value="0.2" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_uselist_item_cbx.xml" value="0.1" />
-        <entry key="..\:/Parts_sales_system/app/src/main/res/layout/public_use_management_uselist_setdata.xml" value="0.264" />
       </map>
     </option>
   </component>

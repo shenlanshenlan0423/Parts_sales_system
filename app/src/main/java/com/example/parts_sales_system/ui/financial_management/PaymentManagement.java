@@ -133,7 +133,8 @@ public class PaymentManagement extends Fragment {
                     }
                     //最后一个字段名和对应的布局对象要改
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_financial_management_orderpaymentlist_item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","OrderPaymentCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.OrderPaymentCodeID});
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","OrderPaymentCodeID"},
+                            new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.OrderPaymentCodeID});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }

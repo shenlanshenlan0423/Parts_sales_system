@@ -139,7 +139,6 @@ public class public_BasicSetting_SystemUserList_SetData extends Activity {
                         @Override
                         public void run() {
                             try {
-                                System.out.println(jsonObjectstring);
                                 modifyData.modifyData("User",jsonObjectstring);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);

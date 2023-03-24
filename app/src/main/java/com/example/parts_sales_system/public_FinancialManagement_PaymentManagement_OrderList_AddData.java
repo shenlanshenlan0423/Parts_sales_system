@@ -32,14 +32,16 @@ public class public_FinancialManagement_PaymentManagement_OrderList_AddData exte
         OrderCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array1");
         OrderCodeID=findViewById(R.id.OrderCodeID);
         //下拉列表的数组适配器
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(public_FinancialManagement_PaymentManagement_OrderList_AddData.this, R.layout.common_spinner_list, OrderCodeIDStringArray);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(public_FinancialManagement_PaymentManagement_OrderList_AddData.this,
+                R.layout.common_spinner_list, OrderCodeIDStringArray);
         OrderCodeID.setAdapter(adapter1); // 设置下拉框的数组适配器
         OrderCodeID.setSelection(OrderCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
 
         UserCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array2");
         UserCodeID=findViewById(R.id.UserCodeID);
         //下拉列表的数组适配器
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(public_FinancialManagement_PaymentManagement_OrderList_AddData.this, R.layout.common_spinner_list, UserCodeIDStringArray);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(public_FinancialManagement_PaymentManagement_OrderList_AddData.this,
+                R.layout.common_spinner_list, UserCodeIDStringArray);
         UserCodeID.setAdapter(adapter2);
         UserCodeID.setSelection(UserCodeIDStringArray.length-1);
 
@@ -63,12 +65,12 @@ public class public_FinancialManagement_PaymentManagement_OrderList_AddData exte
                             .put("MFJDingKuanDate",MFJDingKuanDateString).put("MFJDingKuanNum",MFJDingKuanNumString)
                             .put("MFJDingKuanDes",MFJDingKuanDesString).put("MFJDingKuanOrder",MFJDingKuanOrderString);
                     jsonObjectstring = String.valueOf(jsonObject);
-//                    System.out.println("新增："+jsonObjectstring);
                     addJsonArrayData(jsonObjectstring);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_AddData.this,public_FinancialManagementActivity.class);
+                intent=new Intent(public_FinancialManagement_PaymentManagement_OrderList_AddData.this,
+                        public_FinancialManagementActivity.class);
                 intent.putExtra("page",0);
                 startActivity(intent);
             }
