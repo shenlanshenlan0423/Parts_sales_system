@@ -106,11 +106,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/MFJXuQiuID"
+                    android:text="@string/MFJXuQiuCodeID"
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/MFJXuQiuID"
+                    android:id="@+id/MFJXuQiuCodeID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"/>

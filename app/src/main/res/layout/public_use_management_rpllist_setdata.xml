@@ -82,11 +82,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/MFJXuQiuID"
+                    android:text="@string/MFJXuQiuCodeID"
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/MFJXuQiuID"
+                    android:id="@+id/MFJXuQiuCodeID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/item_detail_text_size"

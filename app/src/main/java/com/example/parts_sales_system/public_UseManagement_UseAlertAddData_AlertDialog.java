@@ -28,7 +28,7 @@ public class public_UseManagement_UseAlertAddData_AlertDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.public_usemanagement_installmanagement_usealert_adddata);
+        setContentView(R.layout.public_usemanagement_usealert_adddata);
         MFJUseIDArray= (String[]) getIntent().getSerializableExtra("array");
         MFJUseID=findViewById(R.id.MFJUseID);
         //下拉列表的数组适配器
@@ -49,8 +49,10 @@ public class public_UseManagement_UseAlertAddData_AlertDialog extends Activity {
                 MFJUseYuJingStatus_str=MFJUseYuJingStatus.getText().toString();
                 MFJUseYuJingDes_str=MFJUseYuJingDes.getText().toString();
                 try {
-                    jsonObject.put("ID","").put("MFJUseID",MFJUseID_str)
-                            .put("MFJUseYuJingDate",MFJUseYuJingDate_str).put("MFJUseYuJingStatus",MFJUseYuJingStatus_str)
+                    jsonObject.put("ID","")
+                            .put("MFJUseID",MFJUseID_str)
+                            .put("MFJUseYuJingDate",MFJUseYuJingDate_str)
+                            .put("MFJUseYuJingStatus",MFJUseYuJingStatus_str)
                             .put("MFJUseYuJingDes",MFJUseYuJingDes_str);
                     jsonObjectstring = String.valueOf(jsonObject);
                     addJsonArrayData(jsonObjectstring);
@@ -58,7 +60,7 @@ public class public_UseManagement_UseAlertAddData_AlertDialog extends Activity {
                     e.printStackTrace();
                 }
                 intent=new Intent(public_UseManagement_UseAlertAddData_AlertDialog.this,public_UseManagementActivity.class);
-                intent.putExtra("page",3);
+                intent.putExtra("page",5);
                 startActivity(intent);
             }
         });
@@ -67,7 +69,7 @@ public class public_UseManagement_UseAlertAddData_AlertDialog extends Activity {
             @Override
             public void onClick(View view) {
                 intent=new Intent(public_UseManagement_UseAlertAddData_AlertDialog.this,public_UseManagementActivity.class);
-                intent.putExtra("page",3);
+                intent.putExtra("page",5);
                 startActivity(intent);
             }
         });

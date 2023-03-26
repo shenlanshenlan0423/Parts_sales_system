@@ -118,6 +118,38 @@
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/popmenu_PatrolManagement.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/menu/popmenu_patrolmanagement.xml" value="0.36614583333333334" />
         <entry key="..\:/Android/Android_Projects/Parts_sales_system/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3285" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/activity_public_use_management.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/activity_public_use_management_feedbackmanagement.xml" value="0.19927536231884058" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/activity_public_use_management_inst_management.xml" value="0.12092391304347826" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/activity_public_use_management_install_management_use_alert.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/activity_public_use_management_orderinfo_set_data.xml" value="0.2" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/activity_public_use_management_requirement_management.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/fragment_use_alert.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/homefragment.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/private_use_management_patrolrecordlist_item_cbx.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_basic_setting_systemuserlist_item_cbx.xml" value="0.264" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_financial_management_orderpaymentlist_adddata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_financial_management_orderpaymentlist_item_cbx.xml" value="0.2" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_financial_management_orderpaymentlist_setdata.xml" value="0.2" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_livefeedbacklist_adddata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_livefeedbacklist_item.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_livefeedbacklist_item_cbx.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_livefeedbacklist_setdata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_order_info_fragment.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_rpllist_adddata.xml" value="0.176" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_rpllist_item.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_rpllist_item_cbx.xml" value="0.4" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_rpllist_setdata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_uselist_adddata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_uselist_item.xml" value="0.264" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_uselist_item_cbx.xml" value="0.264" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_use_management_uselist_setdata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_usemanagement_installmanagement_usealert_adddata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_usemanagement_installmanagement_usealert_setdata.xml" value="0.2" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_usemanagement_usealert_adddata.xml" value="0.10833333333333334" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_usemanagement_usealert_setdata.xml" value="0.1" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_usemanagement_useralertlist_item.xml" value="0.4" />
+        <entry key="..\:/Parts_sales_system0326/app/src/main/res/layout/public_usemanagement_useralertlist_item_cbx.xml" value="0.4" />
       </map>
     </option>
   </component>

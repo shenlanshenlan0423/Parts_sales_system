@@ -15,15 +15,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class cbx_Adapter extends BaseAdapter{
+public class cbx_Adapter_InstList extends BaseAdapter {
     private List<Model_check> data;
     private Context context;
-    private RequirementManagement.AllCheckListener allCheckListener;
+    private InstManagement.AllCheckListener allCheckListener;
     private List<HashMap<String, Object>> data_data;
-    //需求管理（需求计划列表、订货信息列表）安装管理（安装进度列表、使用预警列表）反馈管理（现场反馈列表）
-    private String creator,creatime,updater,updatetime,ID;
+    //最后一个字符串命名要改
+    private String creator,creatime,updater,updatetime,MFJUseCodeID;
     public static List index;
-    public cbx_Adapter(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, RequirementManagement.AllCheckListener allCheckListener) {
+    public cbx_Adapter_InstList(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, InstManagement.AllCheckListener allCheckListener) {
         this.data_data=data_data;
         this.data = data;
         this.context = context;
@@ -48,22 +48,21 @@ public class cbx_Adapter extends BaseAdapter{
     public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHoder hd;
         if (view == null) {
-            hd = new cbx_Adapter.ViewHoder();
+            hd = new ViewHoder();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             //对应的布局文件要改
-            view = layoutInflater.inflate(R.layout.item_cbx, null);
-            hd.itemNumber = view.findViewById(R.id.text_title);
+            view = layoutInflater.inflate(R.layout.public_use_management_uselist_item_cbx, null);
+            hd.itemNumber = view.findViewById(R.id.itemNumber);
             hd.creator= view.findViewById(R.id.creator);
             hd.createTime= view.findViewById(R.id.creatTime);
             hd.updater= view.findViewById(R.id.updater);
             hd.updateTime= view.findViewById(R.id.updateTime);
-            //PatrolRecordCodeID要改
-            hd.ID= view.findViewById(R.id.receipts_Id);
+            hd.ID= view.findViewById(R.id.MFJUseCodeID);
             hd.checkBox = view.findViewById(R.id.cbx);
             view.setTag(hd);
         }
         Model_check mModel = data.get(i);
-        hd = (cbx_Adapter.ViewHoder) view.getTag();
+        hd = (ViewHoder) view.getTag();
         hd.itemNumber.setText(String.valueOf(Integer.parseInt(mModel.getSt())+1));
         creator=String.valueOf(data_data.get(i).get("CreateBy"));
         hd.creator.setText(creator);
@@ -74,9 +73,9 @@ public class cbx_Adapter extends BaseAdapter{
         updatetime=String.valueOf(data_data.get(i).get("UpdateDateTime"));
         hd.updateTime.setText(updatetime);
         //PatrolRecordCodeID要改
-        ID=String.valueOf(data_data.get(i).get("ID"));
-        hd.ID.setText(ID);
-        final cbx_Adapter.ViewHoder hdFinal = hd;
+        MFJUseCodeID=String.valueOf(data_data.get(i).get("MFJUseCodeID"));
+        hd.ID.setText(MFJUseCodeID);
+        final ViewHoder hdFinal = hd;
         hd.checkBox.setChecked(mModel.ischeck());
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,4 +120,6 @@ public class cbx_Adapter extends BaseAdapter{
         TextView updateTime;
         TextView ID;
     }
+
 }
+

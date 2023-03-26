@@ -15,15 +15,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class cbx_Adapter_UseAlertList extends BaseAdapter {
+public class cbx_Adapter_RList extends BaseAdapter{
     private List<Model_check> data;
     private Context context;
-    private UseAlert.AllCheckListener allCheckListener;
+    private RequirementManagement.AllCheckListener allCheckListener;
     private List<HashMap<String, Object>> data_data;
-    //最后一个字符串命名要改
-    private String creator,creatime,updater,updatetime,MFJUseYuJingCodeID;
+    //需求管理（需求计划列表、订货信息列表）安装管理（安装进度列表、使用预警列表）反馈管理（现场反馈列表）
+    private String creator,creatime,updater,updatetime,MFJXuQiuCodeID;
     public static List index;
-    public cbx_Adapter_UseAlertList(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, UseAlert.AllCheckListener allCheckListener) {
+    public cbx_Adapter_RList(List<HashMap<String, Object>> data_data, List<Model_check> data, Context context, RequirementManagement.AllCheckListener allCheckListener) {
         this.data_data=data_data;
         this.data = data;
         this.context = context;
@@ -48,21 +48,22 @@ public class cbx_Adapter_UseAlertList extends BaseAdapter {
     public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHoder hd;
         if (view == null) {
-            hd = new ViewHoder();
+            hd = new cbx_Adapter_RList.ViewHoder();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             //对应的布局文件要改
-            view = layoutInflater.inflate(R.layout.public_usemanagement_useralertlist_item_cbx, null);
+            view = layoutInflater.inflate(R.layout.public_use_management_rpllist_item_cbx, null);
             hd.itemNumber = view.findViewById(R.id.itemNumber);
             hd.creator= view.findViewById(R.id.creator);
             hd.createTime= view.findViewById(R.id.creatTime);
             hd.updater= view.findViewById(R.id.updater);
             hd.updateTime= view.findViewById(R.id.updateTime);
-            hd.ID= view.findViewById(R.id.MFJUseYuJingCodeID);
+            //PatrolRecordCodeID要改
+            hd.ID= view.findViewById(R.id.MFJXuQiuCodeID);
             hd.checkBox = view.findViewById(R.id.cbx);
             view.setTag(hd);
         }
         Model_check mModel = data.get(i);
-        hd = (ViewHoder) view.getTag();
+        hd = (cbx_Adapter_RList.ViewHoder) view.getTag();
         hd.itemNumber.setText(String.valueOf(Integer.parseInt(mModel.getSt())+1));
         creator=String.valueOf(data_data.get(i).get("CreateBy"));
         hd.creator.setText(creator);
@@ -73,9 +74,9 @@ public class cbx_Adapter_UseAlertList extends BaseAdapter {
         updatetime=String.valueOf(data_data.get(i).get("UpdateDateTime"));
         hd.updateTime.setText(updatetime);
         //PatrolRecordCodeID要改
-        MFJUseYuJingCodeID=String.valueOf(data_data.get(i).get("MFJUseYuJingCodeID"));
-        hd.ID.setText(MFJUseYuJingCodeID);
-        final ViewHoder hdFinal = hd;
+        MFJXuQiuCodeID=String.valueOf(data_data.get(i).get("MFJXuQiuCodeID"));
+        hd.ID.setText(MFJXuQiuCodeID);
+        final cbx_Adapter_RList.ViewHoder hdFinal = hd;
         hd.checkBox.setChecked(mModel.ischeck());
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +121,4 @@ public class cbx_Adapter_UseAlertList extends BaseAdapter {
         TextView updateTime;
         TextView ID;
     }
-
 }
-

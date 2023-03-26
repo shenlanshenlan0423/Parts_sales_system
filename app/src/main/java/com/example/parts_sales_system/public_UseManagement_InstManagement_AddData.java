@@ -16,7 +16,7 @@ import com.example.parts_sales_system.data.api_connection.addData;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class public_UseManagement_InstManagement_RPList_AddData extends Activity {
+public class public_UseManagement_InstManagement_AddData extends Activity {
     private EditText MFJUseIfXianChang;
     private String[] UserCodeIDStringArray,MFJIDStringArray;
     private Spinner UserCodeID,MFJID;
@@ -31,13 +31,13 @@ public class public_UseManagement_InstManagement_RPList_AddData extends Activity
         UserCodeIDStringArray = (String[]) getIntent().getSerializableExtra("array1");
         UserCodeID=findViewById(R.id.UserCodeID);
         //下拉列表的数组适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_InstManagement_RPList_AddData.this, R.layout.common_spinner_list, UserCodeIDStringArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_InstManagement_AddData.this, R.layout.common_spinner_list, UserCodeIDStringArray);
         UserCodeID.setAdapter(adapter); // 设置下拉框的数组适配器
         UserCodeID.setSelection(UserCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
 
         MFJIDStringArray = (String[]) getIntent().getSerializableExtra("array2");
         MFJID=findViewById(R.id.MFJID);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(public_UseManagement_InstManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJIDStringArray);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(public_UseManagement_InstManagement_AddData.this, R.layout.common_spinner_list, MFJIDStringArray);
         MFJID.setAdapter(adapter2);
         MFJID.setSelection(MFJIDStringArray.length-1);
 
@@ -57,8 +57,8 @@ public class public_UseManagement_InstManagement_RPList_AddData extends Activity
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                intent=new Intent(public_UseManagement_InstManagement_RPList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",2);
+                intent=new Intent(public_UseManagement_InstManagement_AddData.this,public_UseManagementActivity.class);
+                intent.putExtra("page",4);
                 startActivity(intent);
             }
         });
@@ -66,8 +66,8 @@ public class public_UseManagement_InstManagement_RPList_AddData extends Activity
         close_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent=new Intent(public_UseManagement_InstManagement_RPList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",2);
+                intent=new Intent(public_UseManagement_InstManagement_AddData.this,public_UseManagementActivity.class);
+                intent.putExtra("page",4);
                 startActivity(intent);
             }
         });

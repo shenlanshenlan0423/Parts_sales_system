@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class public_UseManagement_InstManagement_RPList_SetData extends Activity {
+public class public_UseManagement_InstManagement_SetData extends Activity {
     private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJUseCodeID,UserCodeID,MFJID;
     private EditText MFJUseIfXianChang;
     private Button modify_button,del_button,close_button;
@@ -87,14 +87,14 @@ public class public_UseManagement_InstManagement_RPList_SetData extends Activity
                         @Override
                         public void run() {
                             try {
-                                modifyData.modifyData("MFJXunJian",jsonObjectstring);
+                                modifyData.modifyData("MFJUse",jsonObjectstring);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_InstManagement_RPList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",2);
+                    intent=new Intent(public_UseManagement_InstManagement_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",4);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
@@ -115,13 +115,13 @@ public class public_UseManagement_InstManagement_RPList_SetData extends Activity
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_InstManagement_RPList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",2);
+                    intent=new Intent(public_UseManagement_InstManagement_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",4);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
-                    intent=new Intent(public_UseManagement_InstManagement_RPList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",2);
+                    intent=new Intent(public_UseManagement_InstManagement_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",4);
                     startActivity(intent);
                     break;
             }

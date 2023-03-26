@@ -19,11 +19,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class public_UseManagement_RequirementManagement_RPList_SetData extends Activity {
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJXuQiuID,MFJID;
+public class public_UseManagement_RManagement_RPList_SetData extends Activity {
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJXuQiuCodeID,MFJID;
     private EditText MFJXuQiuNum,MFJXuQiuTime,MFJXuQiuDes;
     private Button modify_button,del_button,close_button;
-    private String MFJIDString,MFJXuQiuNumString,MFJXuQiuTimeString,MFJXuQiuDesString;
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,8 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
         UpdateDateTime=findViewById(R.id.UpdateDateTime);
         UpdateDateTime.setText((String)data.get("UpdateDateTime"));
 
-        MFJXuQiuID=findViewById(R.id.MFJXuQiuID);
-        MFJXuQiuID.setText((String)data.get("MFJXuQiuID"));
+        MFJXuQiuCodeID=findViewById(R.id.MFJXuQiuCodeID);
+        MFJXuQiuCodeID.setText((String)data.get("MFJXuQiuCodeID"));
         MFJID = findViewById(R.id.MFJID);
         MFJID.setText((String)data.get("MFJID"));
 
@@ -78,16 +77,12 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
-                    MFJIDString= String.valueOf(MFJID.getText());
-                    MFJXuQiuNumString= String.valueOf(MFJXuQiuNum.getText());
-                    MFJXuQiuTimeString=String.valueOf(MFJXuQiuTime.getText());
-                    MFJXuQiuDesString=String.valueOf(MFJXuQiuDes.getText());
                     try {
-                        jsonObject.put("ID",String.valueOf(MFJXuQiuID.getText()))
-                                .put("MJFID",MFJIDString)
-                                .put("MFJXuQiuNum",MFJXuQiuNumString)
-                                .put("MFJXuQiuTime",MFJXuQiuTimeString)
-                                .put("MFJXuQiuDes",MFJXuQiuDesString);
+                        jsonObject.put("ID",String.valueOf(MFJXuQiuCodeID.getText()))
+                                .put("MJFID",MFJID.getText().toString())
+                                .put("MFJXuQiuNum",MFJXuQiuNum.getText().toString())
+                                .put("MFJXuQiuTime",MFJXuQiuTime.getText().toString())
+                                .put("MFJXuQiuDes",MFJXuQiuDes.getText().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -103,12 +98,13 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_RequirementManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
                     try {
-                        jsonObject.put("ID",String.valueOf(MFJXuQiuID.getText()));
+                        jsonObject.put("ID",String.valueOf(MFJXuQiuCodeID.getText()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -124,11 +120,13 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_RequirementManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
-                    intent=new Intent(public_UseManagement_RequirementManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
             }

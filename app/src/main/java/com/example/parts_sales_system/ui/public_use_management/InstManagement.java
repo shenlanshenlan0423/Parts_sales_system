@@ -2,6 +2,7 @@ package com.example.parts_sales_system.ui.public_use_management;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -21,8 +22,8 @@ import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
 import com.example.parts_sales_system.public_UseManagementActivity;
-import com.example.parts_sales_system.public_UseManagement_InstManagement_RPList_AddData;
-import com.example.parts_sales_system.public_UseManagement_InstManagement_RPList_SetData;
+import com.example.parts_sales_system.public_UseManagement_InstManagement_AddData;
+import com.example.parts_sales_system.public_UseManagement_InstManagement_SetData;
 import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
 
 import org.json.JSONArray;
@@ -41,7 +42,7 @@ public class InstManagement extends Fragment {
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
-    cbx_Adapter cbxAdapter;
+    cbx_Adapter_InstList cbxAdapter;
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
@@ -56,9 +57,9 @@ public class InstManagement extends Fragment {
         //布局文件要改
         View view=inflater.inflate(R.layout.activity_public_use_management_inst_management,container,false);
         add=view.findViewById(R.id.add);
-        add.setOnClickListener(new Add());
+        add.setOnClickListener(new InstManagement.Add());
         del=view.findViewById(R.id.del);
-        del.setOnClickListener(new Del());
+        del.setOnClickListener(new InstManagement.Del());
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +67,7 @@ public class InstManagement extends Fragment {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
                 intent.putExtra("flag_instpro",mflag);
-                intent.putExtra("page",2);
+                intent.putExtra("page",4);
                 startActivity(intent);
             }
         });
@@ -78,12 +79,12 @@ public class InstManagement extends Fragment {
         @Override
         public void onClick(View view){
             //跳转的AddActivity要改
-            Intent intent=new Intent(getActivity(), public_UseManagement_InstManagement_RPList_AddData.class);
+            Intent intent=new Intent(getActivity(), public_UseManagement_InstManagement_AddData.class);
             Bundle bundle=new Bundle();
             //外键的数组名要改
             bundle.putSerializable("array1",UserCodeIDStringArray);
             bundle.putSerializable("array2",MFJIDStringArray);
-            intent.putExtra("page",2);
+            intent.putExtra("page",4);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -109,7 +110,7 @@ public class InstManagement extends Fragment {
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
-            intent.putExtra("page",2);
+            intent.putExtra("page",4);
             startActivity(intent);
         }
     }
@@ -141,7 +142,7 @@ public class InstManagement extends Fragment {
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         //跳转的SetActivity要改
-                        Intent intent=new Intent(getActivity(), public_UseManagement_InstManagement_RPList_SetData.class);
+                        Intent intent=new Intent(getActivity(), public_UseManagement_InstManagement_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -160,7 +161,9 @@ public class InstManagement extends Fragment {
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
+                            //当前item的序号
                             item.put("itemNumber",(i+1));
+                            //对应表的字段信息
                             item.put("CreateBy",jsonObject.getString("createBy"));
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
@@ -248,7 +251,7 @@ public class InstManagement extends Fragment {
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new RequirementManagement.AllCheckListener() {
+        cbxAdapter = new cbx_Adapter_InstList(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 //根据不同的情况对maincheckbox做处理
@@ -277,10 +280,10 @@ public class InstManagement extends Fragment {
                 for (Model_check model : models) {
                     model.setIscheck(b);
                 }
-                cbx_Adapter.index=new ArrayList<>();
+                cbx_Adapter_InstList.index=new ArrayList<>();
                 for (Model_check model: models) {
                     if (model.ischeck()) {
-                        cbx_Adapter.index.add(model.getSt());
+                        cbx_Adapter_InstList.index.add(model.getSt());
                     }
                     else {
                         continue;

@@ -21,15 +21,15 @@ import java.util.HashMap;
 
 public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
 
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJUseYuJingID,MFJUseID;
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJUseYuJingCodeID,MFJUseID;
     private EditText MFJUseYuJingDate,MFJUseYuJingStatus,MFJUseYuJingDes;
     private Button modify_button,del_button,close_button;
-    private String MFJUseYuJingID_str,MFJUseID_str,MFJUseYuJingDate_str,MFJUseYuJingStatus_str,MFJUseYuJingDes_str;
+    private String MFJUseYuJingCodeID_str,MFJUseID_str,MFJUseYuJingDate_str,MFJUseYuJingStatus_str,MFJUseYuJingDes_str;
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.public_usemanagement_installmanagement_usealert_setdata);
+        setContentView(R.layout.public_usemanagement_usealert_setdata);
         HashMap<String, Object> data= (HashMap<String, Object>) getIntent().getSerializableExtra("data");
         CreateBy=findViewById(R.id.CreateBy);
         CreateBy.setText((String)data.get("CreateBy"));
@@ -39,10 +39,12 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
         UpdateBy.setText((String)data.get("UpdateBy"));
         UpdateDateTime=findViewById(R.id.UpdateDateTime);
         UpdateDateTime.setText((String)data.get("UpdateDateTime"));
-        MFJUseYuJingID=findViewById(R.id.MFJUseYuJingID);
-        MFJUseYuJingID.setText((String)data.get("ID"));
+
+        MFJUseYuJingCodeID=findViewById(R.id.MFJUseYuJingCodeID);
+        MFJUseYuJingCodeID.setText((String)data.get("ID"));
         MFJUseID = findViewById(R.id.MFJUseID);
         MFJUseID.setText((String)data.get("MFJUseID"));
+
         MFJUseYuJingDate=findViewById(R.id.MFJUseYuJingDate);
         MFJUseYuJingDate.setText((String)data.get("MFJUseYuJingDate"));
         MFJUseYuJingStatus=findViewById(R.id.MFJUseYuJingStatus);
@@ -77,14 +79,16 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
-                    MFJUseYuJingID_str= String.valueOf(MFJUseYuJingID.getText());
+                    MFJUseYuJingCodeID_str= String.valueOf(MFJUseYuJingCodeID.getText());
                     MFJUseID_str= String.valueOf(MFJUseID.getText());
                     MFJUseYuJingDate_str=String.valueOf(MFJUseYuJingDate.getText());
                     MFJUseYuJingStatus_str=String.valueOf(MFJUseYuJingStatus.getText());
                     MFJUseYuJingDes_str=String.valueOf(MFJUseYuJingDes.getText());
                     try {
-                        jsonObject.put("ID",MFJUseYuJingID_str).put("MFJUseID",MFJUseID_str)
-                                .put("MFJUseYuJingDate",MFJUseYuJingDate_str).put("MFJUseYuJingStatus",MFJUseYuJingStatus_str)
+                        jsonObject.put("ID",MFJUseYuJingCodeID_str)
+                                .put("MFJUseID",MFJUseID_str)
+                                .put("MFJUseYuJingDate",MFJUseYuJingDate_str)
+                                .put("MFJUseYuJingStatus",MFJUseYuJingStatus_str)
                                 .put("MFJUseYuJingDes",MFJUseYuJingDes_str);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -102,12 +106,12 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_UseAlertSetData_AlertDialog.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",3);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
                     try {
-                        jsonObject.put("ID",String.valueOf(MFJUseYuJingID.getText()));
+                        jsonObject.put("ID",String.valueOf(MFJUseYuJingCodeID.getText()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -124,12 +128,12 @@ public class public_UseManagement_UseAlertSetData_AlertDialog extends Activity {
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_UseAlertSetData_AlertDialog.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",3);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
                     intent=new Intent(public_UseManagement_UseAlertSetData_AlertDialog.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",3);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
             }

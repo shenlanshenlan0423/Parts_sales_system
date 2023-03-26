@@ -1,5 +1,6 @@
 package com.example.parts_sales_system;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,23 +17,30 @@ import com.example.parts_sales_system.data.api_connection.addData;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class public_UseManagement_RequirementManagement_RPList_AddData extends Activity {
+public class public_UseManagement_RManagement_RPList_AddData extends Activity {
     private EditText MFJXuQiuNum,MFJXuQiuTime,MFJXuQiuDes;
-    private String[] MFJIDStringArray;
-    private Spinner MFJID;
-    private String MFJIDString,MFJXuQiuNumString,MFJXuQiuTimeString,MFJXuQiuDesString;
+    private String[] MFJXuQiuCodeIDStringArray,MFJIDStringArray;
+    private Spinner MFJXuQiuCodeID,MFJID;
     private Button add_info,close_item;
     Intent intent;
     JSONObject jsonObject = new JSONObject();
     String jsonObjectstring;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_use_management_rpllist_adddata);
-        MFJIDStringArray = (String[]) getIntent().getSerializableExtra("array");
+        MFJXuQiuCodeIDStringArray = (String[]) getIntent().getSerializableExtra("MFJXuQiuCodeID");
+        MFJXuQiuCodeID=findViewById(R.id.MFJXuQiuCodeID);
+        //下拉列表的数组适配器
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(public_UseManagement_RManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJXuQiuCodeIDStringArray);
+        MFJXuQiuCodeID.setAdapter(adapter1); // 设置下拉框的数组适配器
+        MFJXuQiuCodeID.setSelection(MFJXuQiuCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
+        
+        MFJIDStringArray = (String[]) getIntent().getSerializableExtra("MFJID");
         MFJID=findViewById(R.id.MFJID);
         //下拉列表的数组适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_RequirementManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJIDStringArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_RManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJIDStringArray);
         MFJID.setAdapter(adapter); // 设置下拉框的数组适配器
         MFJID.setSelection(MFJIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
 
@@ -44,23 +52,19 @@ public class public_UseManagement_RequirementManagement_RPList_AddData extends A
         add_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MFJIDString = MFJID.getSelectedItem().toString();
-                MFJXuQiuNumString= MFJXuQiuNum.getText().toString();
-                MFJXuQiuTimeString=MFJXuQiuTime.getText().toString();
-                MFJXuQiuDesString=MFJXuQiuDes.getText().toString();
                 try {
-                    jsonObject.put("ID","")
-                            .put("MFJID",MFJIDString)
-                            .put("MJFXuQiuDate",MFJXuQiuNumString)
-                            .put("MJFXuQiuCont",MFJXuQiuTimeString)
-                            .put("MJFXuQiuUser",MFJXuQiuDesString);
+                    jsonObject.put("ID","").put("MFJXuQiuCodeID",MFJXuQiuCodeID.getSelectedItem().toString())
+                            .put("MFJID",MFJID.getSelectedItem().toString())
+                            .put("MJFXuQiuNum",MFJXuQiuNum.getText().toString())
+                            .put("MJFXuQiuTime",MFJXuQiuTime.getText().toString())
+                            .put("MJFXuQiuDes",MFJXuQiuDes.getText().toString());
                     jsonObjectstring = String.valueOf(jsonObject);
                     addJsonArrayData(jsonObjectstring);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                intent=new Intent(public_UseManagement_RequirementManagement_RPList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",0);
+                intent=new Intent(public_UseManagement_RManagement_RPList_AddData.this,public_UseManagementActivity.class);
+                intent.putExtra("page",5);
                 startActivity(intent);
             }
         });
@@ -68,8 +72,8 @@ public class public_UseManagement_RequirementManagement_RPList_AddData extends A
         close_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent=new Intent(public_UseManagement_RequirementManagement_RPList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",0);
+                intent=new Intent(public_UseManagement_RManagement_RPList_AddData.this,public_UseManagementActivity.class);
+                intent.putExtra("page",5);
                 startActivity(intent);
             }
         });

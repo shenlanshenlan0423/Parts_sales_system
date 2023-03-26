@@ -143,7 +143,7 @@
     <string name="Set">修改</string>
     <string name="Manage">管理</string>
     <!--需求计划列表-->
-    <string name="MFJXuQiuID">密封件需求计划ID</string>
+    <string name="MFJXuQiuCodeID">密封件需求计划ID</string>
     <string name="MFJXuQiuNum">密封件需求数量</string>
     <string name="MFJXuQiuTime">需求时间</string>
     <string name="MFJXuQiuDes">需求描述</string>
@@ -161,7 +161,8 @@
     <string name="MFJUseTian">密封件使用天数</string>
     <string name="MFJUseAddress">安装地址</string>
     <!--使用预警列表-->
-    <string name="MFJUseID">密封件预警ID：</string>
+    <string name="MFJUseID">密封件使用ID：</string>
+    <string name="MFJUseYuJingCodeID">密封件预警编码ID：</string>
     <string name="MFJUseYuJingDate">预警日期：</string>
     <string name="MFJUseYuJingStatus">预警处理状态：</string>
     <string name="MFJUseYuJingDes">预警备注：</string>
