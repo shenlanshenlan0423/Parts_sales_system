@@ -58,7 +58,7 @@ public class public_UseManagement_InstManagement_AddData extends Activity {
                     e.printStackTrace();
                 }
                 intent=new Intent(public_UseManagement_InstManagement_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",4);
+                intent.putExtra("page",2);
                 startActivity(intent);
             }
         });
@@ -67,7 +67,7 @@ public class public_UseManagement_InstManagement_AddData extends Activity {
             @Override
             public void onClick(View view) {
                 intent=new Intent(public_UseManagement_InstManagement_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",4);
+                intent.putExtra("page",2);
                 startActivity(intent);
             }
         });

@@ -68,7 +68,7 @@ public class UseAlert extends Fragment {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
                 intent.putExtra("flag_usealert",mflag);
-                intent.putExtra("page",5);
+                intent.putExtra("page",3);
                 startActivity(intent);
             }
         });
@@ -84,7 +84,7 @@ public class UseAlert extends Fragment {
             Bundle bundle=new Bundle();
             //外键的数组名要改
             bundle.putSerializable("array",MFJUseIDStringArray);
-            intent.putExtra("page",5);
+            intent.putExtra("page",3);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -109,7 +109,7 @@ public class UseAlert extends Fragment {
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
-            intent.putExtra("page",5);
+            intent.putExtra("page",3);
             startActivity(intent);
         }
     }

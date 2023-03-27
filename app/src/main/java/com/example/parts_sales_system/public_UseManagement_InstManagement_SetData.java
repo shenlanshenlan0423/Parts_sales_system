@@ -77,6 +77,8 @@ public class public_UseManagement_InstManagement_SetData extends Activity {
                 case R.id.modify_info:
                     try {
                         jsonObject.put("ID",String.valueOf(MFJUseCodeID.getText()))
+                                .put("UserID",String.valueOf(UserCodeID.getText()))
+                                .put("MFJID",String.valueOf(MFJID.getText()))
                                 .put("MFJUseIfXianChang",MFJUseIfXianChang.getText().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -94,7 +96,7 @@ public class public_UseManagement_InstManagement_SetData extends Activity {
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_InstManagement_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",4);
+                    intent.putExtra("page",2);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
@@ -116,12 +118,12 @@ public class public_UseManagement_InstManagement_SetData extends Activity {
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_InstManagement_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",4);
+                    intent.putExtra("page",2);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
                     intent=new Intent(public_UseManagement_InstManagement_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",4);
+                    intent.putExtra("page",2);
                     startActivity(intent);
                     break;
             }

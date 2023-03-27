@@ -67,7 +67,7 @@ public class InstManagement extends Fragment {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
                 intent.putExtra("flag_instpro",mflag);
-                intent.putExtra("page",4);
+                intent.putExtra("page",2);
                 startActivity(intent);
             }
         });
@@ -84,7 +84,7 @@ public class InstManagement extends Fragment {
             //外键的数组名要改
             bundle.putSerializable("array1",UserCodeIDStringArray);
             bundle.putSerializable("array2",MFJIDStringArray);
-            intent.putExtra("page",4);
+            intent.putExtra("page",2);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -110,7 +110,7 @@ public class InstManagement extends Fragment {
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
-            intent.putExtra("page",4);
+            intent.putExtra("page",2);
             startActivity(intent);
         }
     }
@@ -168,11 +168,25 @@ public class InstManagement extends Fragment {
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-
                             item.put("MFJUseCodeID",jsonObject.getString("ID"));
+                            item.put("UserID",jsonObject.getString("UserID"));
                             item.put("MFJID",jsonObject.getString("MFJID"));
-                            item.put("MFJUseID",jsonObject.getString("MFJUseID"));
                             item.put("MFJUseIfXianChang",jsonObject.getString("MFJUseIfXianChang"));
+                            item.put("MFJUseYouURL",jsonObject.getString("MFJUseYouURL"));
+                            item.put("MFJUseJingHao",jsonObject.getString("MFJUseJingHao"));
+                            item.put("MFJUseTeXing",jsonObject.getString("MFJUseTeXing"));
+                            item.put("MFJUseNum",jsonObject.getString("MFJUseNum"));
+                            item.put("MFJUseDes",jsonObject.getString("MFJUseDes"));
+                            item.put("MFJUseYouJingRen",jsonObject.getString("MFJUseYouJingRen"));
+                            item.put("MFJUseYouJingTel",jsonObject.getString("MFJUseYouJingTel"));
+                            item.put("MFJUseDate",jsonObject.getString("MFJUseDate"));
+                            item.put("MFJUseGengDate",jsonObject.getString("MFJUseGengDate"));
+                            item.put("MFJUseTian",jsonObject.getString("MFJUseTian"));
+                            item.put("MFJUseWei",jsonObject.getString("MFJUseWei"));
+                            item.put("MFJUseJing",jsonObject.getString("MFJUseJing"));
+                            item.put("MFJUseAddress",jsonObject.getString("MFJUseAddress"));
+                            item.put("UserName",jsonObject.getString("UserName"));
+                            item.put("MFJName",jsonObject.getString("MFJName"));
                             data.add(item);
                         }
                         Message msg=new Message();
@@ -219,11 +233,25 @@ public class InstManagement extends Fragment {
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-
                             item.put("MFJUseCodeID",jsonObject.getString("ID"));
-                            item.put("MFJID",jsonObject.getString("MFJID"));
                             item.put("UserID",jsonObject.getString("UserID"));
+                            item.put("MFJID",jsonObject.getString("MFJID"));
                             item.put("MFJUseIfXianChang",jsonObject.getString("MFJUseIfXianChang"));
+                            item.put("MFJUseYouURL",jsonObject.getString("MFJUseYouURL"));
+                            item.put("MFJUseJingHao",jsonObject.getString("MFJUseJingHao"));
+                            item.put("MFJUseTeXing",jsonObject.getString("MFJUseTeXing"));
+                            item.put("MFJUseNum",jsonObject.getString("MFJUseNum"));
+                            item.put("MFJUseDes",jsonObject.getString("MFJUseDes"));
+                            item.put("MFJUseYouJingRen",jsonObject.getString("MFJUseYouJingRen"));
+                            item.put("MFJUseYouJingTel",jsonObject.getString("MFJUseYouJingTel"));
+                            item.put("MFJUseDate",jsonObject.getString("MFJUseDate"));
+                            item.put("MFJUseGengDate",jsonObject.getString("MFJUseGengDate"));
+                            item.put("MFJUseTian",jsonObject.getString("MFJUseTian"));
+                            item.put("MFJUseWei",jsonObject.getString("MFJUseWei"));
+                            item.put("MFJUseJing",jsonObject.getString("MFJUseJing"));
+                            item.put("MFJUseAddress",jsonObject.getString("MFJUseAddress"));
+                            item.put("UserName",jsonObject.getString("UserName"));
+                            item.put("MFJName",jsonObject.getString("MFJName"));
                             data.add(item);
                         }
                         Message msg=new Message();

@@ -30,20 +30,12 @@ public class public_UseManagement_RManagement_RPList_AddData extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_use_management_rpllist_adddata);
-        MFJXuQiuCodeIDStringArray = (String[]) getIntent().getSerializableExtra("MFJXuQiuCodeID");
-        MFJXuQiuCodeID=findViewById(R.id.MFJXuQiuCodeID);
-        //下拉列表的数组适配器
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(public_UseManagement_RManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJXuQiuCodeIDStringArray);
-        MFJXuQiuCodeID.setAdapter(adapter1); // 设置下拉框的数组适配器
-        MFJXuQiuCodeID.setSelection(MFJXuQiuCodeIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
-        
         MFJIDStringArray = (String[]) getIntent().getSerializableExtra("MFJID");
         MFJID=findViewById(R.id.MFJID);
         //下拉列表的数组适配器
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(public_UseManagement_RManagement_RPList_AddData.this, R.layout.common_spinner_list, MFJIDStringArray);
         MFJID.setAdapter(adapter); // 设置下拉框的数组适配器
         MFJID.setSelection(MFJIDStringArray.length-1); // 设置下拉框默认显示最后一项的测试例子
-
         MFJXuQiuNum=findViewById(R.id.MFJXuQiuNum);
         MFJXuQiuTime=findViewById(R.id.MFJXuQiuTime);
         MFJXuQiuDes=findViewById(R.id.MFJXuQiuDes);
@@ -53,18 +45,19 @@ public class public_UseManagement_RManagement_RPList_AddData extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-                    jsonObject.put("ID","").put("MFJXuQiuCodeID",MFJXuQiuCodeID.getSelectedItem().toString())
+                    jsonObject.put("ID","")
                             .put("MFJID",MFJID.getSelectedItem().toString())
-                            .put("MJFXuQiuNum",MFJXuQiuNum.getText().toString())
-                            .put("MJFXuQiuTime",MFJXuQiuTime.getText().toString())
-                            .put("MJFXuQiuDes",MFJXuQiuDes.getText().toString());
+                            .put("MFJXuQiuNum",MFJXuQiuNum.getText().toString())
+                            .put("MFJXuQiuTime",MFJXuQiuTime.getText().toString())
+                            .put("MFJXuQiuDes",MFJXuQiuDes.getText().toString());
                     jsonObjectstring = String.valueOf(jsonObject);
+                    System.out.println(jsonObjectstring);
                     addJsonArrayData(jsonObjectstring);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 intent=new Intent(public_UseManagement_RManagement_RPList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",5);
+                intent.putExtra("page",0);
                 startActivity(intent);
             }
         });
@@ -73,7 +66,7 @@ public class public_UseManagement_RManagement_RPList_AddData extends Activity {
             @Override
             public void onClick(View view) {
                 intent=new Intent(public_UseManagement_RManagement_RPList_AddData.this,public_UseManagementActivity.class);
-                intent.putExtra("page",5);
+                intent.putExtra("page",0);
                 startActivity(intent);
             }
         });
@@ -95,7 +88,7 @@ public class public_UseManagement_RManagement_RPList_AddData extends Activity {
             @Override
             public void run() {
                 try {
-                    addData.addData("MJFXuQiu",jsonObjectstring);
+                    addData.addData("MFJXuQiu",jsonObjectstring);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

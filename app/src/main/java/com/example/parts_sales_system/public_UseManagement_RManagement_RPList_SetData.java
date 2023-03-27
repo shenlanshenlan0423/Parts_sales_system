@@ -41,15 +41,13 @@ public class public_UseManagement_RManagement_RPList_SetData extends Activity {
         MFJXuQiuCodeID=findViewById(R.id.MFJXuQiuCodeID);
         MFJXuQiuCodeID.setText((String)data.get("MFJXuQiuCodeID"));
         MFJID = findViewById(R.id.MFJID);
-        MFJID.setText((String)data.get("MFJID"));
-
+        MFJID.setText("2023030608292429243");
         MFJXuQiuNum=findViewById(R.id.MFJXuQiuNum);
         MFJXuQiuNum.setText((String)data.get("MFJXuQiuNum"));
         MFJXuQiuTime=findViewById(R.id.MFJXuQiuTime);
         MFJXuQiuTime.setText((String)data.get("MFJXuQiuTime"));
         MFJXuQiuDes=findViewById(R.id.MFJXuQiuDes);
         MFJXuQiuDes.setText((String)data.get("MFJXuQiuDes"));
-
         modify_button=findViewById(R.id.modify_info);
         modify_button.setOnClickListener(new buttonClick());
         del_button=findViewById(R.id.del_info);
@@ -79,7 +77,7 @@ public class public_UseManagement_RManagement_RPList_SetData extends Activity {
                 case R.id.modify_info:
                     try {
                         jsonObject.put("ID",String.valueOf(MFJXuQiuCodeID.getText()))
-                                .put("MJFID",MFJID.getText().toString())
+                                .put("MFJID",MFJID.getText().toString())
                                 .put("MFJXuQiuNum",MFJXuQiuNum.getText().toString())
                                 .put("MFJXuQiuTime",MFJXuQiuTime.getText().toString())
                                 .put("MFJXuQiuDes",MFJXuQiuDes.getText().toString());
@@ -92,14 +90,14 @@ public class public_UseManagement_RManagement_RPList_SetData extends Activity {
                         @Override
                         public void run() {
                             try {
-                                modifyData.modifyData("MJFXuQiu",jsonObjectstring);
+                                modifyData.modifyData("MFJXuQiu",jsonObjectstring);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",5);
+                    intent.putExtra("page",0);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
@@ -121,12 +119,12 @@ public class public_UseManagement_RManagement_RPList_SetData extends Activity {
                         }
                     }).start();
                     intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",5);
+                    intent.putExtra("page",0);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
                     intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
-                    intent.putExtra("page",5);
+                    intent.putExtra("page",0);
                     startActivity(intent);
                     break;
             }

@@ -39,7 +39,7 @@ public class RequirementManagement extends Fragment{
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
     Boolean mflag;
     //外键的数组名要改
-    private String[] MFJXuQiuCodeIDArray;
+//    private String[] MFJXuQiuCodeIDArray;
     private String[] MFJIDArray;
     public boolean mIsFromItem = false;
     ListView listView;
@@ -69,7 +69,7 @@ public class RequirementManagement extends Fragment{
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
                 intent.putExtra("flag_replan",mflag);
-                intent.putExtra("page",1);
+                intent.putExtra("page",0);
                 startActivity(intent);
             }
         });
@@ -85,8 +85,8 @@ public class RequirementManagement extends Fragment{
             Bundle bundle=new Bundle();
             //外键的数组名要改
             bundle.putSerializable("MFJID",MFJIDArray);
-            bundle.putSerializable("MFJXuQiuCodeID",MFJXuQiuCodeIDArray);
-            intent.putExtra("page",1);
+//            bundle.putSerializable("MFJXuQiuCodeID",MFJXuQiuCodeIDArray);
+            intent.putExtra("page",0);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -112,7 +112,7 @@ public class RequirementManagement extends Fragment{
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
-            intent.putExtra("page",1);
+            intent.putExtra("page",0);
             startActivity(intent);
         }
     }
@@ -133,7 +133,7 @@ public class RequirementManagement extends Fragment{
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_use_management_rpllist_item,
                             new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","MFJXuQiuCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJXuQiuCodeID});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
@@ -168,10 +168,7 @@ public class RequirementManagement extends Fragment{
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-
-                            
                             item.put("MFJXuQiuCodeID",jsonObject.getString("ID"));
-                            item.put("MFJID",jsonObject.getString("MFJID"));
                             item.put("MFJXuQiuNum",jsonObject.getString("MFJXuQiuNum"));
                             item.put("MFJXuQiuTime",jsonObject.getString("MFJXuQiuTime"));
                             item.put("MFJXuQiuDes",jsonObject.getString("MFJXuQiuDes"));
@@ -223,9 +220,7 @@ public class RequirementManagement extends Fragment{
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-
                             item.put("MFJXuQiuCodeID",jsonObject.getString("ID"));
-                            item.put("MFJID",jsonObject.getString("MFJID"));
                             item.put("MFJXuQiuNum",jsonObject.getString("MFJXuQiuNum"));
                             item.put("MFJXuQiuTime",jsonObject.getString("MFJXuQiuTime"));
                             item.put("MFJXuQiuDes",jsonObject.getString("MFJXuQiuDes"));
@@ -305,29 +300,6 @@ public class RequirementManagement extends Fragment{
     //从外键所在表中获取外键可取值的最新数据
     void getFKData(){
         //需要访问多个外键所在表，请使用多个子线程，不然只会完成第一个外键的访问和赋值
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                try {
-                    //访问的数据库表名和字段要改
-                    //外键需要访问几个表就生成几个StringArray
-                    JSONArray jdataOrderID = getData.getData("MFJXuQiu","");
-                    int jsonArrayOrderIDlength = jdataOrderID.length();
-                    //字符串数组,用于存储目标字段的全部可取值
-                    //先加1是为了写进固定的测试例子
-                    String[] MFJXuQiuCodeID = new String[jsonArrayOrderIDlength+1];
-                    for (int i=0;i<jsonArrayOrderIDlength;i++){
-                        JSONObject SubjsonObject = jdataOrderID.getJSONObject(i);
-                        MFJXuQiuCodeID[i] = SubjsonObject.getString("ID");
-                    }
-                    //固定的测试例子
-                    MFJXuQiuCodeID[jsonArrayOrderIDlength] = "2023030609293529357";
-                    MFJXuQiuCodeIDArray = MFJXuQiuCodeID;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
     new Thread(new Runnable(){
             @Override
             public void run() {
@@ -351,5 +323,5 @@ public class RequirementManagement extends Fragment{
                 }
             }
     }).start();
-    }
+}
 }
