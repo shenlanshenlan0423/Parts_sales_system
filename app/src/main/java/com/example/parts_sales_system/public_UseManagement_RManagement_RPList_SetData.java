@@ -19,11 +19,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class public_UseManagement_RequirementManagement_RPList_SetData extends Activity {
-    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,Requirement_PlanningCodeID,BuildPlanningCodeID;
-    private EditText MFJXuQiuDate,MFJXuQiuCont,MFJXuQiuUser;
+public class public_UseManagement_RManagement_RPList_SetData extends Activity {
+    private TextView CreateBy,CreateDateTime,UpdateBy,UpdateDateTime,MFJXuQiuCodeID,MFJID;
+    private EditText MFJXuQiuNum,MFJXuQiuTime,MFJXuQiuDes;
     private Button modify_button,del_button,close_button;
-    private String BuildPlanningCodeIDString,MFJXuQiuDateString,MFJXuQiuContString,MFJXuQiuUserString;
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +37,18 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
         UpdateBy.setText((String)data.get("UpdateBy"));
         UpdateDateTime=findViewById(R.id.UpdateDateTime);
         UpdateDateTime.setText((String)data.get("UpdateDateTime"));
-        Requirement_PlanningCodeID=findViewById(R.id.Requirement_PlanningCodeID);
-        Requirement_PlanningCodeID.setText((String)data.get("Requirement_PlanningCodeID"));
-        BuildPlanningCodeID = findViewById(R.id.BuildPlanningCodeID);
-        BuildPlanningCodeID.setText((String)data.get("MJFXuQiuID"));
 
-        MFJXuQiuDate=findViewById(R.id.MFJXuQiuDate);
-        MFJXuQiuDate.setText((String)data.get("MFJXuQiuDate"));
-        MFJXuQiuCont=findViewById(R.id.MFJXuQiuCont);
-        MFJXuQiuCont.setText((String)data.get("MFJXuQiuCont"));
-        MFJXuQiuUser=findViewById(R.id.MFJXuQiuUser);
-        MFJXuQiuUser.setText((String)data.get("MFJXuQiuUser"));
+        MFJXuQiuCodeID=findViewById(R.id.MFJXuQiuCodeID);
+        MFJXuQiuCodeID.setText((String)data.get("MFJXuQiuCodeID"));
+        MFJID = findViewById(R.id.MFJID);
+        MFJID.setText((String)data.get("MFJID"));
+
+        MFJXuQiuNum=findViewById(R.id.MFJXuQiuNum);
+        MFJXuQiuNum.setText((String)data.get("MFJXuQiuNum"));
+        MFJXuQiuTime=findViewById(R.id.MFJXuQiuTime);
+        MFJXuQiuTime.setText((String)data.get("MFJXuQiuTime"));
+        MFJXuQiuDes=findViewById(R.id.MFJXuQiuDes);
+        MFJXuQiuDes.setText((String)data.get("MFJXuQiuDes"));
 
         modify_button=findViewById(R.id.modify_info);
         modify_button.setOnClickListener(new buttonClick());
@@ -77,14 +77,12 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
             String jsonObjectstring;
             switch (view.getId()){
                 case R.id.modify_info:
-                    BuildPlanningCodeIDString= String.valueOf(BuildPlanningCodeID.getText());
-                    MFJXuQiuDateString= String.valueOf(MFJXuQiuDate.getText());
-                    MFJXuQiuContString=String.valueOf(MFJXuQiuCont.getText());
-                    MFJXuQiuUserString=String.valueOf(MFJXuQiuUser.getText());
                     try {
-                        jsonObject.put("ID",String.valueOf(Requirement_PlanningCodeID.getText())).put("MJFXuQiuID",BuildPlanningCodeIDString)
-                                .put("MFJXuQiuDate",MFJXuQiuDateString).put("MFJXuQiuCont",MFJXuQiuContString)
-                                .put("MFJXuQiuUser",MFJXuQiuUserString);
+                        jsonObject.put("ID",String.valueOf(MFJXuQiuCodeID.getText()))
+                                .put("MJFID",MFJID.getText().toString())
+                                .put("MFJXuQiuNum",MFJXuQiuNum.getText().toString())
+                                .put("MFJXuQiuTime",MFJXuQiuTime.getText().toString())
+                                .put("MFJXuQiuDes",MFJXuQiuDes.getText().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -100,12 +98,13 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_RequirementManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
                     try {
-                        jsonObject.put("ID",String.valueOf(Requirement_PlanningCodeID.getText()));
+                        jsonObject.put("ID",String.valueOf(MFJXuQiuCodeID.getText()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -121,11 +120,13 @@ public class public_UseManagement_RequirementManagement_RPList_SetData extends A
                             }
                         }
                     }).start();
-                    intent=new Intent(public_UseManagement_RequirementManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
-                    intent=new Intent(public_UseManagement_RequirementManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent=new Intent(public_UseManagement_RManagement_RPList_SetData.this,public_UseManagementActivity.class);
+                    intent.putExtra("page",5);
                     startActivity(intent);
                     break;
             }

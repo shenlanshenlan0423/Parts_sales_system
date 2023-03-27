@@ -38,8 +38,7 @@
                     android:focusableInTouchMode="false" />
             </TableRow>
 
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,8 +52,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,8 +66,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,8 +80,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black"/>
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,8 +94,7 @@
                     android:textSize="@dimen/item_detail_text_size"
                     android:textColor="@color/black" />
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

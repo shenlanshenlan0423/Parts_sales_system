@@ -57,7 +57,7 @@
                     android:id="@+id/creatTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </TableRow>
 
             <TableRow>
@@ -70,7 +70,7 @@
 
                 <TextView
                     android:id="@+id/updater"
-                    android:layout_width="wrap_content"
+                    android:layout_width="272dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black" />
 
@@ -82,13 +82,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/UpdateDateTime"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/updateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"/>
             </TableRow>
 
             <TableRow>
@@ -96,11 +96,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/MFJUseCodeID"
+                    android:text="@string/MFJUseYuJingCodeID"
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/MFJUseCodeID"
+                    android:id="@+id/MFJUseYuJingCodeID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"/>

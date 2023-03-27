@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -26,6 +28,7 @@ import com.example.parts_sales_system.public_BasicSetting_SystemUserList_SetData
 import com.example.parts_sales_system.ui.top_nav_fragment_invent.Model_check;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -36,6 +39,8 @@ import java.util.List;
 //入库管理界面
 public class SystemUserList extends Fragment {
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
+    Button ConditionSubQuery;
+    EditText LimitNumber,ItemStart;
     Boolean mflag=false;
     //外键的数组名要改
     private String[] valArray={"0","1"};
@@ -52,6 +57,9 @@ public class SystemUserList extends Fragment {
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
+    JSONObject jsonObject = new JSONObject();
+    String jsonObjectstring;
+    Handler mHandler;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         getFKData();
@@ -60,6 +68,25 @@ public class SystemUserList extends Fragment {
         add.setOnClickListener(new Add());
         del=view.findViewById(R.id.del);
         del.setOnClickListener(new Del());
+
+        //条件查询相关组件
+        LimitNumber = view.findViewById(R.id.LimitNumber);
+        ItemStart = view.findViewById(R.id.ItemStart);
+        ConditionSubQuery=view.findViewById(R.id.ConditionSubQueryButton);
+        ConditionSubQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    jsonObject.put("limit",LimitNumber.getText().toString())
+                            .put("start",ItemStart.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //jsonObject转String
+                jsonObjectstring = String.valueOf(jsonObject);
+                initList(mflag,view,jsonObjectstring);
+            }
+        });
         if (mflag){
             del.setEnabled(true);
         }
@@ -75,7 +102,11 @@ public class SystemUserList extends Fragment {
             }
         });
         if (mflag==null){mflag=false;}
-        initList(mflag,view);
+        initList(mflag,view,"");
+
+        listView=view.findViewById(R.id.listView);
+        CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
+        checkAllBox.setVisibility(View.INVISIBLE);
         return view;
     }
     private class Add implements View.OnClickListener{
@@ -117,13 +148,10 @@ public class SystemUserList extends Fragment {
         }
     }
 
-    public void initList(boolean flag,View view){
+    public void initList(boolean flag,View view,String jsonObjectstring){
         if (!flag){//管理按钮没有按下的初始化列表
-            listView=view.findViewById(R.id.listView);
-            CheckBox checkAllBox=view.findViewById(R.id.checkAllBox);
-            checkAllBox.setVisibility(View.INVISIBLE);
             del.setEnabled(false);
-            Handler mHandler = new Handler(){
+            mHandler = new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
                     super.handleMessage(msg);
@@ -132,9 +160,10 @@ public class SystemUserList extends Fragment {
                             data=(List<HashMap<String, Object>>)msg.obj;
                         }
                     }
+                    System.out.println(data);
                     //最后一个字段名和对应的布局对象要改
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_basic_setting_systemuserlist_item,
-                            new String[]{"itemNumber","UserCodeID","UserNo","UserName","UserTel","UserStatus"}, new int[]{R.id.itemNumber,R.id.userID,R.id.userNumber,R.id.user,R.id.phone,R.id.usertype});
+                            new String[]{"itemNumber","UserCodeID","UserNo","UserName","UserTel","UserType"}, new int[]{R.id.itemNumber,R.id.userID,R.id.userNumber,R.id.user,R.id.phone,R.id.usertype});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -157,7 +186,7 @@ public class SystemUserList extends Fragment {
                 @Override
                 public void run() {
                     try{
-                        JSONArray jsonArray= getData.getData("User","");
+                        JSONArray jsonArray= getData.getData("User",jsonObjectstring);
                         data = new ArrayList<HashMap<String,Object>>();
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();

@@ -8,84 +8,93 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="@dimen/nav_header_vertical_spacing">
+
         <TableLayout
             android:id="@+id/item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_top_margin"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/item_top_margin"
             android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/white"
-            android:layout_gravity="center_horizontal">
+            android:background="@color/white">
 
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+            <TableRow android:layout_margin="@dimen/Main_button_margin">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="安装施工记录编码"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
+                    android:text="@string/MFJUseID"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
+
                 <Spinner
                     android:id="@+id/MFJUseID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/item_detail_text_size"
+                    android:spinnerMode="dropdown"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:spinnerMode="dropdown" />
+                    android:textSize="@dimen/item_detail_text_size" />
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+
+            <TableRow android:layout_margin="@dimen/Main_button_margin">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="使用预警日期"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
+                    android:text="@string/MFJUseYuJingDate"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
+
                 <EditText
                     android:id="@+id/MFJUseYuJingDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/item_detail_text_size"
                     android:textAlignment="center"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+
+            <TableRow android:layout_margin="@dimen/Main_button_margin">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="使用预警处理状态"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
+                    android:text="@string/MFJUseYuJingStatus"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
+
                 <EditText
                     android:id="@+id/MFJUseYuJingStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/item_detail_text_size"
                     android:textAlignment="center"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
             </TableRow>
-            <TableRow
-                android:layout_margin="@dimen/Main_button_margin">
+
+            <TableRow android:layout_margin="@dimen/Main_button_margin">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="使用预警备注"
-                    android:textSize="@dimen/item_detail_text_size"
-                    android:textColor="@color/black"/>
+                    android:text="@string/MFJUseYuJingDes"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
+
                 <EditText
                     android:id="@+id/MFJUseYuJingDes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/item_detail_text_size"
                     android:textAlignment="center"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/item_detail_text_size" />
             </TableRow>
 
         </TableLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

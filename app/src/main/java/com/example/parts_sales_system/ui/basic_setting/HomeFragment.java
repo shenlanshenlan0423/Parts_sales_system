@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
     private ProductData PatrolManagement=new ProductData();
     private List<String> mTitles;
     //title要改
-    private String [] title={"使用单位列表","系统用户日志","系统用户列表","密封件列表"};
+    private String [] title={"使用单位","用户日志","用户列表","密封件列表"};
     Boolean flag_in;
     Boolean flag_out;
     int page;

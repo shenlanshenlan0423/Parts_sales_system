@@ -26,7 +26,7 @@ public class HomeFragment extends Fragment {
     private RequirementManagement RequirementManagement=new RequirementManagement();
     private FeedBackManagement FeedBackManagement=new FeedBackManagement();
     private OrderInfoFragment OrderinfoFragment=new OrderInfoFragment();
-    private UseAlertFragment UseAlertFragment=new UseAlertFragment();
+    private UseAlert UseAlertFragment=new UseAlert();
     private List<String> mTitles;
     //title要改
     private String [] title={"需求计划","订货信息","安装进度","使用预警","反馈管理"};

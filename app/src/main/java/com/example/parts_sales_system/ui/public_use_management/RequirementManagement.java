@@ -2,6 +2,7 @@ package com.example.parts_sales_system.ui.public_use_management;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -18,8 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.parts_sales_system.public_UseManagementActivity;
-import com.example.parts_sales_system.public_UseManagement_RequirementManagement_RPList_AddData;
-import com.example.parts_sales_system.public_UseManagement_RequirementManagement_RPList_SetData;
+import com.example.parts_sales_system.public_UseManagement_RManagement_RPList_AddData;
+import com.example.parts_sales_system.public_UseManagement_RManagement_RPList_SetData;
 import com.example.parts_sales_system.R;
 import com.example.parts_sales_system.data.api_connection.delData;
 import com.example.parts_sales_system.data.api_connection.getData;
@@ -33,15 +34,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class RequirementManagement extends Fragment{
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
     Boolean mflag;
     //外键的数组名要改
-    private String[] MFJIDStringArray;
+    private String[] MFJXuQiuCodeIDArray;
+    private String[] MFJIDArray;
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
-    cbx_Adapter cbxAdapter;
+    cbx_Adapter_RList cbxAdapter;
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
@@ -66,7 +69,7 @@ public class RequirementManagement extends Fragment{
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
                 intent.putExtra("flag_replan",mflag);
-                intent.putExtra("page",0);
+                intent.putExtra("page",1);
                 startActivity(intent);
             }
         });
@@ -78,11 +81,12 @@ public class RequirementManagement extends Fragment{
         @Override
         public void onClick(View view){
             //跳转的AddActivity要改
-            Intent intent=new Intent(getActivity(), public_UseManagement_RequirementManagement_RPList_AddData.class);
+            Intent intent=new Intent(getActivity(), public_UseManagement_RManagement_RPList_AddData.class);
             Bundle bundle=new Bundle();
             //外键的数组名要改
-            bundle.putSerializable("array",MFJIDStringArray);
-            intent.putExtra("page",0);
+            bundle.putSerializable("MFJID",MFJIDArray);
+            bundle.putSerializable("MFJXuQiuCodeID",MFJXuQiuCodeIDArray);
+            intent.putExtra("page",1);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -91,8 +95,9 @@ public class RequirementManagement extends Fragment{
     private class Del implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            for (int i = 0; i< cbx_Adapter.index.size(); i++){
-                String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
+            for (int i = 0; i< cbx_Adapter_RList.index.size(); i++){
+                String id = ID.get(Integer.parseInt((String) cbx_Adapter_RList.index.get(i)));
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -107,7 +112,7 @@ public class RequirementManagement extends Fragment{
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
-            intent.putExtra("page",0);
+            intent.putExtra("page",1);
             startActivity(intent);
         }
     }
@@ -129,7 +134,7 @@ public class RequirementManagement extends Fragment{
                     }
                     //最后一个字段名和对应的布局对象要改
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","ID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","MFJXuQiuCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJXuQiuCodeID});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -139,7 +144,7 @@ public class RequirementManagement extends Fragment{
                         ListView listView = (ListView) parent;
                         HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
                         //跳转的SetActivity要改
-                        Intent intent=new Intent(getActivity(), public_UseManagement_RequirementManagement_RPList_SetData.class);
+                        Intent intent=new Intent(getActivity(), public_UseManagement_RManagement_RPList_SetData.class);
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("data",data);
                         intent.putExtras(bundle);
@@ -163,7 +168,10 @@ public class RequirementManagement extends Fragment{
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
+
+                            
+                            item.put("MFJXuQiuCodeID",jsonObject.getString("ID"));
+                            item.put("MFJID",jsonObject.getString("MFJID"));
                             item.put("MFJXuQiuNum",jsonObject.getString("MFJXuQiuNum"));
                             item.put("MFJXuQiuTime",jsonObject.getString("MFJXuQiuTime"));
                             item.put("MFJXuQiuDes",jsonObject.getString("MFJXuQiuDes"));
@@ -208,12 +216,16 @@ public class RequirementManagement extends Fragment{
                         for (int i=0;i<jsonArray.length();i++){
                             HashMap<String, Object> item = new HashMap<String, Object>();
                             JSONObject jsonObject=new JSONObject(jsonArray.getString(i));
+                            //当前item的序号
                             item.put("itemNumber",(i+1));
+                            //以下为对应表的字段信息
                             item.put("CreateBy",jsonObject.getString("createBy"));
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
+
+                            item.put("MFJXuQiuCodeID",jsonObject.getString("ID"));
+                            item.put("MFJID",jsonObject.getString("MFJID"));
                             item.put("MFJXuQiuNum",jsonObject.getString("MFJXuQiuNum"));
                             item.put("MFJXuQiuTime",jsonObject.getString("MFJXuQiuTime"));
                             item.put("MFJXuQiuDes",jsonObject.getString("MFJXuQiuDes"));
@@ -240,11 +252,11 @@ public class RequirementManagement extends Fragment{
             model.setIscheck(false);
             models.add(model);
             //这里的PatrolRecordCodeID也要改成表中的主键
-            ID.add((String) data.get(i).get("ID"));
+            ID.add((String) data.get(i).get("MFJXuQiuCodeID"));
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new AllCheckListener() {
+        cbxAdapter = new cbx_Adapter_RList(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 if (!b && !mMainCkb.isChecked()) {
@@ -259,6 +271,7 @@ public class RequirementManagement extends Fragment{
             }
         });
         listView.setAdapter(cbxAdapter);
+        //全选的点击监听
         mMainCkb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -272,10 +285,10 @@ public class RequirementManagement extends Fragment{
                 for (Model_check model : models) {
                     model.setIscheck(b);
                 }
-                cbx_Adapter.index=new ArrayList<>();
+                cbx_Adapter_RList.index=new ArrayList<>();
                 for (Model_check model: models) {
                     if (model.ischeck()) {
-                        cbx_Adapter.index.add(model.getSt());
+                        cbx_Adapter_RList.index.add(model.getSt());
                     }
                     else {
                         continue;
@@ -298,22 +311,45 @@ public class RequirementManagement extends Fragment{
                 try {
                     //访问的数据库表名和字段要改
                     //外键需要访问几个表就生成几个StringArray
-                    JSONArray jdataUseDeptID = getData.getData("MFJ","");
-                    int jsonArrayOrderIDlength = jdataUseDeptID.length();
+                    JSONArray jdataOrderID = getData.getData("MFJXuQiu","");
+                    int jsonArrayOrderIDlength = jdataOrderID.length();
                     //字符串数组,用于存储目标字段的全部可取值
                     //先加1是为了写进固定的测试例子
-                    String[] BuildPlanningCodeIDString = new String[jsonArrayOrderIDlength+1];
+                    String[] MFJXuQiuCodeID = new String[jsonArrayOrderIDlength+1];
                     for (int i=0;i<jsonArrayOrderIDlength;i++){
-                        JSONObject SubjsonObject = jdataUseDeptID.getJSONObject(i);
-                        BuildPlanningCodeIDString[i] = SubjsonObject.getString("ID");
+                        JSONObject SubjsonObject = jdataOrderID.getJSONObject(i);
+                        MFJXuQiuCodeID[i] = SubjsonObject.getString("ID");
                     }
                     //固定的测试例子
-                    BuildPlanningCodeIDString[jsonArrayOrderIDlength] = "2023030608292429243";
-                    MFJIDStringArray = BuildPlanningCodeIDString;
+                    MFJXuQiuCodeID[jsonArrayOrderIDlength] = "2023030609293529357";
+                    MFJXuQiuCodeIDArray = MFJXuQiuCodeID;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    //访问的数据库表名和字段要改
+                    //外键需要访问几个表就生成几个StringArray
+                    JSONArray jdataMFJID = getData.getData("MFJ","");
+                    int jsonArrayMFJIDlength = jdataMFJID.length();
+                    //字符串数组,用于存储目标字段的全部可取值
+                    //先加1是为了写进固定的测试例子
+                    String[] MFJID = new String[jsonArrayMFJIDlength+1];
+                    for (int i=0;i<jsonArrayMFJIDlength;i++){
+                        JSONObject SubjsonObject = jdataMFJID.getJSONObject(i);
+                        MFJID[i] = SubjsonObject.getString("ID");
+                    }
+                    //固定的测试例子
+                    MFJID[jsonArrayMFJIDlength] = "2023030608292429243";
+                    MFJIDArray = MFJID;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+    }).start();
     }
 }

@@ -128,8 +128,8 @@ public class FeedBackManagement extends Fragment {
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","FeedBackCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_use_management_livefeedbacklist_item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","FeedBackCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.FeedBackCodeID});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }

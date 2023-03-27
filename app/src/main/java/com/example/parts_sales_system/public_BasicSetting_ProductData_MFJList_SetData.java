@@ -147,7 +147,7 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
                         }
                     }).start();
                     intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
-                    intent.putExtra("page",2);
+                    intent.putExtra("page",3);
                     startActivity(intent);
                     break;
                 case R.id.del_info:
@@ -170,12 +170,12 @@ public class public_BasicSetting_ProductData_MFJList_SetData extends Activity {
                         }
                     }).start();
                     intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
-                    intent.putExtra("page",2);
+                    intent.putExtra("page",3);
                     startActivity(intent);
                     break;
                 case R.id.close_item:
                     intent=new Intent(public_BasicSetting_ProductData_MFJList_SetData.this,public_BasicSettingActivity.class);
-                    intent.putExtra("page",2);
+                    intent.putExtra("page",3);
                     startActivity(intent);
                     break;
             }

@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class UseAlertFragment extends Fragment {
+public class UseAlert extends Fragment {
 
     public com.getbase.floatingactionbutton.FloatingActionButton add,del,manage;
     Boolean mflag=false;
@@ -43,12 +43,12 @@ public class UseAlertFragment extends Fragment {
     public boolean mIsFromItem = false;
     ListView listView;
     CheckBox mMainCkb;
-    cbx_Adapter cbxAdapter;
+    cbx_Adapter_UseAlertList cbxAdapter;
     private List<Model_check> models;
     List<HashMap<String, Object>> data;
     List<String> ID;
     //实例化的对象要改
-    public UseAlertFragment(){}
+    public UseAlert(){}
     public void setFlag(Boolean flag){
         this.mflag=flag;
     }
@@ -56,11 +56,11 @@ public class UseAlertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         getFKData();
         //布局文件要改
-        View view=inflater.inflate(R.layout.public_use_management_use_alert_fragment,container,false);
+        View view=inflater.inflate(R.layout.activity_public_use_management_install_management_use_alert,container,false);
         add=view.findViewById(R.id.add);
-        add.setOnClickListener(new Add());
+        add.setOnClickListener(new UseAlert.Add());
         del=view.findViewById(R.id.del);
-        del.setOnClickListener(new Del());
+        del.setOnClickListener(new UseAlert.Del());
         manage=view.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,7 @@ public class UseAlertFragment extends Fragment {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_UseManagementActivity.class);
                 intent.putExtra("flag_usealert",mflag);
-                intent.putExtra("page",3);
+                intent.putExtra("page",5);
                 startActivity(intent);
             }
         });
@@ -84,7 +84,7 @@ public class UseAlertFragment extends Fragment {
             Bundle bundle=new Bundle();
             //外键的数组名要改
             bundle.putSerializable("array",MFJUseIDStringArray);
-            intent.putExtra("page",3);
+            intent.putExtra("page",5);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -93,8 +93,8 @@ public class UseAlertFragment extends Fragment {
     private class Del implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            for (int i = 0; i<cbx_Adapter.index.size(); i++){
-                String id = ID.get(Integer.parseInt((String) cbx_Adapter.index.get(i)));
+            for (int i = 0; i< cbx_Adapter_OIList.index.size(); i++){
+                String id = ID.get(Integer.parseInt((String) cbxAdapter.index.get(i)));
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -109,7 +109,7 @@ public class UseAlertFragment extends Fragment {
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_UseManagementActivity.class);
-            intent.putExtra("page",3);
+            intent.putExtra("page",5);
             startActivity(intent);
         }
     }
@@ -130,8 +130,8 @@ public class UseAlertFragment extends Fragment {
                         }
                     }
                     //最后一个字段名和对应的布局对象要改
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.item,
-                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","ID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.receipts_Id});
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.public_usemanagement_useralertlist_item,
+                            new String[]{"itemNumber","CreateBy","CreateDateTime","UpdateBy","UpdateDateTime","MFJUseYuJingCodeID"}, new int[]{R.id.itemNumber,R.id.creator,R.id.creatTime,R.id.updater,R.id.updateTime,R.id.MFJUseYuJingCodeID});
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new ItemClickListener());
                 }
@@ -165,7 +165,7 @@ public class UseAlertFragment extends Fragment {
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
+                            item.put("MFJUseYuJingCodeID",jsonObject.getString("ID"));
                             item.put("MFJUseID",jsonObject.getString("MFJUseID"));
                             item.put("MFJUseYuJingDate",jsonObject.getString("MFJUseYuJingDate"));
                             item.put("MFJUseYuJingStatus",jsonObject.getString("MFJUseYuJingStatus"));
@@ -216,7 +216,7 @@ public class UseAlertFragment extends Fragment {
                             item.put("CreateDateTime",jsonObject.getString("createDateTime"));
                             item.put("UpdateBy",jsonObject.getString("updateBy"));
                             item.put("UpdateDateTime",jsonObject.getString("updateDateTime"));
-                            item.put("ID",jsonObject.getString("ID"));
+                            item.put("MFJUseYuJingCodeID",jsonObject.getString("ID"));
                             item.put("MFJUseID",jsonObject.getString("MFJUseID"));
                             item.put("MFJUseYuJingDate",jsonObject.getString("MFJUseYuJingDate"));
                             item.put("MFJUseYuJingStatus",jsonObject.getString("MFJUseYuJingStatus"));
@@ -244,11 +244,11 @@ public class UseAlertFragment extends Fragment {
             model.setIscheck(false);
             models.add(model);
             //这里的InstaCodeID也要改成表中的主键
-            ID.add((String) data.get(i).get("ID"));
+            ID.add((String) data.get(i).get("MFJUseYuJingCodeID"));
         }
     }
     private void initViewOper(List<HashMap<String, Object>> data) {
-        cbxAdapter = new cbx_Adapter(data,models, getActivity(), new RequirementManagement.AllCheckListener() {
+        cbxAdapter = new cbx_Adapter_UseAlertList(data,models, getActivity(), new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
                 if (!b && !mMainCkb.isChecked()) {
@@ -276,10 +276,10 @@ public class UseAlertFragment extends Fragment {
                 for (Model_check model : models) {
                     model.setIscheck(b);
                 }
-                cbx_Adapter.index=new ArrayList<>();
+                cbx_Adapter_UseAlertList.index=new ArrayList<>();
                 for (Model_check model: models) {
                     if (model.ischeck()) {
-                        cbx_Adapter.index.add(model.getSt());
+                        cbx_Adapter_UseAlertList.index.add(model.getSt());
                     }
                     else {
                         continue;
@@ -302,7 +302,7 @@ public class UseAlertFragment extends Fragment {
                 try {
                     //访问的数据库表名和字段要改
                     //外键需要访问几个表就生成几个StringArray
-                    JSONArray jdataUseID = getData.getData("MFJUse","");
+                    JSONArray jdataUseID = getData.getData("MFJUseYuJing","");
                     int jsonArrayUseIDlength = jdataUseID.length();
                     //字符串数组,用于存储目标字段的全部可取值
                     //先加1是为了写进固定的测试例子
@@ -312,7 +312,7 @@ public class UseAlertFragment extends Fragment {
                         MFJUseIDString [i] = SubjsonObject.getString("ID");
                     }
                     //固定的测试例子
-                    MFJUseIDString[jsonArrayUseIDlength] = "2023030608292429243";
+                    MFJUseIDString[jsonArrayUseIDlength] = "20230306110908984";
                     MFJUseIDStringArray = MFJUseIDString;
                 } catch (Exception e) {
                     e.printStackTrace();

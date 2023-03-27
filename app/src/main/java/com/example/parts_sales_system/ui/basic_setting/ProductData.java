@@ -67,7 +67,7 @@ public class ProductData extends Fragment {
                 //跳转的Activity要改
                 Intent intent=new Intent(getActivity(), public_BasicSettingActivity.class);
                 intent.putExtra("flag",mflag);
-                intent.putExtra("page",2);
+                intent.putExtra("page",3);
                 startActivity(intent);
             }
         });
@@ -83,7 +83,7 @@ public class ProductData extends Fragment {
             Bundle bundle=new Bundle();
             //外键的数组名要改
             bundle.putSerializable("array",UseDeptIDStringArray);
-            intent.putExtra("page",2);
+            intent.putExtra("page",3);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -109,7 +109,7 @@ public class ProductData extends Fragment {
             }
             //跳转的AddActivity要改
             Intent intent=new Intent(getActivity(),public_BasicSettingActivity.class);
-            intent.putExtra("page",2);
+            intent.putExtra("page",3);
             startActivity(intent);
         }
     }
