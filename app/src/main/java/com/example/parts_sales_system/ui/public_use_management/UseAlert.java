@@ -93,7 +93,7 @@ public class UseAlert extends Fragment {
     private class Del implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            for (int i = 0; i< cbx_Adapter_OIList.index.size(); i++){
+            for (int i = 0; i< cbx_Adapter_UseAlertList.index.size(); i++){
                 String id = ID.get(Integer.parseInt((String) cbxAdapter.index.get(i)));
                 new Thread(new Runnable() {
                     @Override

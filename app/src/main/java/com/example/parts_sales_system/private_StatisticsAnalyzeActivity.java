@@ -140,7 +140,6 @@ public class private_StatisticsAnalyzeActivity extends AppCompatActivity impleme
         setContentView(R.layout.activity_private_statistics_analyze);
         showProgressDialog("请稍后","正在计算");
         tvDate = (TextView) findViewById(R.id.tv_date);
-        tvDate.setText(year_c + "年" + month_c + "月" + day_c + "日");
         jump=findViewById(R.id.jump);
         jump.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +156,7 @@ public class private_StatisticsAnalyzeActivity extends AppCompatActivity impleme
             }
         });
         initCalendar();
+        tvDate.setText(year_c + "年" + month_c + "月" + day_c + "日");
         initCard();
 //        hideProgressDialog();
     }
