@@ -7,6 +7,7 @@
 ### 项目说明：
 - 本次开发基于谷歌推出的Android集成开发工具：Android Studio 2021.1
 - github仓库：https://github.com/shenlanshenlan0423/Parts_sales_system
+- 条件查询示例：基础配置-用户列表
 
 ### 注意：
 - 源码查看方法：
